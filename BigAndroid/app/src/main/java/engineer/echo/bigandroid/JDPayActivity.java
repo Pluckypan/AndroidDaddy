@@ -27,8 +27,8 @@ public class JDPayActivity extends AppCompatActivity {
 
         webView.setWebViewClient(new FHWebClient());
         webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        String url = "http://presentbox.jp/";
-        //"http://jdpaydemo.jd.com/payStart.htm"
+        String url ="http://jdpaydemo.jd.com/payStart.htm"; //"http://presentbox.jp/"; "http://jdpaydemo.jd.com/payStart.htm";
+
         webView.loadUrl(url);
     }
 
