@@ -21,7 +21,7 @@ public class DragSwipeActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(manager);
 
-        DragSwipAdapter adapter = new DragSwipAdapter(this);
+        DragSwipeAdapter adapter = new DragSwipeAdapter(this);
         recyclerView.setAdapter(adapter);
 
         SimpleTouchCallback callback = new SimpleTouchCallback(adapter);

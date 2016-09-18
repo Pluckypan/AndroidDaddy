@@ -11,9 +11,9 @@ import android.support.v7.widget.helper.ItemTouchHelper;
  */
 public class SimpleTouchCallback extends ItemTouchHelper.Callback {
 
-    private DragSwipListener listener;
+    private DragSwipeListener listener;
 
-    public SimpleTouchCallback(DragSwipListener listener) {
+    public SimpleTouchCallback(DragSwipeListener listener) {
         this.listener = listener;
     }
 

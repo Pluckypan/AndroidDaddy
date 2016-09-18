@@ -12,11 +12,11 @@ import android.widget.TextView;
  * author:Created by Plucky on 16/8/16-上午10:03.
  * 功能描述: xxx
  */
-public class DragSwipAdapter extends RecyclerView.Adapter<DragSwipAdapter.ItemViewHolder> implements DragSwipListener {
+public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.ItemViewHolder> implements DragSwipeListener {
 
     private Context mContext;
 
-    public DragSwipAdapter(Context mContext) {
+    public DragSwipeAdapter(Context mContext) {
         this.mContext = mContext;
     }
 

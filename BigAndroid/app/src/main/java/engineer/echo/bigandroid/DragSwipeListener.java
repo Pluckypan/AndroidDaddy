@@ -6,7 +6,7 @@ package engineer.echo.bigandroid;
  * author:Created by Plucky on 16/8/16-上午10:32.
  * 功能描述:
  */
-public interface DragSwipListener {
+public interface DragSwipeListener {
     void onItemDismiss(int position);
 
     void onDrag(int from, int to);
