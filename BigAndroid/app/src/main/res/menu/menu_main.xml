@@ -13,4 +13,9 @@
         android:orderInCategory="101"
         android:title="@string/action_jdpaywebview"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_web"
+        android:orderInCategory="102"
+        android:title="web"
+        app:showAsAction="never" />
 </menu>
