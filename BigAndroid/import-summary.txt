@@ -7,24 +7,74 @@ The following files were *not* copied into the new Gradle project; you
 should evaluate whether these are still needed in your project and if
 so manually move them:
 
-* ic_launcher-web.png
-* log.txt
-* my.keystore
+* .DS_Store
 * proguard-project.txt
-* readme.doc
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:18.+
 
 Moved Files:
 ------------
 Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
-* AndroidManifest.xml => x5WebDemo/src/main/AndroidManifest.xml
-* assets/ => x5WebDemo/src/main/assets/
-* libs/armeabi/liblbs.so => x5WebDemo/src/main/jniLibs/armeabi/liblbs.so
-* libs/tbs_sdk_thirdapp_v2.2.0.1096_36549_sharewithdownload_withoutGame_obfs_20160830_211645.jar => x5WebDemo/libs/tbs_sdk_thirdapp_v2.2.0.1096_36549_sharewithdownload_withoutGame_obfs_20160830_211645.jar
-* lint.xml => x5WebDemo/lint.xml
-* res/ => x5WebDemo/src/main/res/
-* src/ => x5WebDemo/src/main/java/
+* AndroidManifest.xml => listViewFilterTest/src/main/AndroidManifest.xml
+* res/ => listViewFilterTest/src/main/res/
+* src/ => listViewFilterTest/src/main/java/
+* src/.DS_Store => listViewFilterTest/src/main/resources/.DS_Store
+* src/com/.DS_Store => listViewFilterTest/src/main/resources/com/.DS_Store
+* src/com/example/.DS_Store => listViewFilterTest/src/main/resources/com/example/.DS_Store
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/ => listViewFilterTest/src/main/java/
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/.DS_Store => listViewFilterTest/src/main/resources/.DS_Store
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/.gitignore => listViewFilterTest/src/main/resources/.gitignore
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/AndroidManifest.xml => listViewFilterTest/src/main/resources/AndroidManifest.xml
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/lint.xml => listViewFilterTest/src/main/resources/lint.xml
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/proguard-project.txt => listViewFilterTest/src/main/resources/proguard-project.txt
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/project.properties => listViewFilterTest/src/main/resources/project.properties
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/drawable-hdpi/ic_arrow.png => listViewFilterTest/src/main/resources/res/drawable-hdpi/ic_arrow.png
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/drawable-hdpi/ic_launcher.png => listViewFilterTest/src/main/resources/res/drawable-hdpi/ic_launcher.png
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/drawable-hdpi/ic_search.png => listViewFilterTest/src/main/resources/res/drawable-hdpi/ic_search.png
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/drawable-mdpi/ic_arrow.png => listViewFilterTest/src/main/resources/res/drawable-mdpi/ic_arrow.png
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/drawable-mdpi/ic_launcher.png => listViewFilterTest/src/main/resources/res/drawable-mdpi/ic_launcher.png
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/drawable-mdpi/ic_search.png => listViewFilterTest/src/main/resources/res/drawable-mdpi/ic_search.png
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/drawable-xhdpi/ic_arrow.png => listViewFilterTest/src/main/resources/res/drawable-xhdpi/ic_arrow.png
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/drawable-xhdpi/ic_launcher.png => listViewFilterTest/src/main/resources/res/drawable-xhdpi/ic_launcher.png
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/drawable-xhdpi/ic_search.png => listViewFilterTest/src/main/resources/res/drawable-xhdpi/ic_search.png
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/drawable/rounded_rectangle_shape.xml => listViewFilterTest/src/main/resources/res/drawable/rounded_rectangle_shape.xml
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/layout/index_bar_view.xml => listViewFilterTest/src/main/resources/res/layout/index_bar_view.xml
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/layout/loading_empty_view.xml => listViewFilterTest/src/main/resources/res/layout/loading_empty_view.xml
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/layout/main_act.xml => listViewFilterTest/src/main/resources/res/layout/main_act.xml
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/layout/preview_view.xml => listViewFilterTest/src/main/resources/res/layout/preview_view.xml
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/layout/row_view.xml => listViewFilterTest/src/main/resources/res/layout/row_view.xml
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/layout/section_row_view.xml => listViewFilterTest/src/main/resources/res/layout/section_row_view.xml
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/values-sw600dp/dimens.xml => listViewFilterTest/src/main/resources/res/values-sw600dp/dimens.xml
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/values/colors.xml => listViewFilterTest/src/main/resources/res/values/colors.xml
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/values/dimens.xml => listViewFilterTest/src/main/resources/res/values/dimens.xml
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/values/strings.xml => listViewFilterTest/src/main/resources/res/values/strings.xml
+* /Users/Plucky/Plucky/gitHub/android/ListviewFilter/ListviewFilter/res/values/styles.xml => listViewFilterTest/src/main/resources/res/values/styles.xml
+
+Missing Android Support Repository:
+-----------------------------------
+Some useful libraries, such as the Android Support Library, are
+installed from a special Maven repository, which should be installed
+via the SDK manager.
+
+It looks like this library is missing from your SDK installation at:
+null
+
+To install it, open the SDK manager, and in the Extras category,
+select "Android Support Repository". You may also want to install the
+"Google Repository" if you want to use libraries like Google Play
+Services.
 
 Next Steps:
 -----------
