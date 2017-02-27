@@ -18,4 +18,9 @@
         android:orderInCategory="102"
         android:title="web"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_slideup"
+        android:orderInCategory="103"
+        android:title="up"
+        app:showAsAction="never" />
 </menu>
