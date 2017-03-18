@@ -1,3 +1,2 @@
-include ':app'
+include ':app', ':xfyuntina'
 include ':x5WebDemo'
-include ':listviewFilter'
