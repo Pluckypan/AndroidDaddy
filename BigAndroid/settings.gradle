@@ -1,2 +1,2 @@
-include ':app', ':xfyuntina'
+include ':app', ':xfyuntina', ':dagger', ':rxjava'
 include ':x5WebDemo'
