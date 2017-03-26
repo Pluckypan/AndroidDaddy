@@ -20,7 +20,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".SecondActivity" />
-        <activity android:name=".ScopeActivity"></activity>
+        <activity android:name=".ScopeActivity" />
+        <activity
+            android:name=".CoordinatorActivity"
+            android:label="@string/title_activity_coordinator"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".BaseActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

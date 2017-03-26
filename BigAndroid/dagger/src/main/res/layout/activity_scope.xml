@@ -14,4 +14,11 @@
         android:id="@+id/tvDeviceStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnNew"
+        android:layout_below="@+id/tvDeviceStatus"
+        android:layout_width="wrap_content"
+        android:text="New"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

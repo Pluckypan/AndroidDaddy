@@ -55,14 +55,16 @@ public class SecondActivity extends AppCompatActivity {
             case R.id.btnSubmit:
                 manager.getAplsit();
                 manager.getAplsitByName();
+                Intent intent = new Intent(this, CoordinatorActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btnScope:
                 FRAppComponent component = DaggerApp.getComponent(this);
                 DeviceStatus status = component.getDeviceStatus();
                 status.ssid = "PYNet";
 
-                Intent intent = new Intent(this, ScopeActivity.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(this, ScopeActivity.class);
+                startActivity(intent1);
                 break;
         }
     }
