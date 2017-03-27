@@ -31,6 +31,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25+'
     compile 'com.android.support:design:25+'
     testCompile 'junit:junit:4.12'
+    compile 'com.jakewharton:butterknife:7.0.1'
 
     //使用APT生成工具，生成需要的DI代码
     apt 'com.google.dagger:dagger-compiler:2.5'
