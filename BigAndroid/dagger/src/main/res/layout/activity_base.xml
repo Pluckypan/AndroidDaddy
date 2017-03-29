@@ -212,8 +212,31 @@
                         android:background="#e6e6e6" />
 
                 </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:gravity="center|bottom"
+                    android:orientation="vertical">
+
+                    <View
+                        android:id="@+id/vRotate"
+                        android:layout_width="1dp"
+                        android:layout_height="150dp"
+                        android:background="#FF0000" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnRotate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="30dp"
+                    android:text="Rotate" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
     </android.support.design.widget.CoordinatorLayout>
+
+
 </LinearLayout>
