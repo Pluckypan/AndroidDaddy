@@ -33,7 +33,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CameraActivity1"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTran"
+            android:parentActivityName=".BaseActivity"/>
     </application>
 
 </manifest>

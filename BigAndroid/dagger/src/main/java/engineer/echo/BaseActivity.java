@@ -109,13 +109,6 @@ public class BaseActivity extends AppCompatActivity implements PullToRefreshBase
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.frameCircle:
-                //CameraActivity.startActivity(this, Position.from(vRender));
-//                Intent intent = new Intent(this, CameraActivity.class);
-//                intent.putExtra("id", vRender.getId());
-//                new BaseViewHelper
-//                        .Builder(this, view).isFullWindow(false)
-//                        .startActivity(intent);
-
                 Intent intent = new Intent(this, CameraActivity1.class);
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, Pair.create(vRender, "vRender"));
                 startActivity(intent, options.toBundle());
