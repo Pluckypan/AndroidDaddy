@@ -25,8 +25,15 @@
             android:name=".CoordinatorActivity"
             android:label="@string/title_activity_coordinator"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BaseActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".BaseActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CameraActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CameraActivity1"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

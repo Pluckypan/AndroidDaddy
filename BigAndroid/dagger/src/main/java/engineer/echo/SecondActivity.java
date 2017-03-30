@@ -7,6 +7,7 @@ import android.view.View;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import engineer.echo.dependence.ActivityModule;
@@ -30,6 +31,8 @@ public class SecondActivity extends AppCompatActivity {
     @Inject
     Person person2;
 
+    @Bind(R.id.scrollView)
+    CustomScrollView scrollView;
     SubManager manager;
 
     @Override
@@ -39,6 +42,9 @@ public class SecondActivity extends AppCompatActivity {
         AppComponent component = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
         DaggerActivityComponent.builder().appComponent(component).activityModule(new ActivityModule()).build().inject(this);
         ButterKnife.bind(this);
+
+        int offset = getResources().getDimensionPixelSize(R.dimen.msg_txt);
+        scrollView.setOverscrollDistance(offset);
 
         manager = new SubManager();
     }

@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "engineer.echo"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -24,7 +24,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -32,14 +32,13 @@ dependencies {
     compile 'com.android.support:design:25+'
     testCompile 'junit:junit:4.12'
     compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'engineer.echo.pulltorefresh.library:EE-PullToRefresh:1.0.2'
-
+    compile 'engineer.echo.pulltorefresh.library:EE-PullToRefresh:1.0.3'
     compile 'com.huxq17.xrefreshview:xrefreshview:3.6.3'
-
     //使用APT生成工具，生成需要的DI代码
     apt 'com.google.dagger:dagger-compiler:2.5'
     //JSR250的jar包，使用这个和使用glassFish的那个一样，仅为了使用@Inject 和@Named注解
     provided 'javax.annotation:jsr250-api:1.0'
     //Dagger2 的依赖
     compile 'com.google.dagger:dagger:2.5'
+    compile project(':viewspreadtranslationlibrary')
 }
