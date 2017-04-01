@@ -33,8 +33,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CameraActivity1"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".BaseActivity"/>
+            android:parentActivityName=".BaseActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Camera2Activity"></activity>
     </application>
 
 </manifest>

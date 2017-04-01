@@ -105,13 +105,19 @@ public class BaseActivity extends AppCompatActivity implements PullToRefreshBase
         ButterKnife.unbind(this);
     }
 
-    @OnClick(value = {R.id.frameCircle})
+    @OnClick(value = {R.id.frameCircle, R.id.iv_home_setting})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.frameCircle:
                 Intent intent = new Intent(this, CameraActivity1.class);
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, Pair.create(vRender, "vRender"));
                 startActivity(intent, options.toBundle());
+                break;
+            case R.id.iv_home_setting:
+                Intent intent1 = new Intent(this, Camera2Activity.class);
+                ActivityOptions options1 = ActivityOptions.makeSceneTransitionAnimation(this, Pair.create(vRender, "vRender"));
+                intent1.putExtra("POS", Position.from(vRender));
+                startActivity(intent1, options1.toBundle());
                 break;
         }
     }

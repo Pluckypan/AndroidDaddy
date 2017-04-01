@@ -2,6 +2,7 @@ package engineer.echo;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 
 import engineer.echo.scope.DaggerFRAppComponent;
 import engineer.echo.scope.FRAppComponent;
@@ -30,5 +31,10 @@ public class DaggerApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+    }
+
+    public static void gotoActivity(Context context, Class cls) {
+        Intent intent = new Intent(context, cls);
+        context.startActivity(intent);
     }
 }

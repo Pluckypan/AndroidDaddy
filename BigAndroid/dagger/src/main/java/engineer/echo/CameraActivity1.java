@@ -1,6 +1,8 @@
 package engineer.echo;
 
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.support.v4.app.SharedElementCallback;
 import android.support.v4.os.TraceCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -75,7 +78,7 @@ public class CameraActivity1 extends AppCompatActivity {
                             tvRender.setLayoutParams(params);
                             beforeExit = true;
                         }
-                    },400);
+                    }, 400);
                 }
                 Log.d("Plucky", "CameraActivity1 --- onSharedElementEnd");
             }
@@ -122,5 +125,8 @@ public class CameraActivity1 extends AppCompatActivity {
         }
         view.setSelected(!view.isSelected());
 
+        Intent intent = new Intent(this, Camera2Activity.class);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, Pair.create(tvRender, "vRender"));
+        startActivity(intent, options.toBundle());
     }
 }
