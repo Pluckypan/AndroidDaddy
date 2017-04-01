@@ -56,6 +56,7 @@ public class RoundAngleFrameLayout extends FrameLayout {
         imagePaint = new Paint();
         imagePaint.setXfermode(null);
     }
+
     @Override
     protected void dispatchDraw(Canvas canvas) {
         canvas.saveLayer(new RectF(0, 0, canvas.getWidth(), canvas.getHeight()), imagePaint, Canvas.ALL_SAVE_FLAG);
@@ -65,6 +66,13 @@ public class RoundAngleFrameLayout extends FrameLayout {
         drawBottomLeft(canvas);
         drawBottomRight(canvas);
         canvas.restore();
+    }
+
+    public void setRadius(float radius) {
+        topLeftRadius = radius;
+        topRightRadius = radius;
+        bottomLeftRadius = radius;
+        bottomRightRadius = radius;
     }
 
     private void drawTopLeft(Canvas canvas) {

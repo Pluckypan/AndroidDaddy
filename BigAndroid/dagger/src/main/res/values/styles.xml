@@ -26,18 +26,21 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <style name="DetailedTheme" parent="AppTheme.NoActionBar">
-        <!--背景透明-->
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <!--无进入动画-->
-        <item name="android:windowAnimationStyle">@null</item>
-    </style>
+
     <declare-styleable name="RoundAngleFrameLayout">
         <attr name="rf_radius" format="dimension" />
         <attr name="rf_topLeftRadius" format="dimension" />
         <attr name="rf_topRightRadius" format="dimension" />
         <attr name="rf_bottomLeftRadius" format="dimension" />
         <attr name="rf_bottomRightRadius" format="dimension" />
+    </declare-styleable>
+
+
+    <style name="AppTran" parent="AppTheme">
+        <item name="android:windowSharedElementEnterTransition">@transition/shared_element</item>
+    </style>
+
+    <declare-styleable name="PlayTransition">
+        <attr name="colorCT" format="color"/>
     </declare-styleable>
 </resources>
