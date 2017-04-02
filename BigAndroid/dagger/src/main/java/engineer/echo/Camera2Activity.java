@@ -1,5 +1,6 @@
 package engineer.echo;
 
+import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.os.CountDownTimer;
@@ -19,6 +20,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -30,12 +32,12 @@ import butterknife.ButterKnife;
 
 public class Camera2Activity extends AppCompatActivity {
 
+    @Bind(R.id.llRoot)
+    LinearLayout llRoot;
     @Bind(R.id.frameCircle)
     RoundCoverView frameCircle;
     @Bind(R.id.tvRender)
     View tvRender;
-    @Bind(R.id.vCircle)
-    View vCircle;
     @Bind(R.id.frameRoot)
     FrameLayout frameRoot;
 
@@ -53,58 +55,51 @@ public class Camera2Activity extends AppCompatActivity {
         circleSize = getResources().getDimensionPixelSize(R.dimen.circle_height);
         screenW = getResources().getDisplayMetrics().widthPixels;
 
-        Position pos = getIntent().getExtras().getParcelable("POS");
-
-        int oldpos[] = new int[]{0, 0};
-        frameRoot.getLocationInWindow(oldpos);
-        oldTop = oldpos[1];
-
-        if (pos != null) {
-            startTop = pos.top;
-            Log.d("Plucky", "CameraActivity1 --- top:" + startTop);
-            frameRoot.setTranslationY(-120.f);
-        }
-
         setLayoutParams(screenW, circleSize, tvRender);
         setLayoutParams(screenW, circleSize, frameCircle);
-        setLayoutParams(circleSize, circleSize, vCircle);
+
+        final TranslatePosition position = getIntent().getExtras().getParcelable("POS");
+
+//        ObjectAnimator translationUp = ObjectAnimator.ofFloat(frameRoot, "Y",
+//                frameRoot.getY(),position.startCenterY);
+//        translationUp.setInterpolator(new DecelerateInterpolator());
+//        translationUp.setDuration(400);
+//        translationUp.start();
+
+        llRoot.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ValueAnimator animator = ValueAnimator.ofInt(circleRadius, screenW);
+                animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        int cur = (int) animation.getAnimatedValue();
+                        frameCircle.setRadius(cur);
+                        //vCircle.setAlpha(cur/screenW);
+                    }
+                });
+                animator.setDuration(1200L);
+                animator.start();
+            }
+        },400);
+
+        frameRoot.setTranslationY(frameRoot.getY()-position.startCenterY);
 
         circleRadius = circleSize / 2;
         frameCircle.setRadius(circleRadius);
-        vCircle.setAlpha(0);
 
-        setEnterSharedElementCallback(new SharedElementCallback() {
-            @Override
-            public void onSharedElementStart(List<String> sharedElementNames, List<View> sharedElements, List<View> sharedElementSnapshots) {
-                if (beforeExit) {
-                    //TransitionManager.beginDelayedTransition(frameCircle);
-                    frameCircle.setRadius(circleRadius);
-                }
-                super.onSharedElementStart(sharedElementNames, sharedElements, sharedElementSnapshots);
-                Log.d("Plucky", "CameraActivity1 --- onSharedElementStart");
+//        llRoot.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                ObjectAnimator translationUp = ObjectAnimator.ofFloat(frameRoot, "Y",
+//                        position.startCenterY, frameRoot.getY());
+//                translationUp.setInterpolator(new DecelerateInterpolator());
+//                translationUp.setDuration(400);
+//                translationUp.start();
+//            }
+//        }, 10);
 
-            }
 
-            @Override
-            public void onSharedElementEnd(List<String> sharedElementNames, List<View> sharedElements, List<View> sharedElementSnapshots) {
-                super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots);
-                if (!beforeExit) {
-                    ValueAnimator animator = ValueAnimator.ofInt(circleRadius, screenW);
-                    animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public void onAnimationUpdate(ValueAnimator animation) {
-                            int cur = (int) animation.getAnimatedValue();
-                            frameCircle.setRadius(cur);
-                            //vCircle.setAlpha(cur/screenW);
-                        }
-                    });
-                    animator.setDuration(1200L);
-                    animator.start();
-                    beforeExit = true;
-                }
-                Log.d("Plucky", "CameraActivity1 --- onSharedElementEnd");
-            }
-        });
     }
 
     private boolean beforeExit;

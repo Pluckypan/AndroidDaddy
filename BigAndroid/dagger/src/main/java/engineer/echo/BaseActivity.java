@@ -31,6 +31,8 @@ import static android.view.animation.Animation.RELATIVE_TO_SELF;
 
 public class BaseActivity extends AppCompatActivity implements PullToRefreshBase.OnRefreshListener {
 
+    @Bind(R.id.llRoot)
+    LinearLayout llRoot;
     @Bind(R.id.frameCircle)
     FrameLayout frameCircle;
     @Bind(R.id.app_bar)
@@ -115,9 +117,11 @@ public class BaseActivity extends AppCompatActivity implements PullToRefreshBase
                 break;
             case R.id.iv_home_setting:
                 Intent intent1 = new Intent(this, Camera2Activity.class);
-                ActivityOptions options1 = ActivityOptions.makeSceneTransitionAnimation(this, Pair.create(vRender, "vRender"));
-                intent1.putExtra("POS", Position.from(vRender));
-                startActivity(intent1, options1.toBundle());
+                int[] posStart = new int[]{0, 0};
+                vRender.getLocationInWindow(posStart);
+
+                intent1.putExtra("POS", new TranslatePosition(posStart[0],posStart[1],posStart[0],posStart[1]));
+                startActivity(intent1);
                 break;
         }
     }
