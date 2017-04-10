@@ -1,2 +1,3 @@
 include ':app', ':xfyuntina', ':dagger', ':rxjava', ':viewspreadtranslationlibrary'
 include ':x5WebDemo'
+include ':floatingWindow'
