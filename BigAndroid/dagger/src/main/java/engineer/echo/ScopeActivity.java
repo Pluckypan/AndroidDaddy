@@ -16,7 +16,7 @@ import engineer.echo.scope.FRActivityComponent;
 import engineer.echo.scope.FRActivityModule;
 import engineer.echo.scope.FRAppComponent;
 
-public class ScopeActivity extends AppCompatActivity {
+public class ScopeActivity extends AppCompatActivity{
 
     FRAppComponent component;
     TextView tvDeviceStatus;

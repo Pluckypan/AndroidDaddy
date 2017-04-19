@@ -29,6 +29,7 @@ public class MainActivity extends RxAppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_main);
         tvResult = (TextView) findViewById(R.id.tvResult);
         findViewById(R.id.btnBehaviorSubject).setOnClickListener(this);
+        findViewById(R.id.btnRetry).setOnClickListener(this);
         status = App.getStatus(this);
         final String[] arr = new String[]{"A", "B", "C", "D", "E", "F", "G"};
 
@@ -63,7 +64,15 @@ public class MainActivity extends RxAppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this, BehaviorSubjectActivity.class);
-        startActivity(intent);
+        switch (v.getId()) {
+            case R.id.btnBehaviorSubject:
+                Intent intent = new Intent(this, BehaviorSubjectActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnRetry:
+                Intent intent1 = new Intent(this, RxErrorActivity.class);
+                startActivity(intent1);
+                break;
+        }
     }
 }
