@@ -20,6 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.flurgle.camerakit.CameraView;
 import com.library.viewspread.helper.BaseViewHelper;
 
 import butterknife.Bind;
@@ -47,6 +48,8 @@ public class BaseActivity extends AppCompatActivity implements PullToRefreshBase
     LinearLayout llTrans;
     @Bind(R.id.vRender)
     View vRender;
+    @Bind(R.id.cameraView)
+    CameraView cameraView;
 
     RecyclerAdapter adapter;
     int barHeight;
@@ -124,5 +127,17 @@ public class BaseActivity extends AppCompatActivity implements PullToRefreshBase
                 startActivity(intent1);
                 break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cameraView.start();
+    }
+
+    @Override
+    protected void onPause() {
+        cameraView.stop();
+        super.onPause();
     }
 }
