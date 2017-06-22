@@ -1,4 +1,4 @@
-include ':app', ':xfyuntina', ':dagger', ':rxjava', ':viewspreadtranslationlibrary'
+include ':app', ':xfyuntina', ':dagger', ':rxjava', ':viewspreadtranslationlibrary', ':servicedemo'
 include ':x5WebDemo'
 include ':floatingWindow'
 include ':pulllayout'

@@ -193,7 +193,6 @@
             android:divider="@null"
             android:dividerHeight="0dp"
             android:listSelector="@android:color/transparent"
-            android:scrollbars="none"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:ptrDrawableStart="@android:color/transparent"
             app:ptrFooterBackground="#FFFFFF"
