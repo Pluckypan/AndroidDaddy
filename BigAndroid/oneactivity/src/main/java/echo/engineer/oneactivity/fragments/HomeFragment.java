@@ -19,12 +19,9 @@ public class HomeFragment extends MasterFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Request request = new Request(OrdersFragment.class);
-                startFragment(request);
-            }
+        view.setOnClickListener(v -> {
+            Request request = new Request(OrdersFragment.class);
+            startFragment(request);
         });
     }
 
