@@ -12,5 +12,19 @@
         android:layout_gravity="center"
         android:text="Start" />
 
+    <echo.engineer.oneactivity.widget.PulseAlphaFramelayout
+        android:id="@+id/pflRecording"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:background="#FF0000" />
+
+    </echo.engineer.oneactivity.widget.PulseAlphaFramelayout>
+
     <include layout="@layout/countdown_view" />
 </LinearLayout>

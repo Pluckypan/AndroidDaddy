@@ -10,6 +10,7 @@ import com.fragmentmaster.app.MasterFragment;
 
 import echo.engineer.oneactivity.R;
 import echo.engineer.oneactivity.widget.CountDownView;
+import echo.engineer.oneactivity.widget.PulseAlphaFramelayout;
 
 /**
  * CountDownFragment
@@ -23,11 +24,14 @@ public class CountDownFragment extends MasterFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         CountDownView countDownView = (CountDownView) view.findViewById(R.id.count_down_to_capture);
+        PulseAlphaFramelayout pflRecording = (PulseAlphaFramelayout) view.findViewById(R.id.pflRecording);
+
         view.findViewById(R.id.btnStart).setOnClickListener(v -> {
             if (countDownView.isCountingDown()) {
                 countDownView.cancelCountDown();
             }
             countDownView.startCountDown(4, true);
+            pflRecording.setVisibility(View.VISIBLE);
         });
     }
 
