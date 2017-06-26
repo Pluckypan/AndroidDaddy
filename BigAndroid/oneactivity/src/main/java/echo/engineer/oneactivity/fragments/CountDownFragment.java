@@ -4,6 +4,8 @@ import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import com.fragmentmaster.app.MasterFragment;
 
 import echo.engineer.oneactivity.R;
+import echo.engineer.oneactivity.fragments.adapter.CountDownAdapter;
 import echo.engineer.oneactivity.widget.CountDownView;
 import echo.engineer.oneactivity.widget.PulseAlphaFramelayout;
 
@@ -28,6 +31,12 @@ public class CountDownFragment extends MasterFragment {
         CountDownView countDownView = (CountDownView) view.findViewById(R.id.count_down_to_capture);
         PulseAlphaFramelayout pflRecording = (PulseAlphaFramelayout) view.findViewById(R.id.pflRecording);
         View vDot = view.findViewById(R.id.vDot);
+        RecyclerView dockRecyclerView = (RecyclerView) view.findViewById(R.id.dockRecyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        dockRecyclerView.setLayoutManager(layoutManager);
+        dockRecyclerView.setAdapter(new CountDownAdapter());
+
 
         view.findViewById(R.id.btnStart).setOnClickListener(v -> {
             if (countDownView.isCountingDown()) {

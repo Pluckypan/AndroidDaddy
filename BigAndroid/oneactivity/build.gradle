@@ -37,5 +37,6 @@ android {
 dependencies {
     compile 'com.github.markzhai:blockcanary-android:1.5.0'
     testCompile 'junit:junit:4.12'
+    compile "com.android.support:recyclerview-v7:23.0.1"
     compile project(':fragmentmaster-appcompat')
 }
