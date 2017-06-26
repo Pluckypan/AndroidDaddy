@@ -12,6 +12,12 @@
         android:layout_gravity="center"
         android:text="Start" />
 
+    <View
+        android:id="@+id/vDot"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="#00FF00" />
+
     <echo.engineer.oneactivity.widget.PulseAlphaFramelayout
         android:id="@+id/pflRecording"
         android:layout_width="20dp"

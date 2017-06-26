@@ -1,5 +1,7 @@
 package echo.engineer.oneactivity.fragments;
 
+import android.animation.TimeInterpolator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -25,14 +27,46 @@ public class CountDownFragment extends MasterFragment {
         super.onViewCreated(view, savedInstanceState);
         CountDownView countDownView = (CountDownView) view.findViewById(R.id.count_down_to_capture);
         PulseAlphaFramelayout pflRecording = (PulseAlphaFramelayout) view.findViewById(R.id.pflRecording);
+        View vDot = view.findViewById(R.id.vDot);
 
         view.findViewById(R.id.btnStart).setOnClickListener(v -> {
             if (countDownView.isCountingDown()) {
                 countDownView.cancelCountDown();
             }
-            countDownView.startCountDown(4, true);
+            countDownView.startCountDown(4, false);
             pflRecording.setVisibility(View.VISIBLE);
+
+            ValueAnimator valueAnimator = getValueAnimator();
+            valueAnimator.addUpdateListener(animation -> {
+                float val = animation.getAnimatedFraction();
+                vDot.setAlpha(val);
+            });
+            valueAnimator.start();
         });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        getValueAnimator().cancel();
+    }
+
+    private ValueAnimator alphaAnimator;
+
+    private ValueAnimator getValueAnimator() {
+        if (alphaAnimator == null) {
+            alphaAnimator = ValueAnimator.ofFloat(0, 1.0f);
+            alphaAnimator.setDuration(1000);
+            alphaAnimator.removeAllUpdateListeners();
+            alphaAnimator.setRepeatCount(-1);
+            alphaAnimator.setInterpolator(new TimeInterpolator() {
+                @Override
+                public float getInterpolation(float v) {
+                    return (float) (Math.sin(2f * Math.PI * v - Math.PI / 2f) + 1) / 2f;
+                }
+            });
+        }
+        return alphaAnimator;
     }
 
     @Nullable
