@@ -76,7 +76,7 @@ public class OrdersFragment extends MasterListFragment {
                     finish();
                 }
             });
-            ((TextView)view.findViewById(R.id.tvMsg)).setText("VerticalSlidePage");
+            ((TextView) view.findViewById(R.id.tvMsg)).setText("VerticalSlidePage");
         }
 
         @Override
@@ -102,7 +102,7 @@ public class OrdersFragment extends MasterListFragment {
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            ((TextView)view.findViewById(R.id.tvMsg)).setText("EnterOvershootPage");
+            ((TextView) view.findViewById(R.id.tvMsg)).setText("EnterOvershootPage");
         }
 
         @Override
@@ -122,7 +122,11 @@ public class OrdersFragment extends MasterListFragment {
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            ((TextView)view.findViewById(R.id.tvMsg)).setText("StackPage");
+            TextView tvMsg = (TextView) view.findViewById(R.id.tvMsg);
+            tvMsg.setText("StackPage");
+            tvMsg.setOnClickListener(v -> {
+                startFragment(new Request(CountDownFragment.class));
+            });
         }
 
         @Override
