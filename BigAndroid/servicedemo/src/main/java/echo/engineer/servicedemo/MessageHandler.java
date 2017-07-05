@@ -17,7 +17,9 @@ public class MessageHandler extends Handler {
 
     @Override
     public void handleMessage(Message msg) {
-        Log.i(TAG, "Server handleMessage msg=" + msg.getData().toString());
+        String receiveMsg = msg.getData().getString("msg");
+        Log.i(TAG, "Server handleMessage msg=" + receiveMsg);
+        AppStateManager.publishMsgState(receiveMsg);
         Messenger messenger = msg.replyTo;
         Message message = Message.obtain(null, 0);
         Bundle bundle = new Bundle();

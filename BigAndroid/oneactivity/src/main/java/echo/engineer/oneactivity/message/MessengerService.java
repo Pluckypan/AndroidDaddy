@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Message;
@@ -33,19 +34,25 @@ public class MessengerService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.d(TAG, "onBind()");
-        return messenger.getBinder();
+        return new MessengerBinder();
+    }
+
+    public class MessengerBinder extends Binder {
+        public MessengerService getService() {
+            return MessengerService.this;
+        }
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "onCreate()");
+        buildConnection();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand startId=" + startId);
-        buildConnection();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -75,21 +82,28 @@ public class MessengerService extends Service {
         }
     }
 
+    private Messenger mService;
+
+    public void sendMessage(String msg) {
+        if (mService == null) return;
+        Message message = Message.obtain(null, 0);
+        Bundle bundle = new Bundle();
+        bundle.putString("msg", msg);
+        message.replyTo = messenger;
+        message.setData(bundle);
+        try {
+            mService.send(message);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             Log.d(TAG, "onServiceConnected() componentName=" + name.toString());
-            Messenger mService = new Messenger(service);
-            Message message = Message.obtain(null, 0);
-            Bundle bundle = new Bundle();
-            bundle.putString("msg", "hello this is client!");
-            message.replyTo = messenger;
-            message.setData(bundle);
-            try {
-                mService.send(message);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
+            mService = new Messenger(service);
+            sendMessage("when connected to server");
         }
 
         @Override

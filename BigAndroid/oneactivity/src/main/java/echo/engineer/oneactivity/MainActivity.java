@@ -1,6 +1,10 @@
 package echo.engineer.oneactivity;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 
 import com.fragmentmaster.app.FragmentMaster;
@@ -9,6 +13,7 @@ import com.fragmentmaster.app.MasterActionBarActivity;
 import com.fragmentmaster.app.Request;
 
 import echo.engineer.oneactivity.fragments.HomeFragment;
+import echo.engineer.oneactivity.message.MessengerService;
 
 public class MainActivity extends MasterActionBarActivity {
 
@@ -48,5 +53,46 @@ public class MainActivity extends MasterActionBarActivity {
         FragmentMaster fragmentMaster = getFragmentMaster();
         fragmentMaster.registerFragmentLifecycleCallbacks(mLifecycleCallbacks);
         fragmentMaster.install(R.id.container, new Request(HomeFragment.class), true);
+        bindMessengerService();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindMessengerService();
+    }
+
+    private void bindMessengerService() {
+        Intent intent = new Intent(this, MessengerService.class);
+        bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+    }
+
+    private void unbindMessengerService() {
+        try {
+            unbindService(serviceConnection);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendMessage(String msg) {
+        if (iBinder != null && iBinder instanceof MessengerService.MessengerBinder) {
+            MessengerService messengerService = ((MessengerService.MessengerBinder) iBinder).getService();
+            messengerService.sendMessage(msg);
+        }
+    }
+
+    private IBinder iBinder;
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            iBinder = service;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            iBinder = null;
+        }
+    };
 }

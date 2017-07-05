@@ -4,10 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Cliclk to OrdersList"
-        android:textStyle="bold" />
+    <Button
+        android:id="@+id/btnOrderList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cliclk to OrdersList" />
+
+    <Button
+        android:id="@+id/btnHello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello" />
+
+    <Button
+        android:id="@+id/btnWorld"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="World" />
 </LinearLayout>

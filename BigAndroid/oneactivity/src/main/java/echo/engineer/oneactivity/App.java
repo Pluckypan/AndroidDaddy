@@ -17,6 +17,5 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         BlockCanary.install(this, new AppBlockCanaryContext()).start();
-        startService(new Intent(this, MessengerService.class));
     }
 }
