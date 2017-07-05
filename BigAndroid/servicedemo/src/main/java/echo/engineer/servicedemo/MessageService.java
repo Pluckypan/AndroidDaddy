@@ -1,0 +1,62 @@
+package echo.engineer.servicedemo;
+
+import android.app.Service;
+import android.content.Intent;
+import android.os.Binder;
+import android.os.IBinder;
+import android.os.Messenger;
+import android.support.annotation.Nullable;
+import android.util.Log;
+
+/**
+ * MessageService
+ * Created by Plucky<plucky.pan@ubnt.com> on 7/5/17 2017 13:45.
+ */
+
+public class MessageService extends Service {
+
+    private static final String TAG = "MessageService";
+
+    public MessageService() {
+        Log.d(TAG, "MessageService()");
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.d(TAG, "onCreate()");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy()");
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(TAG, "onStartCommand()");
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        Log.d(TAG, "onBind()");
+        return messenger.getBinder();
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        Log.d(TAG, "onUnbind()");
+        return super.onUnbind(intent);
+    }
+
+    public class MessageBinder extends Binder {
+        public MessageService getService() {
+            return MessageService.this;
+        }
+    }
+
+    private Messenger messenger = new Messenger(new MessageHandler());
+}

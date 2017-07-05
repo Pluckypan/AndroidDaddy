@@ -3,9 +3,9 @@ package echo.engineer.servicedemo;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -37,7 +37,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onUnBindService(View view) {
         if (serviceConnection != null) {
-            unbindService(serviceConnection);
+            try {
+                unbindService(serviceConnection);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

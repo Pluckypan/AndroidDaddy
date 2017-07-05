@@ -1,8 +1,11 @@
 package echo.engineer.oneactivity;
 
 import android.app.Application;
+import android.content.Intent;
 
 import com.github.moduth.blockcanary.BlockCanary;
+
+import echo.engineer.oneactivity.message.MessengerService;
 
 /**
  * App
@@ -14,5 +17,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         BlockCanary.install(this, new AppBlockCanaryContext()).start();
+        startService(new Intent(this, MessengerService.class));
     }
 }

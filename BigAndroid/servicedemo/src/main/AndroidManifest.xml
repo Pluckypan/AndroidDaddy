@@ -3,6 +3,7 @@
     package="echo.engineer.servicedemo">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,6 +19,7 @@
 
         <service android:name=".DownloadService" />
         <service android:name=".UploadService" />
+        <service android:name=".MessageService" android:exported="true"/>
     </application>
 
 </manifest>
