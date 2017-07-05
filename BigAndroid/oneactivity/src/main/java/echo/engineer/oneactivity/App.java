@@ -1,11 +1,14 @@
 package echo.engineer.oneactivity;
 
 import android.app.Application;
-import android.content.Intent;
+import android.hardware.SensorManager;
 
 import com.github.moduth.blockcanary.BlockCanary;
 
-import echo.engineer.oneactivity.message.MessengerService;
+import dagger.Component;
+import dagger.Module;
+import dagger.Provides;
+import echo.engineer.oneactivity.cmpts.dagger.AppScope;
 
 /**
  * App
@@ -17,5 +20,21 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         BlockCanary.install(this, new AppBlockCanaryContext()).start();
+    }
+
+
+    @Module
+    public class AppModule {
+        @AppScope
+        @Provides
+        public SensorManager provideSensorManager() {
+            return (SensorManager) App.this.getSystemService(SENSOR_SERVICE);
+        }
+    }
+
+    @AppScope
+    @Component(modules = {AppModule.class})
+    public interface AppComponent {
+        SensorManager getSensorManager();
     }
 }
