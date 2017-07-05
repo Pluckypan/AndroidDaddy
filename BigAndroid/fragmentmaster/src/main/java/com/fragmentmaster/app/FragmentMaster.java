@@ -109,6 +109,16 @@ public abstract class FragmentMaster {
         onFragmentStarted(fragment);
     }
 
+    private int scrollDuration;
+
+    public int getScrollDuration() {
+        return scrollDuration;
+    }
+
+    public void setScrollDuration(int scrollDuration) {
+        this.scrollDuration = scrollDuration;
+    }
+
     protected void setUpAnimator(IMasterFragment fragment) {
         this.setPageAnimator(fragment != null ? fragment.onCreatePageAnimator() : null);
     }

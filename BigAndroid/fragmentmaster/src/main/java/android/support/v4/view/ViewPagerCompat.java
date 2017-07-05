@@ -280,6 +280,16 @@ public class ViewPagerCompat extends ViewGroup {
 
     private int mScrollState = SCROLL_STATE_IDLE;
 
+    private int scrollDuration;
+
+    public void setScrollDuration(int scrollDuration) {
+        this.scrollDuration = scrollDuration;
+    }
+
+    public int getScrollDuration() {
+        return scrollDuration;
+    }
+
     /**
      * Simple implementation of the {@link OnPageChangeListener} interface with
      * stub implementations of each method. Extend this if you do not intend to
@@ -291,7 +301,7 @@ public class ViewPagerCompat extends ViewGroup {
 
         @Override
         public void onPageScrolled(int position, float positionOffset,
-                int positionOffsetPixels) {
+                                   int positionOffsetPixels) {
             // This space for rent
         }
 
@@ -482,7 +492,7 @@ public class ViewPagerCompat extends ViewGroup {
     }
 
     void setCurrentItemInternal(int item, boolean smoothScroll, boolean always,
-            int velocity) {
+                                int velocity) {
         if (mAdapter == null || mAdapter.getCount() <= 0) {
             setScrollingCacheEnabled(false);
             return;
@@ -527,7 +537,7 @@ public class ViewPagerCompat extends ViewGroup {
     }
 
     private void scrollToItem(int item, boolean smoothScroll, int velocity,
-            boolean dispatchSelected) {
+                              boolean dispatchSelected) {
         final ItemInfo curInfo = infoForPosition(item);
         int destX = 0;
         if (curInfo != null) {
@@ -578,7 +588,7 @@ public class ViewPagerCompat extends ViewGroup {
      *                            properties
      */
     public void setPageTransformer(boolean reverseDrawingOrder,
-            PageTransformer transformer) {
+                                   PageTransformer transformer) {
         final boolean hasTransformer = transformer != null;
         final boolean needsPopulate = hasTransformer == (mPageTransformer == null);
         mPageTransformer = transformer;
@@ -653,7 +663,7 @@ public class ViewPagerCompat extends ViewGroup {
      * Set the number of pages that should be retained to either side of the
      * current page in the view hierarchy in an idle state. Pages beyond this
      * limit will be recreated from the adapter when needed.
-     *
+     * <p>
      * <p>
      * This is offered as an optimization. If you know in advance the number of
      * pages you will need to support or have lazy-loading mechanisms in place
@@ -663,7 +673,7 @@ public class ViewPagerCompat extends ViewGroup {
      * will be spent in layout for newly created view subtrees as the user pages
      * back and forth.
      * </p>
-     *
+     * <p>
      * <p>
      * You should keep this limit low, especially if your pages have complex
      * layouts. This setting defaults to 1.
@@ -804,17 +814,21 @@ public class ViewPagerCompat extends ViewGroup {
         final float distance = halfWidth + halfWidth
                 * distanceInfluenceForSnapDuration(distanceRatio);
 
-        int duration = 0;
-        velocity = Math.abs(velocity);
-        if (velocity > 0) {
-            duration = 4 * Math.round(1000 * Math.abs(distance / velocity));
+        int duration;
+        if (scrollDuration > 0) {
+            duration = scrollDuration;
         } else {
-            final float pageWidth = width * mAdapter.getPageWidth(mCurItem);
-            final float pageDelta = (float) Math.abs(dx)
-                    / (pageWidth + mPageMargin);
-            duration = (int) ((pageDelta + 1) * 100);
+            velocity = Math.abs(velocity);
+            if (velocity > 0) {
+                duration = 4 * Math.round(1000 * Math.abs(distance / velocity));
+            } else {
+                final float pageWidth = width * mAdapter.getPageWidth(mCurItem);
+                final float pageDelta = (float) Math.abs(dx)
+                        / (pageWidth + mPageMargin);
+                duration = (int) ((pageDelta + 1) * 100);
+            }
+            duration = Math.min(duration, MAX_SETTLE_DURATION);
         }
-        duration = Math.min(duration, MAX_SETTLE_DURATION);
 
         mScroller.startScroll(sx, sy, dx, dy, duration);
         ViewCompat.postInvalidateOnAnimation(this);
@@ -1137,7 +1151,7 @@ public class ViewPagerCompat extends ViewGroup {
     }
 
     private void calculatePageOffsets(ItemInfo curItem, int curIndex,
-            ItemInfo oldCurInfo) {
+                                      ItemInfo oldCurInfo) {
         final int N = mAdapter.getCount();
         final int width = getClientWidth();
         final float marginOffset = width > 0 ? (float) mPageMargin / width : 0;
@@ -1264,7 +1278,7 @@ public class ViewPagerCompat extends ViewGroup {
                 .newCreator(new ParcelableCompatCreatorCallbacks<SavedState>() {
                     @Override
                     public SavedState createFromParcel(Parcel in,
-                            ClassLoader loader) {
+                                                       ClassLoader loader) {
                         return new SavedState(in, loader);
                     }
 
@@ -1508,7 +1522,7 @@ public class ViewPagerCompat extends ViewGroup {
     }
 
     private void recomputeScrollPosition(int width, int oldWidth, int margin,
-            int oldMargin) {
+                                         int oldMargin) {
         if (oldWidth > 0 && !mItems.isEmpty()) {
             final int widthWithMargin = width - getPaddingLeft()
                     - getPaddingRight() + margin;
@@ -1894,14 +1908,14 @@ public class ViewPagerCompat extends ViewGroup {
 
         switch (action) {
             case MotionEvent.ACTION_MOVE: {
-				/*
-				 * mIsBeingDragged == false, otherwise the shortcut would have
+                /*
+                 * mIsBeingDragged == false, otherwise the shortcut would have
 				 * caught it. Check whether the user has moved far enough from
 				 * his original down touch.
 				 */
 
 				/*
-				 * Locally do absolute value. mLastMotionY is set to the y value
+                 * Locally do absolute value. mLastMotionY is set to the y value
 				 * of the down event.
 				 */
                 final int activePointerId = mActivePointerId;
@@ -1964,8 +1978,8 @@ public class ViewPagerCompat extends ViewGroup {
             }
 
             case MotionEvent.ACTION_DOWN: {
-				/*
-				 * Remember location of down touch. ACTION_DOWN always refers to
+                /*
+                 * Remember location of down touch. ACTION_DOWN always refers to
 				 * pointer index 0.
 				 */
                 mLastMotionX = mInitialMotionX = ev.getX();
@@ -2258,7 +2272,7 @@ public class ViewPagerCompat extends ViewGroup {
     }
 
     private int determineTargetPage(int currentPage, float pageOffset,
-            int velocity, int deltaX) {
+                                    int velocity, int deltaX) {
         int targetPage;
         if (Math.abs(deltaX) > mFlingDistance
                 && Math.abs(velocity) > mMinimumVelocity) {
@@ -2373,7 +2387,7 @@ public class ViewPagerCompat extends ViewGroup {
 
     /**
      * Start a fake drag of the pager.
-     *
+     * <p>
      * <p>
      * A fake drag can be useful if you want to synchronize the motion of the
      * ViewPager with the touch scrolling of another view, while still letting
@@ -2381,7 +2395,7 @@ public class ViewPagerCompat extends ViewGroup {
      * parallax-scrolling tabs.) Call {@link #fakeDragBy(float)} to simulate the
      * actual drag motion. Call {@link #endFakeDrag()} to complete the fake drag
      * and fling as necessary.
-     *
+     * <p>
      * <p>
      * During a fake drag the ViewPager will ignore all touch events. If a real
      * drag is already in progress, this method will return false.
@@ -2651,8 +2665,8 @@ public class ViewPagerCompat extends ViewGroup {
         } else if (currentFocused != null) {
             boolean isChild = false;
             for (ViewParent parent = currentFocused.getParent(); parent instanceof ViewGroup;
-                    parent = parent
-                            .getParent()) {
+                 parent = parent
+                         .getParent()) {
                 if (parent == this) {
                     isChild = true;
                     break;
@@ -2664,8 +2678,8 @@ public class ViewPagerCompat extends ViewGroup {
                 final StringBuilder sb = new StringBuilder();
                 sb.append(currentFocused.getClass().getSimpleName());
                 for (ViewParent parent = currentFocused.getParent(); parent instanceof ViewGroup;
-                        parent = parent
-                                .getParent()) {
+                     parent = parent
+                             .getParent()) {
                     sb.append(" => ").append(parent.getClass().getSimpleName());
                 }
                 Log.e(TAG,
@@ -2768,7 +2782,7 @@ public class ViewPagerCompat extends ViewGroup {
      */
     @Override
     public void addFocusables(ArrayList<View> views, int direction,
-            int focusableMode) {
+                              int focusableMode) {
         final int focusableCount = views.size();
 
         final int descendantFocusability = getDescendantFocusability();
@@ -2832,7 +2846,7 @@ public class ViewPagerCompat extends ViewGroup {
      */
     @Override
     protected boolean onRequestFocusInDescendants(int direction,
-            Rect previouslyFocusedRect) {
+                                                  Rect previouslyFocusedRect) {
         int index;
         int increment;
         int end;
@@ -2909,7 +2923,7 @@ public class ViewPagerCompat extends ViewGroup {
 
         @Override
         public void onInitializeAccessibilityEvent(View host,
-                AccessibilityEvent event) {
+                                                   AccessibilityEvent event) {
             super.onInitializeAccessibilityEvent(host, event);
             event.setClassName(ViewPager.class.getName());
             final AccessibilityRecordCompat recordCompat = AccessibilityRecordCompat
@@ -2925,7 +2939,7 @@ public class ViewPagerCompat extends ViewGroup {
 
         @Override
         public void onInitializeAccessibilityNodeInfo(View host,
-                AccessibilityNodeInfoCompat info) {
+                                                      AccessibilityNodeInfoCompat info) {
             super.onInitializeAccessibilityNodeInfo(host, info);
             info.setClassName(ViewPager.class.getName());
             info.setScrollable(canScroll());
@@ -2939,7 +2953,7 @@ public class ViewPagerCompat extends ViewGroup {
 
         @Override
         public boolean performAccessibilityAction(View host, int action,
-                Bundle args) {
+                                                  Bundle args) {
             if (super.performAccessibilityAction(host, action, args)) {
                 return true;
             }

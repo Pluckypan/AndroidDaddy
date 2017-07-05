@@ -51,6 +51,7 @@ public class MainActivity extends MasterActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FragmentMaster fragmentMaster = getFragmentMaster();
+        fragmentMaster.setScrollDuration(600);
         fragmentMaster.registerFragmentLifecycleCallbacks(mLifecycleCallbacks);
         fragmentMaster.install(R.id.container, new Request(HomeFragment.class), true);
         bindMessengerService();

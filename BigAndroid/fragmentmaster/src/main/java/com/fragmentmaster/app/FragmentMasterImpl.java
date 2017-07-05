@@ -89,7 +89,7 @@ class FragmentMasterImpl extends FragmentMaster {
         mViewPager.setOffscreenPageLimit(Integer.MAX_VALUE);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOnPageChangeListener(mOnPageChangeListener);
-
+        mViewPager.setScrollDuration(getScrollDuration());
         container.addView(mViewPager);
     }
 
