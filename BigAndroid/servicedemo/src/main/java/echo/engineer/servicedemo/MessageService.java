@@ -52,11 +52,5 @@ public class MessageService extends Service {
         return super.onUnbind(intent);
     }
 
-    public class MessageBinder extends Binder {
-        public MessageService getService() {
-            return MessageService.this;
-        }
-    }
-
     private Messenger messenger = new Messenger(new MessageHandler());
 }
