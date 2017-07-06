@@ -2,6 +2,7 @@ package echo.engineer.oneactivity.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,10 @@ import android.view.ViewGroup;
 import com.fragmentmaster.app.MasterFragment;
 import com.fragmentmaster.app.Request;
 
+import echo.engineer.oneactivity.App;
 import echo.engineer.oneactivity.MainActivity;
 import echo.engineer.oneactivity.R;
+import echo.engineer.oneactivity.cmpts.GyroscopeSensorWrapper;
 
 /**
  * HomeFragment
@@ -19,12 +22,19 @@ import echo.engineer.oneactivity.R;
 
 public class HomeFragment extends MasterFragment implements View.OnClickListener {
 
+    private static final String TAG = "HomeFragment";
+
+    private GyroscopeSensorWrapper sensorWrapper;
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.btnOrderList).setOnClickListener(this);
         view.findViewById(R.id.btnHello).setOnClickListener(this);
         view.findViewById(R.id.btnWorld).setOnClickListener(this);
+        view.findViewById(R.id.btnSensor).setOnClickListener(this);
+        sensorWrapper = App.getComponent().getGyroscopeSensorWrapper();
+        Log.d(TAG, "sensorWrapper=" + (sensorWrapper != null));
     }
 
     @Nullable
@@ -46,6 +56,15 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
             case R.id.btnWorld:
                 ((MainActivity) getActivity()).sendMessage("world");
                 break;
+            case R.id.btnSensor:
+                sensorWrapper.start();
+                break;
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        sensorWrapper.stop();
     }
 }

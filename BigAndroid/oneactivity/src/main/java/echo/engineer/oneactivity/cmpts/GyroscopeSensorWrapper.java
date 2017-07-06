@@ -1,14 +1,14 @@
 package echo.engineer.oneactivity.cmpts;
 
-import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.Log;
 
 import javax.inject.Inject;
 
-import static android.content.Context.SENSOR_SERVICE;
+import static android.hardware.SensorManager.SENSOR_DELAY_NORMAL;
 
 /**
  * GyroscopeSensorWrapper
@@ -17,16 +17,20 @@ import static android.content.Context.SENSOR_SERVICE;
 
 public class GyroscopeSensorWrapper implements SensorEventListener {
 
-    @Inject
-    private SensorManager sensorManager;
-    private Sensor sensor;
+    private static final String TAG = "GyroscopeSensorWrapper";
 
-    public GyroscopeSensorWrapper(Context context) {
+    private Sensor sensor;
+    private SensorManager sensorManager;
+
+    @Inject
+    public GyroscopeSensorWrapper(SensorManager sensorManager) {
+        Log.d(TAG, "GyroscopeSensorWrapper created!");
+        this.sensorManager = sensorManager;
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
     }
 
     public void start() {
-        sensorManager.registerListener(this, sensor, 400);
+        sensorManager.registerListener(this, sensor, SENSOR_DELAY_NORMAL);
     }
 
     public void stop() {
@@ -35,7 +39,10 @@ public class GyroscopeSensorWrapper implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
+        if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE) {
+            Log.d(TAG, "onSensorChanged x:" + event.values[0] + " y:" + event.values[1] + " z:" + event.values[2]
+                    + " accuracy=" + event.accuracy + " vendor=" + sensor.getVendor() + " version=" + sensor.getVersion());
+        }
     }
 
     @Override

@@ -21,4 +21,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="World" />
+
+    <Button
+        android:id="@+id/btnSensor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sensor" />
 </LinearLayout>
