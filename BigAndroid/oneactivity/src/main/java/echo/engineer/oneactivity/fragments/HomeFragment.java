@@ -46,11 +46,16 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
             @Override
             public void onYDegreesChanged(float y) {
                 super.onYDegreesChanged(y);
-                String msg = "msg: y degress has changed:" + y;
-                tvMsg.setText(msg);
-                Matrix matrix = tvTestImage.getImageMatrix();
-                matrix.setTranslate(y, 0);
+                int bitmapH = tvTestImage.getDrawable().getIntrinsicHeight();
+                int bitmapW = tvTestImage.getDrawable().getIntrinsicWidth();
+                Matrix matrix = new Matrix();
+                float transX = -bitmapW / 2 * (y / 90 + 1);
+                matrix.postTranslate(transX, -bitmapH / 2);
                 tvTestImage.setImageMatrix(matrix);
+                String msg = "msg: y degress has changed:" + y
+                        + "\nbitmapH=" + bitmapH + " bitmapW=" + bitmapW
+                        + " \ntransX=" + transX;
+                tvMsg.setText(msg);
             }
         });
         Log.d(TAG, "sensorWrapper=" + (sensorWrapper != null));
