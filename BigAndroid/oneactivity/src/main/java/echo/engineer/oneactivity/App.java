@@ -2,14 +2,12 @@ package echo.engineer.oneactivity;
 
 import android.app.Application;
 import android.hardware.SensorManager;
-
 import com.github.moduth.blockcanary.BlockCanary;
-
 import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
-import echo.engineer.oneactivity.cmpts.GyroscopeSensorWrapper;
 import echo.engineer.oneactivity.cmpts.dagger.AppScope;
+import echo.engineer.oneactivity.cmpts.sensor.GyroscopeSensorWrapper;
 
 /**
  * App

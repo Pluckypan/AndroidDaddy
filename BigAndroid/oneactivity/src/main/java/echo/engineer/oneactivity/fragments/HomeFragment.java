@@ -1,11 +1,14 @@
 package echo.engineer.oneactivity.fragments;
 
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.fragmentmaster.app.MasterFragment;
 import com.fragmentmaster.app.Request;
@@ -13,7 +16,8 @@ import com.fragmentmaster.app.Request;
 import echo.engineer.oneactivity.App;
 import echo.engineer.oneactivity.MainActivity;
 import echo.engineer.oneactivity.R;
-import echo.engineer.oneactivity.cmpts.GyroscopeSensorWrapper;
+import echo.engineer.oneactivity.cmpts.sensor.GyroscopeSensorWrapper;
+import echo.engineer.oneactivity.cmpts.sensor.SimpleGyroscopeSensorCallBack;
 
 /**
  * HomeFragment
@@ -25,6 +29,8 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
     private static final String TAG = "HomeFragment";
 
     private GyroscopeSensorWrapper sensorWrapper;
+    private TextView tvMsg;
+    private ImageView tvTestImage;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -33,7 +39,20 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
         view.findViewById(R.id.btnHello).setOnClickListener(this);
         view.findViewById(R.id.btnWorld).setOnClickListener(this);
         view.findViewById(R.id.btnSensor).setOnClickListener(this);
+        tvMsg = (TextView) view.findViewById(R.id.tvMsg);
+        tvTestImage = (ImageView) view.findViewById(R.id.tvTestImage);
         sensorWrapper = App.getComponent().getGyroscopeSensorWrapper();
+        sensorWrapper.setSensorCallBack(new SimpleGyroscopeSensorCallBack() {
+            @Override
+            public void onYDegreesChanged(float y) {
+                super.onYDegreesChanged(y);
+                String msg = "msg: y degress has changed:" + y;
+                tvMsg.setText(msg);
+                Matrix matrix = tvTestImage.getImageMatrix();
+                matrix.setTranslate(y, 0);
+                tvTestImage.setImageMatrix(matrix);
+            }
+        });
         Log.d(TAG, "sensorWrapper=" + (sensorWrapper != null));
     }
 
