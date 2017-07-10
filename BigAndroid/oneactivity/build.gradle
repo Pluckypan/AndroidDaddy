@@ -44,6 +44,7 @@ dependencies {
     compile "com.android.support:recyclerview-v7:23.0.1"
     compile project(':fragmentmaster-appcompat')
     compile "com.ubnt.fr.library:simple_ipc:1.0.134"
+    compile 'com.facebook.stetho:stetho:1.3.1'
 
     apt 'com.google.dagger:dagger-compiler:2.5'
     provided 'javax.annotation:jsr250-api:1.0'//@Inject 和 @Named

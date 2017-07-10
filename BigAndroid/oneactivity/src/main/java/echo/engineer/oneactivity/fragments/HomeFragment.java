@@ -39,6 +39,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
         view.findViewById(R.id.btnHello).setOnClickListener(this);
         view.findViewById(R.id.btnWorld).setOnClickListener(this);
         view.findViewById(R.id.btnSensor).setOnClickListener(this);
+        view.findViewById(R.id.btnCrash).setOnClickListener(this);
         tvMsg = (TextView) view.findViewById(R.id.tvMsg);
         tvTestImage = (ImageView) view.findViewById(R.id.tvTestImage);
         sensorWrapper = App.getComponent().getGyroscopeSensorWrapper();
@@ -83,6 +84,8 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
             case R.id.btnSensor:
                 sensorWrapper.start();
                 break;
+            case R.id.btnCrash:
+                throw new RuntimeException("HaHaHa~~~");
         }
     }
 

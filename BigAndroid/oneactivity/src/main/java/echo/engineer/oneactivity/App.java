@@ -2,7 +2,16 @@ package echo.engineer.oneactivity;
 
 import android.app.Application;
 import android.hardware.SensorManager;
+import android.util.Log;
+
+import com.facebook.stetho.Stetho;
 import com.github.moduth.blockcanary.BlockCanary;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
+
 import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
@@ -24,6 +33,33 @@ public class App extends Application {
         super.onCreate();
         BlockCanary.install(this, new AppBlockCanaryContext()).start();
         instance = App.this;
+        Stetho.initializeWithDefaults(this);
+        Config.makeSureDirExits();
+        handleUncaughtException();
+    }
+
+    private void handleUncaughtException() {
+        Thread.UncaughtExceptionHandler mUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread thread, Throwable throwable) {
+                Log.d("App", "uncaughtException: ", throwable);
+                PrintWriter writer = null;
+                try {
+                    writer = new PrintWriter(new FileWriter(Config.LOG_PATH + "app_error.txt", true));
+                    writer.append(new Date(System.currentTimeMillis()).toString()).append("\t" + BuildConfig.VERSION_NAME).append("\n\n");
+                    throwable.printStackTrace(writer);
+                    writer.append("-------\n\n");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (writer != null) {
+                        writer.close();
+                    }
+                }
+                mUncaughtExceptionHandler.uncaughtException(thread, throwable);
+            }
+        });
     }
 
     public static App getApp() {
