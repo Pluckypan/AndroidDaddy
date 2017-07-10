@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.fragmentmaster.app.MasterFragment;
 import com.fragmentmaster.app.Request;
+import com.orhanobut.logger.Logger;
 
 import echo.engineer.oneactivity.App;
 import echo.engineer.oneactivity.MainActivity;
@@ -76,6 +77,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                 startFragment(request);
                 break;
             case R.id.btnHello:
+                Logger.d("call hello");
                 ((MainActivity) getActivity()).sendMessage("hello");
                 break;
             case R.id.btnWorld:

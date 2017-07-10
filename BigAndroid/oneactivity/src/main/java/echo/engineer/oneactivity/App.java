@@ -2,15 +2,14 @@ package echo.engineer.oneactivity;
 
 import android.app.Application;
 import android.hardware.SensorManager;
-import android.util.Log;
 
 import com.facebook.stetho.Stetho;
 import com.github.moduth.blockcanary.BlockCanary;
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Date;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.DiskLogAdapter;
+import com.orhanobut.logger.FormatStrategy;
+import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.PrettyFormatStrategy;
 
 import dagger.Component;
 import dagger.Module;
@@ -31,11 +30,29 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        BlockCanary.install(this, new AppBlockCanaryContext()).start();
         instance = App.this;
+        BlockCanary.install(this, new AppBlockCanaryContext()).start();
+        initLogger();
         Stetho.initializeWithDefaults(this);
         Config.makeSureDirExits();
         handleUncaughtException();
+    }
+
+    private void initLogger() {
+        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+                .showThreadInfo(true)
+                .methodCount(0)
+                .methodOffset(7)
+                .build();
+        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
+            @Override
+            public boolean isLoggable(int priority, String tag) {
+                return BuildConfig.DEBUG;
+            }
+        });
+
+
+        Logger.addLogAdapter(new DiskLogAdapter());
     }
 
     private void handleUncaughtException() {
@@ -43,20 +60,7 @@ public class App extends Application {
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread thread, Throwable throwable) {
-                Log.d("App", "uncaughtException: ", throwable);
-                PrintWriter writer = null;
-                try {
-                    writer = new PrintWriter(new FileWriter(Config.LOG_PATH + "app_error.txt", true));
-                    writer.append(new Date(System.currentTimeMillis()).toString()).append("\t" + BuildConfig.VERSION_NAME).append("\n\n");
-                    throwable.printStackTrace(writer);
-                    writer.append("-------\n\n");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    if (writer != null) {
-                        writer.close();
-                    }
-                }
+                Logger.d("hello");
                 mUncaughtExceptionHandler.uncaughtException(thread, throwable);
             }
         });
