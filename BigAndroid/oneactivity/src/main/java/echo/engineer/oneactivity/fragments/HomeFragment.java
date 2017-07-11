@@ -19,6 +19,9 @@ import echo.engineer.oneactivity.MainActivity;
 import echo.engineer.oneactivity.R;
 import echo.engineer.oneactivity.cmpts.sensor.GyroscopeSensorWrapper;
 import echo.engineer.oneactivity.cmpts.sensor.SimpleGyroscopeSensorCallBack;
+import echo.engineer.oneactivity.immutables.Fatttther;
+import echo.engineer.oneactivity.immutables.ImmutableFatttther;
+import echo.engineer.oneactivity.immutables.ImmutableItem;
 
 /**
  * HomeFragment
@@ -77,10 +80,26 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                 startFragment(request);
                 break;
             case R.id.btnHello:
+                Fatttther fatttther =
+                        ImmutableFatttther.builder()
+                                .name("My value")
+                                .addCounts(1)
+                                .addCounts(2)
+                                .build();
                 Logger.d("call hello");
                 ((MainActivity) getActivity()).sendMessage("hello");
                 break;
             case R.id.btnWorld:
+                ImmutableItem namelessItem = ImmutableItem.builder()
+                        .name("Nameless")
+                        .addTags("important", "relevant")
+                        .description("Description provided")
+                        .build();
+                /*AbstractItem namelessItem = AbstractItem.builder()
+                        .setName("Nameless")
+                        .addTags("important", "relevant")
+                        .setDescription("Description provided")
+                        .build();*/
                 ((MainActivity) getActivity()).sendMessage("world");
                 break;
             case R.id.btnSensor:
@@ -90,6 +109,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                 throw new RuntimeException("HaHaHa~~~");
         }
     }
+
 
     @Override
     public void onDestroyView() {
