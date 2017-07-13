@@ -35,6 +35,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
     private GyroscopeSensorWrapper sensorWrapper;
     private TextView tvMsg;
     private ImageView tvTestImage;
+    private int screenW;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
         view.findViewById(R.id.btnWorld).setOnClickListener(this);
         view.findViewById(R.id.btnSensor).setOnClickListener(this);
         view.findViewById(R.id.btnCrash).setOnClickListener(this);
+        screenW = getResources().getDisplayMetrics().widthPixels;
         tvMsg = (TextView) view.findViewById(R.id.tvMsg);
         tvTestImage = (ImageView) view.findViewById(R.id.tvTestImage);
         sensorWrapper = App.getComponent().getGyroscopeSensorWrapper();
@@ -51,16 +53,21 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
             @Override
             public void onYDegreesChanged(float y) {
                 super.onYDegreesChanged(y);
-                int bitmapH = tvTestImage.getDrawable().getIntrinsicHeight();
-                int bitmapW = tvTestImage.getDrawable().getIntrinsicWidth();
-                Matrix matrix = new Matrix();
-                float transX = -bitmapW / 2 * (y / 90 + 1);
-                matrix.postTranslate(transX, -bitmapH / 2);
-                tvTestImage.setImageMatrix(matrix);
-                String msg = "msg: y degress has changed:" + y
-                        + "\nbitmapH=" + bitmapH + " bitmapW=" + bitmapW
-                        + " \ntransX=" + transX;
-                tvMsg.setText(msg);
+                if (y >= -45 && y <= 45) {
+                    int bitmapH = tvTestImage.getDrawable().getIntrinsicHeight();
+                    int bitmapW = tvTestImage.getDrawable().getIntrinsicWidth();
+                    Matrix matrix = new Matrix();
+                    float dlt = (bitmapW - screenW) / 2;
+                    float transX = -(dlt * y / 45 + dlt);
+                    if (transX >= -(bitmapW - screenW) && transX <= 0) {
+                        matrix.postTranslate(transX, -bitmapH / 2);
+                        tvTestImage.setImageMatrix(matrix);
+                        String msg = "msg: y degress has changed:" + y
+                                + "\nbitmapH=" + bitmapH + " bitmapW=" + bitmapW
+                                + " \ntransX=" + transX;
+                        tvMsg.setText(msg);
+                    }
+                }
             }
         });
         Log.d(TAG, "sensorWrapper=" + (sensorWrapper != null));
@@ -95,11 +102,6 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                         .addTags("important", "relevant")
                         .description("Description provided")
                         .build();
-                /*AbstractItem namelessItem = AbstractItem.builder()
-                        .setName("Nameless")
-                        .addTags("important", "relevant")
-                        .setDescription("Description provided")
-                        .build();*/
                 ((MainActivity) getActivity()).sendMessage("world");
                 break;
             case R.id.btnSensor:

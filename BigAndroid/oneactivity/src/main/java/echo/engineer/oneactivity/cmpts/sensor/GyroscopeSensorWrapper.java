@@ -8,7 +8,9 @@ import android.util.Log;
 
 import javax.inject.Inject;
 
-import static android.hardware.SensorManager.SENSOR_DELAY_UI;
+import echo.engineer.oneactivity.BuildConfig;
+
+import static android.hardware.SensorManager.SENSOR_DELAY_GAME;
 
 /**
  * GyroscopeSensorWrapper
@@ -23,7 +25,7 @@ public class GyroscopeSensorWrapper implements SensorEventListener {
     private SensorManager sensorManager;
     private static final float NS2S = 1.0f / 1000000000.0f;
     private float timestamp;
-    private static final float THRESHOLD = 0.50f;
+    private static final float THRESHOLD = 0.3f;
 
     private float dx, dy, dz;
 
@@ -35,10 +37,12 @@ public class GyroscopeSensorWrapper implements SensorEventListener {
     }
 
     public void start() {
-        sensorManager.registerListener(this, sensor, SENSOR_DELAY_UI);
+        sensorManager.registerListener(this, sensor, SENSOR_DELAY_GAME);
     }
 
     public void stop() {
+        timestamp = 0;
+        dx = dy = dz = 0;
         sensorManager.unregisterListener(this, sensor);
     }
 
@@ -55,7 +59,7 @@ public class GyroscopeSensorWrapper implements SensorEventListener {
                 float angley = (float) Math.toDegrees(dy);
                 float anglez = (float) Math.toDegrees(dz);
 
-                if (Math.abs(lastAngleX - anglex) > THRESHOLD) {
+                if (Math.abs(lastAngleX - anglex) >= THRESHOLD) {
                     log("x degrees changed:" + anglex);
                     if (sensorCallBack != null) {
                         sensorCallBack.onXDegreesChanged(anglex);
@@ -63,7 +67,7 @@ public class GyroscopeSensorWrapper implements SensorEventListener {
                     lastAngleX = anglex;
                 }
 
-                if (Math.abs(lastAngleY - angley) > THRESHOLD) {
+                if (Math.abs(lastAngleY - angley) >= THRESHOLD) {
                     log("y degrees changed:" + angley);
                     if (sensorCallBack != null) {
                         sensorCallBack.onYDegreesChanged(angley);
@@ -71,7 +75,7 @@ public class GyroscopeSensorWrapper implements SensorEventListener {
                     lastAngleY = angley;
                 }
 
-                if (Math.abs(lastAngleZ - anglez) > THRESHOLD) {
+                if (Math.abs(lastAngleZ - anglez) >= THRESHOLD) {
                     log("z degrees changed:" + anglez);
                     if (sensorCallBack != null) {
                         sensorCallBack.onZDegreesChanged(anglez);
@@ -98,6 +102,8 @@ public class GyroscopeSensorWrapper implements SensorEventListener {
     }
 
     private void log(String msg) {
-        Log.d(TAG, msg);
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, msg);
+        }
     }
 }
