@@ -15,7 +15,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        renderscriptTargetApi 22
+        renderscriptSupportModeEnabled true
     }
     buildTypes {
         release {
@@ -55,4 +56,10 @@ dependencies {
     provided "org.immutables:value:2.5.5" // for annotations
     provided "org.immutables:builder:2.5.5" // for annotations
     provided "org.immutables:gson:2.5.5" // for annotations
+
+    compile 'com.fivehundredpx:blurringview:1.0.0'
+    compile('com.flurgle:camerakit:0.9.17', {
+        exclude group: 'com.android.support'
+    })
+    compile 'com.github.mmin18:realtimeblurview:1.1.0'
 }

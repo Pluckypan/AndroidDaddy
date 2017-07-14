@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fivehundredpx.android.blur.BlurringView;
 import com.fragmentmaster.app.MasterFragment;
 import com.fragmentmaster.app.Request;
 import com.orhanobut.logger.Logger;
@@ -35,6 +36,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
     private GyroscopeSensorWrapper sensorWrapper;
     private TextView tvMsg;
     private ImageView tvTestImage;
+    private BlurringView blurringView;
     private int screenW;
 
     @Override
@@ -45,9 +47,12 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
         view.findViewById(R.id.btnWorld).setOnClickListener(this);
         view.findViewById(R.id.btnSensor).setOnClickListener(this);
         view.findViewById(R.id.btnCrash).setOnClickListener(this);
+        view.findViewById(R.id.btnCamera).setOnClickListener(this);
         screenW = getResources().getDisplayMetrics().widthPixels;
         tvMsg = (TextView) view.findViewById(R.id.tvMsg);
         tvTestImage = (ImageView) view.findViewById(R.id.tvTestImage);
+        blurringView = (BlurringView) view.findViewById(R.id.blurringView);
+        blurringView.setBlurredView(tvTestImage);
         sensorWrapper = App.getComponent().getGyroscopeSensorWrapper();
         sensorWrapper.setSensorCallBack(new SimpleGyroscopeSensorCallBack() {
             @Override
@@ -66,6 +71,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                                 + "\nbitmapH=" + bitmapH + " bitmapW=" + bitmapW
                                 + " \ntransX=" + transX;
                         tvMsg.setText(msg);
+                        blurringView.invalidate();
                     }
                 }
             }
@@ -109,6 +115,10 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                 break;
             case R.id.btnCrash:
                 throw new RuntimeException("HaHaHa~~~");
+            case R.id.btnCamera:
+                Request reqCamera = new Request(CameraFragment.class);
+                startFragment(reqCamera);
+                break;
         }
     }
 
