@@ -1,4 +1,4 @@
-include ':app', ':xfyuntina', ':dagger', ':rxjava', ':viewspreadtranslationlibrary', ':servicedemo', ':oneactivity', ':fragmentmaster', ':fragmentmaster-appcompat'
+include ':app', ':xfyuntina', ':dagger', ':rxjava', ':viewspreadtranslationlibrary', ':servicedemo', ':oneactivity', ':fragmentmaster', ':fragmentmaster-appcompat', ':keeper'
 include ':x5WebDemo'
 include ':floatingWindow'
 include ':pulllayout'
