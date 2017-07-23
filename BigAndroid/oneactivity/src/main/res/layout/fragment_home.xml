@@ -1,73 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/tvTestImage"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/app_name"
-            android:scaleType="matrix"
-            android:src="@mipmap/test" />
+            android:layout_height="200dp">
 
-        <com.fivehundredpx.android.blur.BlurringView
-            android:id="@+id/blurringView"
+            <ImageView
+                android:id="@+id/tvTestImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
+                android:scaleType="matrix"
+                android:src="@mipmap/test" />
+
+            <com.fivehundredpx.android.blur.BlurringView
+                android:id="@+id/blurringView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:blurRadius="5"
+                app:downsampleFactor="6"
+                app:overlayColor="#99FFFFFF" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvMsg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            app:blurRadius="5"
-            app:downsampleFactor="6"
-            app:overlayColor="#99FFFFFF" />
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            android:background="#E3E3E3"
+            android:minHeight="40dp"
+            android:padding="4dp" />
 
-    <TextView
-        android:id="@+id/tvMsg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#E3E3E3"
-        android:minHeight="40dp"
-        android:padding="4dp" />
+        <Button
+            android:id="@+id/btnOrderList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cliclk to OrdersList" />
 
-    <Button
-        android:id="@+id/btnOrderList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cliclk to OrdersList" />
+        <Button
+            android:id="@+id/btnHello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello" />
 
-    <Button
-        android:id="@+id/btnHello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello" />
+        <Button
+            android:id="@+id/btnWorld"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="World" />
 
-    <Button
-        android:id="@+id/btnWorld"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="World" />
+        <Button
+            android:id="@+id/btnSensor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sensor" />
 
-    <Button
-        android:id="@+id/btnSensor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sensor" />
+        <Button
+            android:id="@+id/btnCrash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crash" />
 
-    <Button
-        android:id="@+id/btnCrash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Crash" />
+        <Button
+            android:id="@+id/btnCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Camera" />
 
-    <Button
-        android:id="@+id/btnCamera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Camera" />
-</LinearLayout>
+        <Button
+            android:id="@+id/btnTestView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TestView" />
+    </LinearLayout>
+</ScrollView>
+
