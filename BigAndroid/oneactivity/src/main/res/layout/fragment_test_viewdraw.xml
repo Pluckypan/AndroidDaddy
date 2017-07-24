@@ -7,18 +7,35 @@
     <echo.engineer.oneactivity.widget.EView
         android:id="@+id/eView"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="40dp"
         android:background="#FA2855" />
+
 
     <echo.engineer.oneactivity.widget.EViewGroup
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#E3E3E3">
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <echo.engineer.oneactivity.widget.EView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#FA2855" />
+    </echo.engineer.oneactivity.widget.EViewGroup>
+
+    <echo.engineer.oneactivity.widget.EViewGroup
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#E3E3E3"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello ViewGroup" />
+            android:gravity="center"
+            android:text="Hello ViewGroup"
+            android:textColor="#333333" />
     </echo.engineer.oneactivity.widget.EViewGroup>
 
 </LinearLayout>

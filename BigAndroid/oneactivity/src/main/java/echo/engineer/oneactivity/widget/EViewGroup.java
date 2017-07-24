@@ -7,15 +7,18 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import static echo.engineer.oneactivity.widget.EView.getTouchAction;
 
 /**
  * EViewGroup
  * Created by Plucky<plucky.pan@ubnt.com> on 2017/7/24 上午10:41.
  */
 
-public class EViewGroup extends ViewGroup {
+public class EViewGroup extends LinearLayout {
     private final static String TAG = "EViewGroup";
 
     public EViewGroup(Context context) {
@@ -35,6 +38,7 @@ public class EViewGroup extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
         Log.d(TAG, "onLayout changed=" + changed + " l=" + l + " t=" + t + " r=" + r + " b=" + b);
     }
 
@@ -54,12 +58,6 @@ public class EViewGroup extends ViewGroup {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         Log.d(TAG, "onDetachedFromWindow()");
-    }
-
-    @Override
-    protected void attachViewToParent(View child, int index, LayoutParams params) {
-        super.attachViewToParent(child, index, params);
-        Log.d(TAG, "attachViewToParent child=" + child + " index=" + index);
     }
 
     @Override
@@ -108,5 +106,26 @@ public class EViewGroup extends ViewGroup {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         Log.d(TAG, "onMeasure widthMeasureSpec=" + widthMeasureSpec + " heightMeasureSpec=" + heightMeasureSpec);
+    }
+
+    //Touch
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.d(TAG, "dispatchTouchEvent action=" + getTouchAction(ev.getAction()));
+        return super.dispatchTouchEvent(ev);//super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        Log.d(TAG, "onInterceptTouchEvent action=" + getTouchAction(ev.getAction()));
+        return super.onInterceptTouchEvent(ev);//super.onInterceptTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.d(TAG, "onTouchEvent action=" + getTouchAction(event.getAction()));
+        return super.onTouchEvent(event);//super.onTouchEvent(event);
     }
 }

@@ -2,7 +2,9 @@ package echo.engineer.oneactivity.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -16,6 +18,9 @@ import echo.engineer.oneactivity.R;
  */
 
 public class TestViewDrawFragment extends MasterFragment {
+
+    private static final String TAG = "EViewFragment";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,5 +35,17 @@ public class TestViewDrawFragment extends MasterFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.d(TAG, "dispatchTouchEvent action=" + ev.getAction());
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        Log.d(TAG, "onTouchEvent action=" + ev.getAction());
+        return super.onTouchEvent(ev);
     }
 }
