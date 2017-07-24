@@ -10,4 +10,15 @@
         android:layout_height="20dp"
         android:background="#FA2855" />
 
+    <echo.engineer.oneactivity.widget.EViewGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E3E3E3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello ViewGroup" />
+    </echo.engineer.oneactivity.widget.EViewGroup>
+
 </LinearLayout>
