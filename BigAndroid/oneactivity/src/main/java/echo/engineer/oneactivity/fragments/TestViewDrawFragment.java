@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import com.fragmentmaster.app.MasterFragment;
 
 import echo.engineer.oneactivity.R;
-import echo.engineer.oneactivity.cmpts.BaseThread;
-import echo.engineer.oneactivity.cmpts.StopableThread;
+import echo.engineer.oneactivity.cmpts.thread.MyThread;
+import echo.engineer.oneactivity.cmpts.thread.ThreadInterrupt;
 
 /**
  * TestViewDrawFragment
@@ -22,15 +22,6 @@ import echo.engineer.oneactivity.cmpts.StopableThread;
 public class TestViewDrawFragment extends MasterFragment implements View.OnClickListener {
 
     private static final String TAG = "EViewFragment";
-    private StopableThread stopableThread;
-    private BaseThread thread = new BaseThread("TEST", false) {
-        @Override
-        public void process() {
-            for (int i = 0; i < 100000; i++) {
-                Log.d("EView", "TEST i=" + i);
-            }
-        }
-    };
 
     @Nullable
     @Override
@@ -62,19 +53,20 @@ public class TestViewDrawFragment extends MasterFragment implements View.OnClick
         return super.onTouchEvent(ev);
     }
 
+    MyThread myThread;
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnStart:
-                stopableThread = new StopableThread();
-                stopableThread.start();
+                myThread = new MyThread();
+                Thread thread = new Thread(myThread, "线程");
+                thread.start();
                 break;
             case R.id.btnStop:
-                if (stopableThread != null) {
-                    stopableThread.exitThread();
+                if (myThread != null) {
+                    myThread.stop();
                 }
-
-                thread.suspend();
                 break;
         }
     }

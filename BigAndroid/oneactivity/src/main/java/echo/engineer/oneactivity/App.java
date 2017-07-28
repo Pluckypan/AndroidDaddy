@@ -11,6 +11,8 @@ import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 
+import java.lang.ref.SoftReference;
+
 import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
