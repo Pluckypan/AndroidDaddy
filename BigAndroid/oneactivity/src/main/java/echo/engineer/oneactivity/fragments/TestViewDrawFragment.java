@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 
 import com.fragmentmaster.app.MasterFragment;
 
+import java.util.HashMap;
+
 import echo.engineer.oneactivity.R;
 import echo.engineer.oneactivity.cmpts.thread.MyThread;
-import echo.engineer.oneactivity.cmpts.thread.ThreadInterrupt;
 
 /**
  * TestViewDrawFragment
@@ -34,6 +35,8 @@ public class TestViewDrawFragment extends MasterFragment implements View.OnClick
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.btnStart).setOnClickListener(this);
         view.findViewById(R.id.btnStop).setOnClickListener(this);
+        view.findViewById(R.id.btnOOM1).setOnClickListener(this);
+        view.findViewById(R.id.btnOOM2).setOnClickListener(this);
     }
 
     @Override
@@ -68,6 +71,27 @@ public class TestViewDrawFragment extends MasterFragment implements View.OnClick
                     myThread.stop();
                 }
                 break;
+            case R.id.btnOOM1:
+                doOOM();
+                break;
+            case R.id.btnOOM2:
+                Integer i;
+                Long l = 1L;
+                break;
         }
     }
+
+    private class OOMObj {
+        private String[] strs = new String[100];
+    }
+
+    private void doOOM() {
+        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+            OOMObj oom = new OOMObj();
+            ooms.put(String.valueOf(i), oom);
+            oom = null;
+        }
+    }
+
+    private HashMap<String, OOMObj> ooms = new HashMap<>();
 }
