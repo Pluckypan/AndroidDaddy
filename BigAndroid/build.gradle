@@ -9,7 +9,9 @@ buildscript {
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        //for dagger
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        //for lambda
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
     }
 }
@@ -24,4 +26,14 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.0"
+    targetSdkVersion = 23
+    minSdkVersion = 16
+    supportVersion = "23.0.1"
+    designVersion = "25.3.1"
+    appcompatVersion = "23.0.1"
 }
