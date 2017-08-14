@@ -1,23 +1,35 @@
 package echo.engineer.oneactivity;
 
 import android.app.Application;
+import android.content.Context;
 import android.hardware.SensorManager;
 
 import com.facebook.stetho.Stetho;
 import com.github.moduth.blockcanary.BlockCanary;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.DiskLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 
+import java.io.File;
 import java.lang.ref.SoftReference;
 
 import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
 import echo.engineer.oneactivity.cmpts.dagger.AppScope;
+import echo.engineer.oneactivity.cmpts.retrofits2.WeatherApi;
+import echo.engineer.oneactivity.cmpts.retrofits2.WeatherConfig;
 import echo.engineer.oneactivity.cmpts.sensor.GyroscopeSensorWrapper;
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * App
@@ -97,6 +109,38 @@ public class App extends Application {
         public GyroscopeSensorWrapper provideGyroscopeSensorWrapper(SensorManager sensorManager) {
             return new GyroscopeSensorWrapper(sensorManager);
         }
+
+        @AppScope
+        @Provides
+        public OkHttpClient provideOkHttpClient(Context context) {
+            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+            Cache cache = new Cache(new File(context.getCacheDir(), "web"), 100 * 1024 * 1024);//100M
+            return new OkHttpClient.Builder()
+                    .cache(cache)
+                    .addInterceptor(loggingInterceptor)
+                    .build();
+        }
+
+        @AppScope
+        @Provides
+        public Gson provideGson() {
+            return new GsonBuilder()
+                    .create();
+        }
+
+        @AppScope
+        @Provides
+        public WeatherApi provideWeatherApi(Gson gson, OkHttpClient okHttpClient) {
+            return new Retrofit.Builder()
+                    .baseUrl(WeatherConfig.BASEURL)
+                    .client(okHttpClient)
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .validateEagerly(BuildConfig.DEBUG)
+                    .build()
+                    .create(WeatherApi.class);
+        }
     }
 
     @AppScope
@@ -106,5 +150,7 @@ public class App extends Application {
         SensorManager getSensorManager();
 
         GyroscopeSensorWrapper getGyroscopeSensorWrapper();
+
+        WeatherApi getWeatherApi();
     }
 }
