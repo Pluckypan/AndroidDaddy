@@ -15,7 +15,6 @@ import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 
 import java.io.File;
-import java.lang.ref.SoftReference;
 
 import dagger.Component;
 import dagger.Module;
@@ -131,6 +130,12 @@ public class App extends Application {
 
         @AppScope
         @Provides
+        public Context provideContext() {
+            return App.this;
+        }
+
+        @AppScope
+        @Provides
         public WeatherApi provideWeatherApi(Gson gson, OkHttpClient okHttpClient) {
             return new Retrofit.Builder()
                     .baseUrl(WeatherConfig.BASEURL)
@@ -152,5 +157,7 @@ public class App extends Application {
         GyroscopeSensorWrapper getGyroscopeSensorWrapper();
 
         WeatherApi getWeatherApi();
+
+        Gson getGson();
     }
 }

@@ -49,6 +49,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
         view.findViewById(R.id.btnCrash).setOnClickListener(this);
         view.findViewById(R.id.btnCamera).setOnClickListener(this);
         view.findViewById(R.id.btnTestView).setOnClickListener(this);
+        view.findViewById(R.id.btnRetrofit).setOnClickListener(this);
         screenW = getResources().getDisplayMetrics().widthPixels;
         tvMsg = (TextView) view.findViewById(R.id.tvMsg);
         tvTestImage = (ImageView) view.findViewById(R.id.tvTestImage);
@@ -123,6 +124,10 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
             case R.id.btnTestView:
                 Request reqTestView = new Request(TestViewDrawFragment.class);
                 startFragment(reqTestView);
+                break;
+            case R.id.btnRetrofit:
+                Request retrofitReq = new Request(RetrofitFragment.class);
+                startFragment(retrofitReq);
                 break;
         }
     }

@@ -6,16 +6,22 @@ package echo.engineer.oneactivity.cmpts.retrofits2;
  * Created by Plucky<py@meitu.com> on 2017/8/14 - 15:27
  */
 
-public interface WeatherInfo {
-    String date();
+public class WeatherInfo {
+    public String date;
 
-    String high();
+    public String high;
 
-    String fx();
+    public String fx;
 
-    String low();
+    public String fengxiang;
 
-    String fl();
 
-    String type();
+    public String low;
+
+    public String fl;
+
+    public String fengli;
+
+
+    public String type;
 }

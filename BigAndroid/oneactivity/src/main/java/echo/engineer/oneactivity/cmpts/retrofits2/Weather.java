@@ -1,17 +1,23 @@
 package echo.engineer.oneactivity.cmpts.retrofits2;
 
-import org.immutables.value.Value;
+
+import java.util.List;
 
 /**
  * Weather.java
  * Useage: Weather
  * Created by Plucky<py@meitu.com> on 2017/8/14 - 15:18
  */
-@Value.Immutable
-public abstract class Weather {
-    abstract String city();
-    abstract String aqi();
-    abstract String ganmao();
-    abstract String wendu();
-    abstract WeatherInfo yesterday();
+public  class Weather {
+    public  String city;
+
+    public  String aqi;
+
+    public  String ganmao;
+
+    public  String wendu;
+
+    public  WeatherInfo yesterday;
+
+    public  List<WeatherInfo> forecast;
 }

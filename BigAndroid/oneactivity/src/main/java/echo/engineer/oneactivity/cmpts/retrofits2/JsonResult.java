@@ -9,12 +9,11 @@ import javax.annotation.Nullable;
  * Useage: JsonResult
  * Created by Plucky<py@meitu.com> on 2017/8/14 - 15:15
  */
-@Value.Immutable
-public abstract class JsonResult<T> {
-    public abstract int status();
+public class JsonResult<T> {
 
-    public abstract String desc();
+    public int status;
 
-    @Nullable
-    public abstract T data();
+    public String desc;
+
+    public T data;
 }

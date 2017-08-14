@@ -2,6 +2,7 @@ package echo.engineer.oneactivity.cmpts.retrofits2;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import rx.Observable;
 
 /**
  * WeatherApi.java
@@ -11,5 +12,5 @@ import retrofit2.http.Query;
 
 public interface WeatherApi {
     @GET("/weather_mini")
-    rx.Observable<JsonResult<Weather>> getWeather(@Query("city") String city);
+    Observable<JsonResult<Weather>> getWeather(@Query("city") String city);
 }
