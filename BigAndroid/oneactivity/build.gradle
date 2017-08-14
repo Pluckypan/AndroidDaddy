@@ -62,4 +62,6 @@ dependencies {
         exclude group: 'com.android.support'
     })
     compile 'com.github.mmin18:realtimeblurview:1.1.0'
+
+    compile "com.squareup.retrofit2:retrofit:2.1.0"
 }

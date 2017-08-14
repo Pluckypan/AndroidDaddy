@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.fragmentmaster.app.MasterFragment;
 
 import java.util.HashMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import echo.engineer.oneactivity.R;
 import echo.engineer.oneactivity.cmpts.thread.MyThread;
