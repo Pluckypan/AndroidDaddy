@@ -2,7 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#00FF00" />
+
+        <echo.engineer.oneactivity.widget.ClipView
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
+    </FrameLayout>
+
 
     <TextView
         android:id="@+id/tv_retrofit_msg"
