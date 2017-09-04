@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,7 @@ public class RetrofitFragment extends MasterFragment implements View.OnClickList
     private static final String TAG = "RetrofitFragment";
     TextView mTvMsg;
     View vShadow;
+    CardView cardview;
 
     @Nullable
     @Override
@@ -53,6 +55,7 @@ public class RetrofitFragment extends MasterFragment implements View.OnClickList
         mTvMsg = (TextView) view.findViewById(R.id.tv_retrofit_msg);
         vShadow = view.findViewById(R.id.vShadow);
         view.findViewById(R.id.btn_retrofit_weather).setOnClickListener(this);
+        cardview = (CardView) view.findViewById(R.id.cardview);
 
         ShadowProperty sp = new ShadowProperty()
                 .setShadowColor(0x77000000)
