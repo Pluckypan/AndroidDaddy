@@ -86,6 +86,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Retrofit" />
+
+        <Button
+            android:id="@+id/btnShadow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shadow" />
+
     </LinearLayout>
 </ScrollView>
 

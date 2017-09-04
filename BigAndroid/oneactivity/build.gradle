@@ -89,4 +89,5 @@ dependencies {
     //rxjava
     compile "io.reactivex:rxandroid:1.2.1"
     compile 'com.github.ShogoMizumoto:ZDepthShadowLayout:1.0.4'
+    compile 'com.github.Hitomis:CrazyShadow:v1.0.1'
 }
