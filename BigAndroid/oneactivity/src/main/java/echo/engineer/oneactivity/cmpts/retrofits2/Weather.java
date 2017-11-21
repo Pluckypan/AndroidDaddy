@@ -6,18 +6,18 @@ import java.util.List;
 /**
  * Weather.java
  * Useage: Weather
- * Created by Plucky<py@meitu.com> on 2017/8/14 - 15:18
+ * Created by Plucky<plucky@echo.engineer> on 2017/8/14 - 15:18
  */
-public  class Weather {
-    public  String city;
+public class Weather {
+    public String city;
 
-    public  String aqi;
+    public String aqi;
 
-    public  String ganmao;
+    public String ganmao;
 
-    public  String wendu;
+    public String wendu;
 
-    public  WeatherInfo yesterday;
+    public WeatherInfo yesterday;
 
-    public  List<WeatherInfo> forecast;
+    public List<WeatherInfo> forecast;
 }

@@ -15,7 +15,7 @@ import android.view.View;
 /**
  * ClipView.java
  * Useage: ClipView
- * Created by Plucky<py@meitu.com> on 2017/8/18 - 13:58
+ * Created by Plucky<plucky@echo.engineer> on 2017/8/18 - 13:58
  */
 
 public class ClipView extends View implements View.OnClickListener {

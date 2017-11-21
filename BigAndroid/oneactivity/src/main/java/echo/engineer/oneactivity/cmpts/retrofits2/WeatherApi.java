@@ -7,7 +7,7 @@ import rx.Observable;
 /**
  * WeatherApi.java
  * Useage: WeatherApi
- * Created by Plucky<py@meitu.com> on 2017/8/14 - 14:17
+ * Created by Plucky<plucky@echo.engineer> on 2017/8/14 - 14:17
  */
 
 public interface WeatherApi {

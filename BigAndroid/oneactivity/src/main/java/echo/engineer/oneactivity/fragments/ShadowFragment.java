@@ -16,7 +16,7 @@ import echo.engineer.oneactivity.R;
 /**
  * ShadowFragment.java
  * Useage: ShadowFragment
- * Created by Plucky<py@meitu.com> on 2017/9/4 - 9:46
+ * Created by Plucky<plucky@echo.engineer> on 2017/9/4 - 9:46
  */
 
 public class ShadowFragment extends MasterFragment {

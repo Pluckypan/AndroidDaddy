@@ -24,7 +24,7 @@ import rx.schedulers.Schedulers;
 /**
  * RetrofitFragment.java
  * Useage: RetrofitFragment
- * Created by Plucky<py@meitu.com> on 2017/8/14 - 13:45
+ * Created by Plucky<plucky@echo.engineer> on 2017/8/14 - 13:45
  */
 
 public class RetrofitFragment extends MasterFragment implements View.OnClickListener {
