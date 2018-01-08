@@ -19,16 +19,17 @@ public class RoundCoverView extends View {
     private int mHoleRadius;
     private boolean mForcedHoleRadius;
 
-    private void init(){
+    private void init() {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setColor(Color.TRANSPARENT);
         mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        if(isInEditMode()){
+        if (isInEditMode()) {
             setVisibility(GONE);
         }
     }
+
     public RoundCoverView(Context context) {
         super(context);
         init();
@@ -51,7 +52,7 @@ public class RoundCoverView extends View {
         mWidth = right - left;
         mHeight = bottom - top;
 
-        if(!mForcedHoleRadius) {
+        if (!mForcedHoleRadius) {
             mHoleRadius = Math.min(mWidth, mHeight) / 2;
         }
     }
@@ -62,8 +63,7 @@ public class RoundCoverView extends View {
 
         canvas.drawColor(Color.BLACK);
 
-        if(mWidth > 0 && mHeight > 0){
-//            canvas.drawOval(getLeft(), getTop(), getRight(), getBottom(), mPaint);
+        if (mWidth > 0 && mHeight > 0) {
             canvas.drawCircle(mWidth / 2, mHeight / 2, mHoleRadius, mPaint);
         }
     }

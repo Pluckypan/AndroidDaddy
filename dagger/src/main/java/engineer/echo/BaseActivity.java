@@ -1,14 +1,8 @@
 package engineer.echo;
 
 import android.app.ActivityOptions;
-import android.app.SharedElementCallback;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.RectF;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.flurgle.camerakit.CameraView;
-import com.library.viewspread.helper.BaseViewHelper;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -101,7 +94,6 @@ public class BaseActivity extends AppCompatActivity implements PullToRefreshBase
                 RELATIVE_TO_SELF, 1.0f);
         animation.setDuration(3000);
         animation.setFillAfter(true);
-        //vRotate.startAnimation(animation);
     }
 
     @Override
@@ -123,7 +115,7 @@ public class BaseActivity extends AppCompatActivity implements PullToRefreshBase
                 int[] posStart = new int[]{0, 0};
                 vRender.getLocationInWindow(posStart);
 
-                intent1.putExtra("POS", new TranslatePosition(posStart[0],posStart[1],posStart[0],posStart[1]));
+                intent1.putExtra("POS", new TranslatePosition(posStart[0], posStart[1], posStart[0], posStart[1]));
                 startActivity(intent1);
                 break;
         }
