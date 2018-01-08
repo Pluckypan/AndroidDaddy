@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">应用悬浮窗</string>
+    <string name="app_name_main">应用悬浮窗@首页</string>
+    <string name="app_name_second">应用悬浮窗@次页</string>
 </resources>

@@ -13,5 +13,7 @@
 3. 通过`bindService`开启一个`Service`,`Service`创建成功之后,拿到 `WindowManager`,再通过 `WindowManager` `addView` 的形式 实现悬浮视图的添加。 **此为关键点**
 4. 浮悬窗点击事件可能无效 可以 **自定义View** 更改 `onTouchEvent` 实现悬浮视图的移动和点击事件处理。
 
+5. `onTrimMemory(int level)` 可以判断前后台 `(level==TRIM_MEMORY_UI_HIDDEN)`
+
 ### 参考文章
 - [Android无需权限显示悬浮窗, 兼谈逆向分析app](https://www.jianshu.com/p/167fd5f47d5c)

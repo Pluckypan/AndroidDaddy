@@ -8,18 +8,20 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     FloatWindowService mService;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-
+        setContentView(R.layout.activity_main);
         Intent intent = new Intent(this, FloatWindowService.class);
         bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
+
+        findViewById(R.id.app_second_tv).setOnClickListener(this);
     }
 
     @Override
@@ -30,16 +32,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        if (mService != null)
-            mService.setVisibility(false);
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         unbindService(mServiceConnection);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.app_second_tv:
+                SecondActivity.gotoActivity(this);
+                break;
+        }
+    }
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        if (level == TRIM_MEMORY_UI_HIDDEN) {
+            if (mService != null)
+                mService.setVisibility(false);
+        }
     }
 
     private ServiceConnection mServiceConnection = new ServiceConnection() {
