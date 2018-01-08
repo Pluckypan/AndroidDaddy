@@ -8,10 +8,12 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "MainActivity";
     FloatWindowService mService;
 
     @Override
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
+        Log.d(TAG, "onTrimMemory: level=" + level);
         if (level == TRIM_MEMORY_UI_HIDDEN) {
             if (mService != null)
                 mService.setVisibility(false);
