@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:gravity="center"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/ivAction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/fr_mustard_debug_info" />
+        android:src="@drawable/info" />
 
     <LinearLayout
         android:id="@+id/llPanel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/shape_pannel_backgorund"
+        android:orientation="vertical"
+        android:padding="10dp"
         android:visibility="gone"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
+        tools:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="tcp channel: on"
+            android:text="TCP通道: on"
             android:textColor="#FFFFFF"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="btc channel: on"
+            android:text="蓝牙通道: on"
             android:textColor="#FFFFFF"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
 
