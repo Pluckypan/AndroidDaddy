@@ -25,7 +25,7 @@
         android:layout_height="40dp"
         android:background="#00FF00" />
 
-    <echo.engineer.oneactivity.widget.PulseAlphaFramelayout
+    <echo.engineer.oneactivity.cmpts.widget.PulseAlphaFramelayout
         android:id="@+id/pflRecording"
         android:layout_width="20dp"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:layout_gravity="center"
             android:background="#FF0000" />
 
-    </echo.engineer.oneactivity.widget.PulseAlphaFramelayout>
+    </echo.engineer.oneactivity.cmpts.widget.PulseAlphaFramelayout>
 
-    <include layout="@layout/countdown_view" />
+    <include layout="@layout/view_countdown" />
 </LinearLayout>

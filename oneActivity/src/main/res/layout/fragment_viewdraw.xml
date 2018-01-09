@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <echo.engineer.oneactivity.cmpts.widget.EView
+        android:id="@+id/eView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#FA2855" />
+
+
+    <echo.engineer.oneactivity.cmpts.widget.EViewGroup
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <echo.engineer.oneactivity.cmpts.widget.EView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#FA2855" />
+    </echo.engineer.oneactivity.cmpts.widget.EViewGroup>
+
+    <echo.engineer.oneactivity.cmpts.widget.EViewGroup
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#E3E3E3"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Hello ViewGroup"
+            android:textColor="#333333" />
+    </echo.engineer.oneactivity.cmpts.widget.EViewGroup>
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Thread" />
+
+    <Button
+        android:id="@+id/btnStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop Thread" />
+
+    <Button
+        android:id="@+id/btnOOM1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OOM1" />
+
+    <Button
+        android:id="@+id/btnOOM2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OOM2" />
+
+</LinearLayout>
