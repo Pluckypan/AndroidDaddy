@@ -1,2 +1,4 @@
 include ':app', ':dagger', ':rxjava', ':servicedemo', ':oneactivity', ':keeper'
 include ':floatingWindow'
+
+include ':ApiSample'
