@@ -7,11 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.fragmentmaster.app.MasterFragment;
 import com.hitomi.cslibrary.CrazyShadow;
 import com.hitomi.cslibrary.base.CrazyShadowDirection;
 
 import echo.engineer.oneactivity.R;
+import engineer.echo.oneactivity.core.MasterFragment;
 
 /**
  * ShadowFragment.java

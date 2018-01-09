@@ -11,12 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.fragmentmaster.app.MasterFragment;
-
 import echo.engineer.oneactivity.App;
 import echo.engineer.oneactivity.R;
 import echo.engineer.oneactivity.widget.shadow.ShadowProperty;
 import echo.engineer.oneactivity.widget.shadow.ShadowViewDrawable;
+import engineer.echo.oneactivity.core.MasterFragment;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

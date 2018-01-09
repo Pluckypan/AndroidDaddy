@@ -11,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fivehundredpx.android.blur.BlurringView;
-import com.fragmentmaster.app.MasterFragment;
-import com.fragmentmaster.app.Request;
 import com.orhanobut.logger.Logger;
 
 import echo.engineer.oneactivity.App;
@@ -23,6 +21,8 @@ import echo.engineer.oneactivity.cmpts.sensor.SimpleGyroscopeSensorCallBack;
 import echo.engineer.oneactivity.immutables.Fatttther;
 import echo.engineer.oneactivity.immutables.ImmutableFatttther;
 import echo.engineer.oneactivity.immutables.ImmutableItem;
+import engineer.echo.oneactivity.core.MasterFragment;
+import engineer.echo.oneactivity.core.Request;
 
 /**
  * HomeFragment

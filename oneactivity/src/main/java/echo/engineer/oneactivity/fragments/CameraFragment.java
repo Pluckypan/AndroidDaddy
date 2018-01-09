@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 
 import com.flurgle.camerakit.CameraListener;
 import com.flurgle.camerakit.CameraView;
-import com.fragmentmaster.app.MasterFragment;
 import com.github.mmin18.widget.RealtimeBlurView;
 
 import java.io.File;
 
 import echo.engineer.oneactivity.R;
+import engineer.echo.oneactivity.core.MasterFragment;
 
 /**
  * CameraFragment

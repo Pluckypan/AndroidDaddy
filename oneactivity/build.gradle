@@ -50,8 +50,7 @@ dependencies {
     //for recyclerview
     compile "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"
 
-    //for one activity all fragment
-    compile project(':fragmentmaster-appcompat')
+    compile 'engineer.echo.oneactivity:core:0.0.1'
 
     //for blockcanary
     compile 'com.github.markzhai:blockcanary-android:1.5.0'

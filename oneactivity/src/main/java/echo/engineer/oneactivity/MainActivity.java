@@ -7,15 +7,14 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.fragmentmaster.app.FragmentMaster;
-import com.fragmentmaster.app.IMasterFragment;
-import com.fragmentmaster.app.MasterActionBarActivity;
-import com.fragmentmaster.app.Request;
-
 import echo.engineer.oneactivity.fragments.HomeFragment;
 import echo.engineer.oneactivity.message.MessengerService;
+import engineer.echo.oneactivity.core.FragmentMaster;
+import engineer.echo.oneactivity.core.IMasterFragment;
+import engineer.echo.oneactivity.core.MasterCompatActivity;
+import engineer.echo.oneactivity.core.Request;
 
-public class MainActivity extends MasterActionBarActivity {
+public class MainActivity extends MasterCompatActivity {
 
     public static final String TAG = "MainActivity";
 
@@ -51,7 +50,6 @@ public class MainActivity extends MasterActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FragmentMaster fragmentMaster = getFragmentMaster();
-        fragmentMaster.setScrollDuration(600);
         fragmentMaster.registerFragmentLifecycleCallbacks(mLifecycleCallbacks);
         fragmentMaster.install(R.id.container, new Request(HomeFragment.class), true);
         bindMessengerService();

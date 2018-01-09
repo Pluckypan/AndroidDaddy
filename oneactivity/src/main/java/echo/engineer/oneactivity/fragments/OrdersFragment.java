@@ -8,18 +8,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.fragmentmaster.animator.PageAnimator;
-import com.fragmentmaster.annotation.Configuration;
-import com.fragmentmaster.app.MasterFragment;
-import com.fragmentmaster.app.MasterListFragment;
-import com.fragmentmaster.app.Request;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import echo.engineer.oneactivity.Entry;
 import echo.engineer.oneactivity.R;
-import echo.engineer.oneactivity.pageanimator.Animators;
+import engineer.echo.oneactivity.animator.PageAnimator;
+import engineer.echo.oneactivity.annotation.Configuration;
+import engineer.echo.oneactivity.core.MasterFragment;
+import engineer.echo.oneactivity.core.MasterListFragment;
+import engineer.echo.oneactivity.core.Request;
 
 /**
  * OrdersFragment

@@ -6,7 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.fragmentmaster.app.MasterFragment;
+import engineer.echo.oneactivity.core.MasterFragment;
+
 
 /**
  * SimpleIPCFragment

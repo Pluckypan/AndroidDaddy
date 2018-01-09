@@ -1,2 +1,2 @@
-include ':app', ':dagger', ':rxjava', ':servicedemo', ':oneactivity', ':fragmentmaster', ':fragmentmaster-appcompat', ':keeper'
+include ':app', ':dagger', ':rxjava', ':servicedemo', ':oneactivity', ':keeper'
 include ':floatingWindow'

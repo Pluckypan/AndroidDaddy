@@ -10,12 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.fragmentmaster.app.MasterFragment;
-
 import echo.engineer.oneactivity.R;
 import echo.engineer.oneactivity.fragments.adapter.CountDownAdapter;
 import echo.engineer.oneactivity.widget.CountDownView;
 import echo.engineer.oneactivity.widget.PulseAlphaFramelayout;
+import engineer.echo.oneactivity.core.MasterFragment;
 
 /**
  * CountDownFragment
