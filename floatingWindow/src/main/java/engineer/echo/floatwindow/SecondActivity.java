@@ -7,6 +7,8 @@ import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import engineer.echo.floatwindow.cmpts.floatpannel.FloatPannel;
+
 /**
  * SecondActivity
  * Created by Plucky<plucky@echo.engineer> on 2018/1/8 - 16:31
@@ -25,4 +27,9 @@ public class SecondActivity extends AppCompatActivity {
         context.startActivity(new Intent(context, SecondActivity.class));
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        FloatPannel.Log("Second:退出第二页");
+    }
 }

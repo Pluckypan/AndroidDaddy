@@ -68,6 +68,12 @@ public class FloatWindowService extends Service {
         }
     }
 
+    public void print(String msg) {
+        if (mLayout != null) {
+            mLayout.print(msg);
+        }
+    }
+
     private void createFloatView() {
         try {
             mLayout = new FloatWindowLayout(getApplicationContext());

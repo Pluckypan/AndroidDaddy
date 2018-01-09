@@ -43,6 +43,16 @@ public class FloatPannel {
         }
     }
 
+    private void print(String msg) {
+        if (mService != null) {
+            mService.print(msg);
+        }
+    }
+
+    public static void Log(String msg) {
+        getPannel().print(msg);
+    }
+
     private void install(Context context) {
         mContext = context.getApplicationContext();
         bindService();

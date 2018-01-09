@@ -25,16 +25,11 @@
         tools:visibility="visible">
 
         <TextView
+            android:id="@+id/tvMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TCP通道: on"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="蓝牙通道: on"
+            android:maxLines="10"
+            android:text="TCP通道: on\n蓝牙通道: on"
             android:textColor="#FFFFFF"
             android:textSize="12sp" />
     </LinearLayout>

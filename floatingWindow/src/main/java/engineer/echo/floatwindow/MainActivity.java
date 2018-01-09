@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.app_second_tv:
+                FloatPannel.Log("Main:进入第二页");
                 SecondActivity.gotoActivity(this);
                 break;
         }

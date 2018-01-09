@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import engineer.echo.floatwindow.R;
 
@@ -26,7 +27,8 @@ class FloatWindowLayout extends RelativeLayout {
     private float mStartX;
     private float mStartY;
 
-    LinearLayout mPannel;
+    private LinearLayout mPannel;
+    private TextView tvMsg;
 
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mLayoutParams;
@@ -45,6 +47,7 @@ class FloatWindowLayout extends RelativeLayout {
         mLayoutParams = new WindowManager.LayoutParams();
         View mView = lf.inflate(R.layout.layout_float_window, null);
         mPannel = (LinearLayout) mView.findViewById(R.id.llPanel);
+        tvMsg=(TextView)mView.findViewById(R.id.tvMsg);
         this.addView(mView, params);
     }
 
@@ -95,5 +98,9 @@ class FloatWindowLayout extends RelativeLayout {
         } else {
             mPannel.setVisibility(VISIBLE);
         }
+    }
+
+    public void print(String msg){
+        tvMsg.setText(msg);
     }
 }
