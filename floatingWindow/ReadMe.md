@@ -17,3 +17,4 @@
 
 ### 参考文章
 - [Android无需权限显示悬浮窗, 兼谈逆向分析app](https://www.jianshu.com/p/167fd5f47d5c)
+- [Android7.1.1对Type Toast的限制](https://www.jianshu.com/p/1445e330114b)

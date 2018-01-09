@@ -22,7 +22,7 @@
             android:name=".SecondActivity"
             android:label="@string/app_name" />
 
-        <service android:name=".FloatWindowService" />
+        <service android:name=".cmpts.floatpannel.FloatWindowService" />
     </application>
 
 </manifest>

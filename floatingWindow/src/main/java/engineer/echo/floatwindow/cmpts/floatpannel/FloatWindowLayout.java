@@ -1,4 +1,4 @@
-package engineer.echo.floatwindow;
+package engineer.echo.floatwindow.cmpts.floatpannel;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -10,12 +10,14 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import engineer.echo.floatwindow.R;
+
 /**
  * FloatWindowLayout
  * Created by Plucky<plucky@echo.engineer> on 17/4/10 2017 下午3:42.
  * more about me: http://www.1991th.com
  */
-public class FloatWindowLayout extends RelativeLayout {
+class FloatWindowLayout extends RelativeLayout {
     private static final String TAG = "FloatWindowLayout";
     private float mTouchX;
     private float mTouchY;

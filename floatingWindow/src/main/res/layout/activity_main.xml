@@ -10,7 +10,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="30dp"
-        android:background="#669999"
+        android:background="@drawable/shape_second_btn_background"
         android:gravity="center"
         android:text="页面跳转" />
 </RelativeLayout>
