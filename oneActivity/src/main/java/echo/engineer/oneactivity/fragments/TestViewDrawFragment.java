@@ -16,7 +16,7 @@ import engineer.echo.oneactivity.core.MasterFragment;
 
 /**
  * TestViewDrawFragment
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/7/23 下午11:52.
+ * Created by Plucky<plucky@echo.engineer> on 2017/7/23 下午11:52.
  */
 
 public class TestViewDrawFragment extends MasterFragment implements View.OnClickListener {

@@ -15,7 +15,7 @@ import android.util.Log;
 
 /**
  * MessengerService
- * Created by Plucky<plucky.pan@ubnt.com> on 7/5/17 2017 14:15.
+ * Created by Plucky<plucky@echo.engineer> on 7/5/17 2017 14:15.
  */
 
 public class MessengerService extends Service {

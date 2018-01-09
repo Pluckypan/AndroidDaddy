@@ -5,7 +5,7 @@ import android.util.Log;
 
 /**
  * Person
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/19 下午4:15.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/19 下午4:15.
  */
 
 public class Person {

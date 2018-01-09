@@ -7,7 +7,7 @@ import javax.inject.Qualifier;
 
 /**
  * QualifierForName
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/19 下午5:38.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/19 下午5:38.
  */
 @Qualifier
 @Retention(RetentionPolicy.RUNTIME)

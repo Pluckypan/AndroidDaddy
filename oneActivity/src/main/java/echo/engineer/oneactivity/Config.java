@@ -6,7 +6,7 @@ import java.io.File;
 
 /**
  * Config
- * Created by Plucky<plucky.pan@ubnt.com> on 7/10/17 2017 11:37.
+ * Created by Plucky<plucky@echo.engineer> on 7/10/17 2017 11:37.
  */
 
 public class Config {

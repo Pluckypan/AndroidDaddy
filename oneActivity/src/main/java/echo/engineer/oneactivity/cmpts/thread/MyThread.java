@@ -4,7 +4,7 @@ import android.util.Log;
 
 /**
  * MyThread
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/7/26 下午6:52.
+ * Created by Plucky<plucky@echo.engineer> on 2017/7/26 下午6:52.
  */
 
 public class MyThread implements Runnable {

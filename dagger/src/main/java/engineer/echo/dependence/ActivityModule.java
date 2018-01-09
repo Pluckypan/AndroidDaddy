@@ -6,7 +6,7 @@ import dagger.Provides;
 
 /**
  * ActivityModule
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/19 下午4:16.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/19 下午4:16.
  */
 @Module
 public class ActivityModule {

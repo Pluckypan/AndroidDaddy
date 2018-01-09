@@ -4,7 +4,7 @@ import android.util.Log;
 
 /**
  * BaseThread
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/7/26 下午3:37.
+ * Created by Plucky<plucky@echo.engineer> on 2017/7/26 下午3:37.
  */
 
 public abstract class BaseThread implements Runnable {

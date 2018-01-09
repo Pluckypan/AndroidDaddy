@@ -18,7 +18,7 @@ import engineer.echo.oneactivity.core.MasterFragment;
 
 /**
  * CountDownFragment
- * Created by Plucky<plucky.pan@ubnt.com> on 6/26/17 2017 13:42.
+ * Created by Plucky<plucky@echo.engineer> on 6/26/17 2017 13:42.
  */
 
 public class CountDownFragment extends MasterFragment {

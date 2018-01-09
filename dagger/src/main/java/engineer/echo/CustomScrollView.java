@@ -2,7 +2,7 @@ package engineer.echo;
 
 /**
  * CustomScrollView
- * Created by Plucky<plucky.pan@ubnt.com> on 17/3/30 2017 上午10:16.
+ * Created by Plucky<plucky@echo.engineer> on 17/3/30 2017 上午10:16.
  */
 
 import android.content.Context;

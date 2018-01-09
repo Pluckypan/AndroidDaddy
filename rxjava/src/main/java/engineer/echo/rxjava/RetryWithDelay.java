@@ -9,7 +9,7 @@ import rx.functions.Func1;
 
 /**
  * RetryWithDelay
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/4/9 下午3:38.
+ * Created by Plucky<plucky@echo.engineer> on 2017/4/9 下午3:38.
  */
 
 public class RetryWithDelay implements

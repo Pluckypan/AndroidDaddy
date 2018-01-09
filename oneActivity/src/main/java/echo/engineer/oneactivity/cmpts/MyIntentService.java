@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 
 /**
  * MyIntentService
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/7/27 下午2:40.
+ * Created by Plucky<plucky@echo.engineer> on 2017/7/27 下午2:40.
  */
 
 public class MyIntentService extends IntentService {

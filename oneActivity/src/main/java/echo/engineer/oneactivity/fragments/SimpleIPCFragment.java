@@ -11,7 +11,7 @@ import engineer.echo.oneactivity.core.MasterFragment;
 
 /**
  * SimpleIPCFragment
- * Created by Plucky<plucky.pan@ubnt.com> on 6/26/17 2017 18:13.
+ * Created by Plucky<plucky@echo.engineer> on 6/26/17 2017 18:13.
  */
 
 public class SimpleIPCFragment extends MasterFragment {

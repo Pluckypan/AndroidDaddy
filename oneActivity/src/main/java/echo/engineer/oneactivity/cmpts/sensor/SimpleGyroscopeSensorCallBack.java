@@ -2,7 +2,7 @@ package echo.engineer.oneactivity.cmpts.sensor;
 
 /**
  * SimpleGyroscopeSensorCallBack
- * Created by Plucky<plucky.pan@ubnt.com> on 7/7/17 2017 17:52.
+ * Created by Plucky<plucky@echo.engineer> on 7/7/17 2017 17:52.
  */
 
 public class SimpleGyroscopeSensorCallBack implements GyroscopeSensorCallBack {

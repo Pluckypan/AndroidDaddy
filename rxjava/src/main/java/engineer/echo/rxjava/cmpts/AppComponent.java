@@ -5,7 +5,7 @@ import engineer.echo.rxjava.DeviceStatus;
 
 /**
  * AppComponent
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/19 下午10:37.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/19 下午10:37.
  */
 @AppScope
 @Component(modules = AppModule.class)

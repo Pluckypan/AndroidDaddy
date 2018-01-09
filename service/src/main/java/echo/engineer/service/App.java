@@ -6,7 +6,7 @@ import android.util.Log;
 
 /**
  * App
- * Created by Plucky<plucky.pan@ubnt.com> on 7/5/17 2017 14:09.
+ * Created by Plucky<plucky@echo.engineer> on 7/5/17 2017 14:09.
  */
 
 public class App extends Application {

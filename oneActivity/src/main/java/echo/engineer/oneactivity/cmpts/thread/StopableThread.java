@@ -4,7 +4,7 @@ import android.util.Log;
 
 /**
  * StopableThread
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/7/26 上午11:36.
+ * Created by Plucky<plucky@echo.engineer> on 2017/7/26 上午11:36.
  */
 
 public class StopableThread extends Thread {

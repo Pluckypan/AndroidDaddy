@@ -7,7 +7,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * FRAccelerateDecelerateInterpolator
- * Created by Plucky<plucky.pan@ubnt.com> on 17/3/30 2017 下午6:02.
+ * Created by Plucky<plucky@echo.engineer> on 17/3/30 2017 下午6:02.
  */
 
 public class FRAccelerateDecelerateInterpolator extends AccelerateDecelerateInterpolator {

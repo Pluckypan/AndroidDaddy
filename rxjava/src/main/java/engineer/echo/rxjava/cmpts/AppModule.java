@@ -6,7 +6,7 @@ import engineer.echo.rxjava.DeviceStatus;
 
 /**
  * AppModule
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/19 下午10:35.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/19 下午10:35.
  */
 @Module
 public class AppModule {

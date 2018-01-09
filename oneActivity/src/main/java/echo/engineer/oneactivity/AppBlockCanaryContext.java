@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * AppBlockCanaryContext
- * Created by Plucky<plucky.pan@ubnt.com> on 6/9/17 2017 23:19.
+ * Created by Plucky<plucky@echo.engineer> on 6/9/17 2017 23:19.
  */
 
 public class AppBlockCanaryContext extends BlockCanaryContext {

@@ -7,7 +7,7 @@ import rx.subjects.BehaviorSubject;
 
 /**
  * DeviceStatusManager
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/19 下午10:02.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/19 下午10:02.
  */
 
 public class DeviceStatusManager {

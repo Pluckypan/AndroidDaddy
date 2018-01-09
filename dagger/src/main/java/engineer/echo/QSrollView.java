@@ -13,7 +13,7 @@ import android.widget.Scroller;
 
 /**
  * QSrollView
- * Created by Plucky<plucky.pan@ubnt.com> on 17/3/30 2017 上午10:36.
+ * Created by Plucky<plucky@echo.engineer> on 17/3/30 2017 上午10:36.
  */
 
 class QSrollView extends ViewGroup {

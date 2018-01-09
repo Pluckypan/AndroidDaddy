@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 /**
  * RecyclerAdapter
- * Created by Plucky<plucky.pan@ubnt.com> on 17/3/30 2017 下午1:40.
+ * Created by Plucky<plucky@echo.engineer> on 17/3/30 2017 下午1:40.
  */
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {

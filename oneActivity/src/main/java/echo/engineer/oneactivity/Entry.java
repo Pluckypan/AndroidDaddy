@@ -16,7 +16,8 @@
 
 package echo.engineer.oneactivity;
 
-import com.fragmentmaster.app.Request;
+
+import engineer.echo.oneactivity.core.Request;
 
 public class Entry {
 

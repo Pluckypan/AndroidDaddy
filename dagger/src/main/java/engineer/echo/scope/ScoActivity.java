@@ -8,7 +8,7 @@ import javax.inject.Scope;
 
 /**
  * ScopeActivity
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/19 下午5:57.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/19 下午5:57.
  */
 @Scope
 @Documented

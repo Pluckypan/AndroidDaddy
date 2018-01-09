@@ -19,7 +19,7 @@ import engineer.echo.oneactivity.core.MasterFragment;
 
 /**
  * CameraFragment
- * Created by Plucky<plucky.pan@ubnt.com> on 7/13/17 2017 15:48.
+ * Created by Plucky<plucky@echo.engineer> on 7/13/17 2017 15:48.
  */
 
 public class CameraFragment extends MasterFragment {

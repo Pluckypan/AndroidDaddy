@@ -15,7 +15,7 @@ import static echo.engineer.oneactivity.widget.EView.getTouchAction;
 
 /**
  * EViewGroup
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/7/24 上午10:41.
+ * Created by Plucky<plucky@echo.engineer> on 2017/7/24 上午10:41.
  */
 
 public class EViewGroup extends LinearLayout {

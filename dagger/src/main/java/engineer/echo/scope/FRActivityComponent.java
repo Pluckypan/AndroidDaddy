@@ -5,7 +5,7 @@ import engineer.echo.ScopeActivity;
 
 /**
  * FRActivityComponent
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/19 下午7:54.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/19 下午7:54.
  */
 @ScoActivity
 @Component(modules = FRActivityModule.class)

@@ -9,7 +9,7 @@ import android.util.Log;
 
 /**
  * MessageHandler
- * Created by Plucky<plucky.pan@ubnt.com> on 7/5/17 2017 14:02.
+ * Created by Plucky<plucky@echo.engineer> on 7/5/17 2017 14:02.
  */
 
 public class MessageHandler extends Handler {

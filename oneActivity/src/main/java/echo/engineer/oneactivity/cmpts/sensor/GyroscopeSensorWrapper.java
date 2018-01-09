@@ -14,7 +14,7 @@ import static android.hardware.SensorManager.SENSOR_DELAY_GAME;
 
 /**
  * GyroscopeSensorWrapper
- * Created by Plucky<plucky.pan@ubnt.com> on 7/5/17 2017 21:28.
+ * Created by Plucky<plucky@echo.engineer> on 7/5/17 2017 21:28.
  */
 
 public class GyroscopeSensorWrapper implements SensorEventListener {

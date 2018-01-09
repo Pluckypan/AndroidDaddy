@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * App
- * Created by Plucky<plucky.pan@ubnt.com> on 6/22/17 2017 14:34.
+ * Created by Plucky<plucky@echo.engineer> on 6/22/17 2017 14:34.
  */
 
 public class App extends Application {

@@ -12,16 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import echo.engineer.oneactivity.Entry;
-import echo.engineer.oneactivity.R;
 import engineer.echo.oneactivity.animator.PageAnimator;
-import engineer.echo.oneactivity.annotation.Configuration;
 import engineer.echo.oneactivity.core.MasterFragment;
 import engineer.echo.oneactivity.core.MasterListFragment;
 import engineer.echo.oneactivity.core.Request;
 
 /**
  * OrdersFragment
- * Created by Plucky<plucky.pan@ubnt.com> on 6/22/17 2017 15:30.
+ * Created by Plucky<plucky@echo.engineer> on 6/22/17 2017 15:30.
  */
 
 public class OrdersFragment extends MasterListFragment {
@@ -55,7 +53,6 @@ public class OrdersFragment extends MasterListFragment {
         startFragment(page.mRequest);
     }
 
-    @Configuration(theme = R.style.AppTheme_MasterFragment_Transparent)
     public static class VerticalSlidePage extends MasterFragment {
 
         @Override

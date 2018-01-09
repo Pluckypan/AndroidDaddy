@@ -7,7 +7,7 @@ import android.os.IBinder;
 
 /**
  * UploadService
- * Created by Plucky<plucky.pan@ubnt.com> on 5/22/17 2017 15:24.
+ * Created by Plucky<plucky@echo.engineer> on 5/22/17 2017 15:24.
  */
 
 public class UploadService extends Service {

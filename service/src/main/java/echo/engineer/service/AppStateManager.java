@@ -6,7 +6,7 @@ import rx.subjects.BehaviorSubject;
 
 /**
  * AppStateManager
- * Created by Plucky<plucky.pan@ubnt.com> on 7/5/17 2017 16:42.
+ * Created by Plucky<plucky@echo.engineer> on 7/5/17 2017 16:42.
  */
 
 public class AppStateManager {

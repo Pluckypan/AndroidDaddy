@@ -12,7 +12,7 @@ import android.graphics.drawable.Drawable;
 
 /**
  * ShadowViewDrawable
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/8/20 下午11:35.
+ * Created by Plucky<plucky@echo.engineer> on 2017/8/20 下午11:35.
  */
 
 public class ShadowViewDrawable extends Drawable {

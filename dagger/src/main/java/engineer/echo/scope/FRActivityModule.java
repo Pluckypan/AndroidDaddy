@@ -5,7 +5,7 @@ import dagger.Provides;
 
 /**
  * FRActivityModule
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/19 下午7:52.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/19 下午7:52.
  */
 @Module
 public class FRActivityModule {

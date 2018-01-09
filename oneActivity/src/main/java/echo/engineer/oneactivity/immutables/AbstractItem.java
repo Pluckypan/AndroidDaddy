@@ -7,7 +7,7 @@ import java.util.Set;
 
 /**
  * AbstractItem
- * Created by Plucky<plucky.pan@ubnt.com> on 7/11/17 2017 10:45.
+ * Created by Plucky<plucky@echo.engineer> on 7/11/17 2017 10:45.
  */
 
 @Value.Immutable

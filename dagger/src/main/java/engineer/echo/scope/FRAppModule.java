@@ -6,7 +6,7 @@ import engineer.echo.DaggerApp;
 
 /**
  * FRAppModule
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/19 下午6:01.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/19 下午6:01.
  */
 
 @Module

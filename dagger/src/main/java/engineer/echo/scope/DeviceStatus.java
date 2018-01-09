@@ -4,7 +4,7 @@ import android.util.Log;
 
 /**
  * DeviceStatus
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/19 下午6:03.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/19 下午6:03.
  */
 
 public class DeviceStatus {

@@ -26,7 +26,7 @@ import engineer.echo.oneactivity.core.Request;
 
 /**
  * HomeFragment
- * Created by Plucky<plucky.pan@ubnt.com> on 6/22/17 2017 15:03.
+ * Created by Plucky<plucky@echo.engineer> on 6/22/17 2017 15:03.
  */
 
 public class HomeFragment extends MasterFragment implements View.OnClickListener {

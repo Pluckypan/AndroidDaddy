@@ -12,7 +12,7 @@ import android.view.View;
 
 /**
  * EView
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/7/23 下午11:27.
+ * Created by Plucky<plucky@echo.engineer> on 2017/7/23 下午11:27.
  */
 
 public class EView extends View {

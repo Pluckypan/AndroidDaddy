@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * MustardChannel
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/26 下午4:59.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/26 下午4:59.
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

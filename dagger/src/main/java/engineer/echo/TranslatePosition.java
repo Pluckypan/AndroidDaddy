@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 /**
  * TranslatePosition
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/4/1 下午8:11.
+ * Created by Plucky<plucky@echo.engineer> on 2017/4/1 下午8:11.
  */
 
 public class TranslatePosition implements Parcelable {

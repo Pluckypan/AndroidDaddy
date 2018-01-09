@@ -2,7 +2,7 @@ package engineer.echo.base;
 
 /**
  * Student
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/18 下午10:53.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/18 下午10:53.
  */
 
 public class Student {

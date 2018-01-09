@@ -10,7 +10,7 @@ import engineer.echo.scope.FRAppModule;
 
 /**
  * DaggerApp
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/18 下午10:49.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/18 下午10:49.
  */
 
 public class DaggerApp extends Application {

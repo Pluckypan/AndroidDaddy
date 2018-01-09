@@ -7,7 +7,7 @@ import dagger.Provides;
 
 /**
  * AppModule
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/19 下午4:09.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/19 下午4:09.
  */
 
 @Module

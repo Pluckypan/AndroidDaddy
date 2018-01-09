@@ -9,7 +9,7 @@ import android.util.Log;
 
 /**
  * MessageService
- * Created by Plucky<plucky.pan@ubnt.com> on 7/5/17 2017 13:45.
+ * Created by Plucky<plucky@echo.engineer> on 7/5/17 2017 13:45.
  */
 
 public class MessageService extends Service {

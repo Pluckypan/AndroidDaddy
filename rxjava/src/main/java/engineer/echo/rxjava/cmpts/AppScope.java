@@ -8,7 +8,7 @@ import javax.inject.Scope;
 
 /**
  * AppScope
- * Created by Plucky<plucky.pan@ubnt.com> on 2017/3/19 下午10:36.
+ * Created by Plucky<plucky@echo.engineer> on 2017/3/19 下午10:36.
  */
 @Scope
 @Documented
