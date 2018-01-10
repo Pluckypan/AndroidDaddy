@@ -1,4 +1,3 @@
 include ':app', ':dagger', ':rxjava', ':service', ':oneActivity', ':keeper'
 include ':floatingWindow'
 
-include ':androidApis'
