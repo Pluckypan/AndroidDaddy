@@ -2,7 +2,7 @@
 > 你爸爸还是你爸爸  解读Android前沿技术代码RxJava,Dagger,OkHttp,Annotation,IPC,智能硬件
 
 ### 子项目
-- **android.apis** `Google Android API` 示例研究
+- **api** `Google Android API` 示例研究
 - **dagger** 研究`Google`推荐项目 `Dagger`
 - **floatingWindow** 无权限实现悬浮窗,实现日志打印功能
 - **keeper** 智能手表项目
