@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_0099cc"
+        android:gravity="center"
+        android:text="你好.手表"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/common_font_size" />
+
+    <View
+        android:id="@+id/app_main_color_btn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/shape_color_circle" />
+</FrameLayout>
