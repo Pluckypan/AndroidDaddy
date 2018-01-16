@@ -1,10 +1,13 @@
-package engineer.echo.bigandroid;
+package engineer.echo.bigandroid.swipe;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+
+import engineer.echo.bigandroid.R;
+import engineer.echo.bigandroid.SimpleTouchCallback;
 
 public class DragSwipeActivity extends AppCompatActivity {
 
@@ -17,7 +20,7 @@ public class DragSwipeActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         recyclerView.setLayoutManager(manager);
 

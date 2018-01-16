@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="eecolor_1">#0066FF</color>
+    <color name="eecolor_2">#0099FF</color>
+    <color name="eecolor_3">#0066CC</color>
+    <color name="eecolor_4">#33CCFF</color>
+    <color name="eecolor_5">#33FFFF</color>
+    <color name="eecolor_6">#6600CC</color>
+    <color name="eecolor_7">#6600FF</color>
+    <color name="eecolor_8">#6666FF</color>
+    <color name="eecolor_9">#FF0099</color>
+    <color name="eecolor_10">#FFFF33</color>
+    <color name="eecolor_11">#FFCC33</color>
+    <color name="eecolor_12">#FF9900</color>
+    <color name="eecolor_13">#FF6633</color>
+    <color name="eecolor_14">#FF3366</color>
+    <color name="eecolor_15">#33CC66</color>
+    <color name="eecolor_16">#00CCCC</color>
+    <color name="eecolor_17">#330066</color>
+    <color name="eecolor_18">#330000</color>
+    <color name="eecolor_19">#CCFF66</color>
+    <color name="eecolor_20">#006666</color>
+</resources>

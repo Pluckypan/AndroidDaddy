@@ -1,4 +1,5 @@
 package engineer.echo.bigandroid;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -13,9 +14,10 @@ import android.util.Log;
 import android.widget.FrameLayout;
 
 /**
- * Created by Andrewlu on 2016/4/6.
- * CardView 在低版本上内容与边框之间会有空隙.并非真正的圆角布局.
- * RoundView用来构造一个真正的圆角布局.可选形状有: 圆角矩形, 圆,椭圆.矩形.矩形实际上是弧度为0的圆角矩形.
+ * RoundView.java.java
+ * Info: RoundView.java
+ * Created by Plucky<plucky@echo.engineer> on 2018/1/16 - 20:29
+ * More about me: http://www.1991th.com
  */
 public class RoundView extends FrameLayout {
     private float mRadius = 0;
@@ -31,8 +33,9 @@ public class RoundView extends FrameLayout {
     public RoundView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
+
     /**
-     *通过自定义属性,设置圆角大小,形状,边框宽度,边框颜色等.参考CardView的自定义属性.
+     * 通过自定义属性,设置圆角大小,形状,边框宽度,边框颜色等.参考CardView的自定义属性.
      **/
     public RoundView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -82,6 +85,7 @@ public class RoundView extends FrameLayout {
         beforeDraw(canvas);
         super.draw(canvas);
     }
+
     //dispatchDraw是任何布局在内容绘制结束时都会被调用的方法.可以做一些其他操作,如描边等.
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);

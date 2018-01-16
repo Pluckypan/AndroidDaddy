@@ -3,11 +3,13 @@ package engineer.echo.bigandroid;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
+import engineer.echo.bigandroid.swipe.DragSwipeListener;
+
 /**
- * 分红全球购
- * 青岛芳林信息版权所有
- * author:Created by Plucky on 16/8/16-上午10:22.
- * 功能描述:
+ * SimpleTouchCallback.java.java
+ * Info: SimpleTouchCallback.java
+ * Created by Plucky<plucky@echo.engineer> on 2018/1/16 - 20:27
+ * More about me: http://www.1991th.com
  */
 public class SimpleTouchCallback extends ItemTouchHelper.Callback {
 
@@ -19,8 +21,8 @@ public class SimpleTouchCallback extends ItemTouchHelper.Callback {
 
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-        int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        int swipFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+        int swipFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.START | ItemTouchHelper.END;
+        int dragFlags = ItemTouchHelper.START | ItemTouchHelper.END | ItemTouchHelper.UP | ItemTouchHelper.DOWN;
 
         return makeMovementFlags(dragFlags, swipFlags);
     }
@@ -41,8 +43,9 @@ public class SimpleTouchCallback extends ItemTouchHelper.Callback {
         return true;
     }
 
+
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-        listener.onItemDismiss(viewHolder.getAdapterPosition());
+        listener.onChange(viewHolder.getAdapterPosition());
     }
 }

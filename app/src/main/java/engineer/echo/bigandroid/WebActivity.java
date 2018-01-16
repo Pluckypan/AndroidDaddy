@@ -1,16 +1,13 @@
 package engineer.echo.bigandroid;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import engineer.echo.bigandroid.base.ui.EEScrollView;
 
 public class WebActivity extends AppCompatActivity implements EEScrollView.EEScrollChangeListener {
 

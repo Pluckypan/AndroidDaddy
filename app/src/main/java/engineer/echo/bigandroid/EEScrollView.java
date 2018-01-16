@@ -1,4 +1,4 @@
-package engineer.echo.bigandroid.base.ui;
+package engineer.echo.bigandroid;
 
 import android.content.Context;
 import android.util.AttributeSet;

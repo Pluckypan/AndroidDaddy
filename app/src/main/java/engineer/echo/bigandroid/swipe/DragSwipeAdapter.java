@@ -1,4 +1,4 @@
-package engineer.echo.bigandroid;
+package engineer.echo.bigandroid.swipe;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,11 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import engineer.echo.bigandroid.Const;
+import engineer.echo.bigandroid.R;
+
 /**
- * 分红全球购
- * 青岛芳林信息版权所有
- * author:Created by Plucky on 16/8/16-上午10:03.
- * 功能描述: xxx
+ * DragSwipeAdapter.java.java
+ * Info: DragSwipeAdapter.java
+ * Created by Plucky<plucky@echo.engineer> on 2018/1/16 - 20:29
+ * More about me: http://www.1991th.com
  */
 public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.ItemViewHolder> implements DragSwipeListener {
 
@@ -28,12 +31,15 @@ public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.Item
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
-        holder.tvDesc.setText("xx00 -->" + position + "<-- 00xx");
+        holder.itemView.setBackgroundResource(Const.getColor(position));
+        holder.tvName.setText(String.valueOf(position + 1));
+        String desc = "pos=" + position;
+        holder.tvDesc.setText(desc);
     }
 
     @Override
     public int getItemCount() {
-        return 6;
+        return 12;
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
@@ -48,8 +54,8 @@ public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.Item
     }
 
     @Override
-    public void onItemDismiss(int position) {
-        notifyItemRemoved(position);
+    public void onChange(int position) {
+        notifyItemChanged(position);
     }
 
     @Override

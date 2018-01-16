@@ -6,10 +6,10 @@ import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.TbsListener;
 
 /**
- * 分红全球购
- * 青岛芳林信息版权所有
- * author:Created by Plucky on 16/9/20-下午3:37.
- * 功能描述:
+ * EEApp.java.java
+ * Info: EEApp.java
+ * Created by Plucky<plucky@echo.engineer> on 2018/1/16 - 20:29
+ * More about me: http://www.1991th.com
  */
 public class EEApp extends Application {
     @Override

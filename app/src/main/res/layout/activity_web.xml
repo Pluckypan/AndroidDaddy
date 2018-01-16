@@ -10,7 +10,7 @@
         android:layout_height="1dp"
         android:background="#FF0000" />
 
-    <engineer.echo.bigandroid.base.ui.EEScrollView
+    <engineer.echo.bigandroid.EEScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -54,7 +54,7 @@
                 android:layout_height="500dp" />
         </LinearLayout>
 
-    </engineer.echo.bigandroid.base.ui.EEScrollView>
+    </engineer.echo.bigandroid.EEScrollView>
 
 
 </LinearLayout>
