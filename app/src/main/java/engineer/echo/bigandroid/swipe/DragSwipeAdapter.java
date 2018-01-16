@@ -15,7 +15,7 @@ import engineer.echo.bigandroid.R;
  * Created by Plucky<plucky@echo.engineer> on 2018/1/16 - 20:29
  * More about me: http://www.1991th.com
  */
-public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.ItemViewHolder> implements DragSwipeListener {
+public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.ItemViewHolder> implements OnItemDragListener {
 
     private Context mContext;
 
@@ -54,12 +54,7 @@ public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.Item
     }
 
     @Override
-    public void onChange(int position) {
-        notifyItemChanged(position);
-    }
-
-    @Override
-    public void onDrag(int from, int to) {
+    public void onItemDrag(int from, int to) {
         notifyItemMoved(from, to);
     }
 }
