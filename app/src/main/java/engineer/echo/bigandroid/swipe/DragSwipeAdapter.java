@@ -33,8 +33,6 @@ public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.Item
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         holder.itemView.setBackgroundResource(Const.getColor(position));
         holder.tvName.setText(String.valueOf(position + 1));
-        String desc = "pos=" + position;
-        holder.tvDesc.setText(desc);
     }
 
     @Override
@@ -44,12 +42,11 @@ public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.Item
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvName, tvDesc;
+        TextView tvName;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             tvName = (TextView) itemView.findViewById(R.id.tvName);
-            tvDesc = (TextView) itemView.findViewById(R.id.tvDesc);
         }
     }
 
