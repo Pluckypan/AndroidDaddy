@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="engineer.echo.bigandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".EEApp"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -24,9 +26,9 @@
         <activity android:name=".swipe.DragSwipeActivity" />
         <activity
             android:name=".JDPayActivity"
-            android:label="@string/title_activity_jdpay"
+            android:label="@string/action_jdpay"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".WebActivity"></activity>
+        <activity android:name=".WebActivity" />
     </application>
 
 </manifest>
