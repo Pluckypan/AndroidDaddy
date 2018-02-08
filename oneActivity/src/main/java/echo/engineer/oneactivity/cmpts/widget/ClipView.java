@@ -106,7 +106,7 @@ public class ClipView extends View implements View.OnClickListener {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
+        int sc = canvas.saveLayer(0, 0, getWidth(), getHeight(), null, Canvas.ALL_SAVE_FLAG);
         canvas.drawRect(0, SPACE, 200, mHeight - SPACE, mPaintRed);
         canvas.drawRect(100, SPACE, mWidth, mHeight - SPACE, mPaintBlue);
 
@@ -115,6 +115,7 @@ public class ClipView extends View implements View.OnClickListener {
         String string = ALL_NAMES[mMode];
         float w = mPaintFont.measureText(string);
         canvas.drawText(string, mWidth - w - 20, mHeight / 2, mPaintFont);
+        canvas.restoreToCount(sc);
     }
 
     private int mMode;
