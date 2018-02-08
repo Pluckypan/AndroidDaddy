@@ -87,7 +87,8 @@ public class ClipView extends View implements View.OnClickListener {
         mPaintFont.setColor(Color.WHITE);
 
         mPaintAlpha = new Paint();
-        mPaintAlpha.setAlpha(76);
+        mPaintAlpha.setColor(Color.BLACK);
+        mPaintAlpha.setAlpha(60);
 
         setOnClickListener(this);
     }
