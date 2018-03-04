@@ -12,4 +12,18 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
+
+    @Test
+    public void nine() {
+        String str = "";
+        for (int i = 1, j = 1; j< 10; i++) {
+            str += "\t" + i+ "*" + j + "=" + i * j;
+            if (i == j) {
+                i = 0;
+                j++;
+                str += "\n";
+            }
+        }
+        System.out.print(str);
+    }
 }
