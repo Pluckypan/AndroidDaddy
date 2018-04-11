@@ -19,6 +19,7 @@ import java.io.File;
 import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
+import echo.engineer.oneactivity.cmpts.annotaions.OAType;
 import echo.engineer.oneactivity.cmpts.blockcanary.AppBlockCanaryContext;
 import echo.engineer.oneactivity.cmpts.dagger.AppScope;
 import echo.engineer.oneactivity.cmpts.retrofits.WeatherApi;
@@ -50,6 +51,7 @@ public class App extends Application {
         Stetho.initializeWithDefaults(this);
         Config.makeSureDirExits();
         handleUncaughtException();
+        typeToString(OAType.OA_BIG);
     }
 
     private void initLogger() {
@@ -160,5 +162,9 @@ public class App extends Application {
         WeatherApi getWeatherApi();
 
         Gson getGson();
+    }
+
+    public static String typeToString(@OAType int oaType) {
+        return String.valueOf(oaType);
     }
 }
