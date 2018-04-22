@@ -10,4 +10,12 @@
         <item name="android:windowBackground">@android:color/background_dark</item>
     </style>
 
+    <declare-styleable name="DonFrameLayout">
+        <attr name="Radius" format="dimension|reference" />
+        <attr name="LeftTopRadius" format="dimension|reference" />
+        <attr name="RightTopRadius" format="dimension|reference" />
+        <attr name="RightBottomRadius" format="dimension|reference" />
+        <attr name="LeftBottomRadius" format="dimension|reference" />
+    </declare-styleable>
+
 </resources>

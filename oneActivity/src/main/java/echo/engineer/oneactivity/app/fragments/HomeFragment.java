@@ -21,6 +21,7 @@ import echo.engineer.oneactivity.cmpts.sensor.SimpleGyroscopeSensorCallBack;
 import echo.engineer.oneactivity.cmpts.immutables.Fatttther;
 import echo.engineer.oneactivity.cmpts.immutables.ImmutableFatttther;
 import echo.engineer.oneactivity.cmpts.immutables.ImmutableItem;
+import echo.engineer.oneactivity.cmpts.widget.don.Don;
 import engineer.echo.oneactivity.core.MasterFragment;
 import engineer.echo.oneactivity.core.Request;
 
@@ -38,6 +39,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
     private ImageView tvTestImage;
     private BlurringView blurringView;
     private int screenW;
+    Don mDon;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -51,6 +53,9 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
         view.findViewById(R.id.btnTestView).setOnClickListener(this);
         view.findViewById(R.id.btnRetrofit).setOnClickListener(this);
         view.findViewById(R.id.btnShadow).setOnClickListener(this);
+
+        mDon = new Don.Builder(getActivity()).build();
+
         screenW = getResources().getDisplayMetrics().widthPixels;
         tvMsg = (TextView) view.findViewById(R.id.tvMsg);
         tvTestImage = (ImageView) view.findViewById(R.id.tvTestImage);
@@ -104,6 +109,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                                 .build();
                 Logger.d("call hello");
                 ((MainActivity) getActivity()).sendMessage("hello");
+                mDon.show();
                 break;
             case R.id.btnWorld:
                 ImmutableItem namelessItem = ImmutableItem.builder()
@@ -112,6 +118,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                         .description("Description provided")
                         .build();
                 ((MainActivity) getActivity()).sendMessage("world");
+                mDon.dismiss();
                 break;
             case R.id.btnSensor:
                 sensorWrapper.start();
@@ -136,6 +143,14 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (mDon.isShowing()) {
+            mDon.dismiss();
+            return;
+        }
+        super.onBackPressed();
+    }
 
     @Override
     public void onDestroyView() {
