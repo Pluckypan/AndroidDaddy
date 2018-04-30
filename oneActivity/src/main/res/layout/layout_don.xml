@@ -16,17 +16,7 @@
         android:focusable="true"
         app:Radius="4dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#Fa2855"
-            android:gravity="center"
-            android:paddingBottom="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp"
-            android:text="I AM DON"
-            android:textSize="20sp" />
+        <include layout="@layout/layout_don_status" />
     </echo.engineer.oneactivity.cmpts.widget.don.DonFrameLayout>
 
 </FrameLayout>
