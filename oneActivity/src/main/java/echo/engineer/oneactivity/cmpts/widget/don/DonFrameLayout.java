@@ -42,11 +42,11 @@ public class DonFrameLayout extends FrameLayout {
         TypedArray array = attrs != null ? context.obtainStyledAttributes(attrs, R.styleable.DonFrameLayout) : null;
         try {
             if (array != null) {
-                mRadius = array.getDimensionPixelSize(R.styleable.DonFrameLayout_Radius, mRadius);
-                mLeftTopRadius = array.getDimensionPixelSize(R.styleable.DonFrameLayout_LeftTopRadius, mRadius);
-                mRightTopRadius = array.getDimensionPixelSize(R.styleable.DonFrameLayout_RightTopRadius, mRadius);
-                mRightBottomRadius = array.getDimensionPixelSize(R.styleable.DonFrameLayout_RightBottomRadius, mRadius);
-                mLeftBottomRadius = array.getDimensionPixelSize(R.styleable.DonFrameLayout_LeftBottomRadius, mRadius);
+                mRadius = array.getDimensionPixelSize(R.styleable.DonFrameLayout_radius, mRadius);
+                mLeftTopRadius = array.getDimensionPixelSize(R.styleable.DonFrameLayout_left_top_radius, mRadius);
+                mRightTopRadius = array.getDimensionPixelSize(R.styleable.DonFrameLayout_right_top_radius, mRadius);
+                mRightBottomRadius = array.getDimensionPixelSize(R.styleable.DonFrameLayout_right_bottom_radius, mRadius);
+                mLeftBottomRadius = array.getDimensionPixelSize(R.styleable.DonFrameLayout_left_bottom_radius, mRadius);
             } else {
                 mLeftTopRadius = mRadius;
                 mRightTopRadius = mRadius;

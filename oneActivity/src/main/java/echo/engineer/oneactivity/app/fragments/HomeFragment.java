@@ -14,13 +14,13 @@ import com.fivehundredpx.android.blur.BlurringView;
 import com.orhanobut.logger.Logger;
 
 import echo.engineer.oneactivity.App;
-import echo.engineer.oneactivity.app.MainActivity;
 import echo.engineer.oneactivity.R;
-import echo.engineer.oneactivity.cmpts.sensor.GyroscopeSensorWrapper;
-import echo.engineer.oneactivity.cmpts.sensor.SimpleGyroscopeSensorCallBack;
+import echo.engineer.oneactivity.app.MainActivity;
 import echo.engineer.oneactivity.cmpts.immutables.Fatttther;
 import echo.engineer.oneactivity.cmpts.immutables.ImmutableFatttther;
 import echo.engineer.oneactivity.cmpts.immutables.ImmutableItem;
+import echo.engineer.oneactivity.cmpts.sensor.GyroscopeSensorWrapper;
+import echo.engineer.oneactivity.cmpts.sensor.SimpleGyroscopeSensorCallBack;
 import echo.engineer.oneactivity.cmpts.widget.don.Don;
 import engineer.echo.oneactivity.core.MasterFragment;
 import engineer.echo.oneactivity.core.Request;
@@ -54,7 +54,13 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
         view.findViewById(R.id.btnRetrofit).setOnClickListener(this);
         view.findViewById(R.id.btnShadow).setOnClickListener(this);
 
-        mDon = new Don.Builder(getActivity()).build();
+        mDon = new Don.Builder(getActivity())
+                .setTitle("转账提醒")
+                .setMessage("支付宝到账100万元~")
+                .onConfirm(() -> mDon.dismiss())
+                .onCancel(() -> mDon.dismiss())
+                .setType(Don.TYPE_DIALOG)
+                .build();
 
         screenW = getResources().getDisplayMetrics().widthPixels;
         tvMsg = (TextView) view.findViewById(R.id.tvMsg);

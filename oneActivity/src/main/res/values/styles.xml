@@ -11,11 +11,11 @@
     </style>
 
     <declare-styleable name="DonFrameLayout">
-        <attr name="Radius" format="dimension|reference" />
-        <attr name="LeftTopRadius" format="dimension|reference" />
-        <attr name="RightTopRadius" format="dimension|reference" />
-        <attr name="RightBottomRadius" format="dimension|reference" />
-        <attr name="LeftBottomRadius" format="dimension|reference" />
+        <attr name="radius" format="dimension|reference" />
+        <attr name="left_top_radius" format="dimension|reference" />
+        <attr name="right_top_radius" format="dimension|reference" />
+        <attr name="right_bottom_radius" format="dimension|reference" />
+        <attr name="left_bottom_radius" format="dimension|reference" />
     </declare-styleable>
 
     <declare-styleable name="DonProgressView">

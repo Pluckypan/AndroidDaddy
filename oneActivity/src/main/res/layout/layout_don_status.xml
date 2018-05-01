@@ -2,33 +2,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/don_status_root_ll"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="#88000000"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/don_status_icon_iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/don_icon_success_white" />
 
     <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateDrawable="@drawable/animation_don_loading_interminate" />
+        android:id="@+id/don_status_progress_bar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:indeterminateDrawable="@drawable/animation_don_loading_interminate"
+        android:visibility="gone" />
 
     <echo.engineer.oneactivity.cmpts.widget.don.DonProgressView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:id="@+id/don_status_progress_view"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
         app:progress="30"
         app:stroke_width="5dp"
         app:type="TYPE_STROKE" />
 
     <TextView
+        android:id="@+id/don_status_message_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:minWidth="65dp"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
         tools:text="操作成功" />
 
 </LinearLayout>
