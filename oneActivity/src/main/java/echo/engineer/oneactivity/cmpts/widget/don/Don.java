@@ -2,6 +2,7 @@ package echo.engineer.oneactivity.cmpts.widget.don;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -199,7 +200,7 @@ public class Don {
     }
 
 
-    public static class Builder {
+    public static class Builder<T extends Don> {
 
         private Activity activity;
         private boolean canceledOnTouchOutside = true;
@@ -212,6 +213,9 @@ public class Don {
         private String confirm;
         private Runnable confirmAction;
         private Runnable cancelAction;
+
+        @NonNull
+        private T donImpl;
 
         public Builder(Activity activity) {
             this.activity = activity;
@@ -285,8 +289,23 @@ public class Don {
             return this;
         }
 
-        public Don build() {
-            return new Don(this);
+        public T build() {
+            switch (type) {
+                case TYPE_TOAST:
+                default:
+                    break;
+                case TYPE_TOAST_WITH_IMAGE:
+                    break;
+                case TYPE_PROGRESS_INTERMINATE:
+                    break;
+                case TYPE_PROGRESS_STROKE:
+                    break;
+                case TYPE_PROGRESS_FILL:
+                    break;
+                case TYPE_DIALOG:
+                    break;
+            }
+            return donImpl;
         }
     }
 }

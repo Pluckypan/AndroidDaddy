@@ -11,22 +11,6 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <ImageView
-        android:id="@+id/don_status_icon_iv"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="10dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/don_icon_success_white" />
-
-    <ProgressBar
-        android:id="@+id/don_status_progress_bar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="10dp"
-        android:indeterminateDrawable="@drawable/animation_don_loading_interminate"
-        android:visibility="gone" />
-
     <echo.engineer.oneactivity.cmpts.widget.don.DonProgressView
         android:id="@+id/don_status_progress_view"
         android:layout_width="40dp"
