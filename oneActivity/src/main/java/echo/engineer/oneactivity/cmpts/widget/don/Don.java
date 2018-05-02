@@ -34,7 +34,7 @@ public class Don {
     //带图标的TOAST
     public static final int TYPE_TOAST_WITH_IMAGE = 1;
     //菊花
-    public static final int TYPE_PROGRESS_INTERMINATE = 2;
+    public static final int TYPE_LOADING = 2;
     //环形进度条
     public static final int TYPE_PROGRESS_STROKE = 3;
     //扇形进度条
@@ -296,7 +296,7 @@ public class Don {
                     break;
                 case TYPE_TOAST_WITH_IMAGE:
                     break;
-                case TYPE_PROGRESS_INTERMINATE:
+                case TYPE_LOADING:
                     break;
                 case TYPE_PROGRESS_STROKE:
                     break;
