@@ -16,14 +16,7 @@
         android:clickable="true"
         android:focusable="true"
         app:radius="4dp">
-
-        <include
-            layout="@layout/layout_don_dialog"
-            android:visibility="visible" />
-
-        <include
-            layout="@layout/layout_don_status"
-            android:visibility="gone" />
+        
     </echo.engineer.oneactivity.cmpts.widget.don.DonFrameLayout>
 
 </FrameLayout>

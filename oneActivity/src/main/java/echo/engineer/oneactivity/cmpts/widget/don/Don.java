@@ -2,7 +2,6 @@ package echo.engineer.oneactivity.cmpts.widget.don;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,8 +11,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import java.lang.ref.WeakReference;
 
 import echo.engineer.oneactivity.R;
 
@@ -42,8 +39,6 @@ public class Don {
     //对话框
     public static final int TYPE_DIALOG = 5;
 
-    private WeakReference<Activity> mContext;
-
     private boolean mCanceledOnTouchOutside;
     private float mOpacity;
     private int mType;
@@ -69,36 +64,54 @@ public class Don {
     private Runnable mConfirmAction;
     private Runnable mCancelAction;
 
+    private AbsDonImp donImp;
+
     private Don() {
 
     }
 
     Don(Builder builder) {
-        mContext = new WeakReference<>(builder.activity);
         mCanceledOnTouchOutside = builder.canceledOnTouchOutside;
         mOpacity = builder.opacity;
         mType = builder.type;
+        Activity activity = builder.activity;
+        switch (mType) {
+            case TYPE_TOAST:
+            case TYPE_TOAST_WITH_IMAGE:
+            default:
+                donImp = new DonToastImpl(activity);
+                break;
+            case TYPE_LOADING:
+                donImp = new DonLoadingImpl(activity);
+                break;
+            case TYPE_PROGRESS_STROKE:
+            case TYPE_PROGRESS_FILL:
+                donImp = new DonProgressImpl(activity);
+                break;
+            case TYPE_DIALOG:
+                donImp = new DonDialogImpl(activity);
+                break;
+        }
         mTitle = builder.title;
         mMessage = builder.message;
         mConfirm = builder.confirm;
         mCancel = builder.cancel;
         mConfirmAction = builder.confirmAction;
         mCancelAction = builder.cancelAction;
-        Activity activity = mContext.get();
-        if (activity != null) {
-            mDecorView = (ViewGroup) activity.getWindow().getDecorView().findViewById(android.R.id.content);
-            mRootView = (FrameLayout) LayoutInflater.from(activity.getApplicationContext()).inflate(R.layout.layout_don, mDecorView, false);
-            mRootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            setBackgroundOpacity(mOpacity);
-            mRootView.setOnClickListener(v -> {
-                if (mCanceledOnTouchOutside) {
-                    dismiss();
-                }
-            });
 
-            injectView();
-            initView();
-        }
+        mDecorView = (ViewGroup) activity.getWindow().getDecorView().findViewById(android.R.id.content);
+        mRootView = (FrameLayout) LayoutInflater.from(activity.getApplicationContext()).inflate(R.layout.layout_don, mDecorView, false);
+        mRootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        setBackgroundOpacity(mOpacity);
+        mRootView.addView(donImp.getView());
+        mRootView.setOnClickListener(v -> {
+            if (mCanceledOnTouchOutside) {
+                dismiss();
+            }
+        });
+
+        injectView();
+        initView();
     }
 
     private void attachRootView() {
@@ -200,7 +213,7 @@ public class Don {
     }
 
 
-    public static class Builder<T extends Don> {
+    public static class Builder {
 
         private Activity activity;
         private boolean canceledOnTouchOutside = true;
@@ -213,9 +226,6 @@ public class Don {
         private String confirm;
         private Runnable confirmAction;
         private Runnable cancelAction;
-
-        @NonNull
-        private T donImpl;
 
         public Builder(Activity activity) {
             this.activity = activity;
@@ -289,23 +299,8 @@ public class Don {
             return this;
         }
 
-        public T build() {
-            switch (type) {
-                case TYPE_TOAST:
-                default:
-                    break;
-                case TYPE_TOAST_WITH_IMAGE:
-                    break;
-                case TYPE_LOADING:
-                    break;
-                case TYPE_PROGRESS_STROKE:
-                    break;
-                case TYPE_PROGRESS_FILL:
-                    break;
-                case TYPE_DIALOG:
-                    break;
-            }
-            return donImpl;
+        public Don build() {
+            return new Don(this);
         }
     }
 }
