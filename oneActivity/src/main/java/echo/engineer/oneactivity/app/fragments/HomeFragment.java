@@ -62,7 +62,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                 .setIcon(R.drawable.block_canary_icon)
                 .onConfirm(() -> mDon.dismiss())
                 .onCancel(() -> mDon.dismiss())
-                .setType(Don.TYPE_TOAST)
+                .setType(Don.TYPE_LOADING)
                 .build();
 
         screenW = getResources().getDisplayMetrics().widthPixels;
