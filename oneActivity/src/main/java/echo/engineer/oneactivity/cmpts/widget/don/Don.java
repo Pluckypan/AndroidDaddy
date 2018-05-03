@@ -1,7 +1,7 @@
 package echo.engineer.oneactivity.cmpts.widget.don;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.StringRes;
@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import echo.engineer.oneactivity.R;
 import echo.engineer.oneactivity.cmpts.widget.don.annotation.DonType;
 import echo.engineer.oneactivity.cmpts.widget.don.callback.AbsDon;
+import echo.engineer.oneactivity.cmpts.widget.don.callback.DonProgress;
 import echo.engineer.oneactivity.cmpts.widget.don.impl.DonDialogImpl;
 import echo.engineer.oneactivity.cmpts.widget.don.impl.DonEntity;
 import echo.engineer.oneactivity.cmpts.widget.don.impl.DonLoadingImpl;
@@ -66,6 +67,7 @@ public class Don {
         mType = builder.type;
 
         DonEntity entity = new DonEntity();
+        entity.setType(mType);
         entity.setTitle(builder.title);
         entity.setCancel(builder.cancel);
         entity.setCancelAction(builder.cancelAction);
@@ -107,11 +109,15 @@ public class Don {
     }
 
     private void attachRootView() {
-        mDecorView.addView(mRootView);
+        if (mDecorView.indexOfChild(mRootView) < 0) {
+            mDecorView.addView(mRootView);
+        }
     }
 
     private void detachRootView() {
-        mDecorView.removeView(mRootView);
+        if (mDecorView.indexOfChild(mRootView) >= 0) {
+            mDecorView.removeView(mRootView);
+        }
     }
 
 
@@ -137,9 +143,8 @@ public class Don {
     }
 
     private void setBackgroundOpacity(@FloatRange(from = 0.0f, to = 1.0f) float opacity) {
-        Drawable drawable = mRootView.getBackground();
-        if (drawable != null) {
-            drawable.setAlpha((int) (opacity * 255));
+        if (mRootView != null) {
+            mRootView.setBackgroundColor(Color.argb((int) (opacity * 255), 0, 0, 0));
         }
     }
 
@@ -151,6 +156,12 @@ public class Don {
         if (mDecorView == null) return;
         if (mRootView == null) return;
         attachRootView();
+    }
+
+    public void setProgress(int progress) {
+        if (donImp instanceof DonProgress) {
+            ((DonProgress) donImp).setProgress(progress);
+        }
     }
 
     public void dismiss() {

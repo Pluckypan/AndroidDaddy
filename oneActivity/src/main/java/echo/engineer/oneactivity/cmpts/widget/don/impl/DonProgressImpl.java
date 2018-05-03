@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import echo.engineer.oneactivity.R;
+import echo.engineer.oneactivity.cmpts.widget.don.Don;
 import echo.engineer.oneactivity.cmpts.widget.don.callback.DonProgress;
 import echo.engineer.oneactivity.cmpts.widget.don.widget.DonProgressView;
 
@@ -38,6 +39,11 @@ public class DonProgressImpl extends AbsDonImp implements DonProgress {
     @Override
     public void bindData(@NonNull DonEntity entity) {
         mMessageTV.setText(entity.message);
+        if (entity.type == Don.TYPE_PROGRESS_FILL) {
+            mProgressView.setType(DonProgressView.TYPE_FILL);
+        } else if (entity.type == Don.TYPE_PROGRESS_STROKE) {
+            mProgressView.setType(DonProgressView.TYPE_STROKE);
+        }
     }
 
     @Override

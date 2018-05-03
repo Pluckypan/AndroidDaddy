@@ -7,7 +7,7 @@
     <echo.engineer.oneactivity.cmpts.widget.don.widget.DonProgressView
         android:id="@+id/don_status_progress_view"
         style="@style/DonStatusViewStyle"
-        app:progress="30"
+        app:progress="0"
         app:stroke_width="5dp"
         app:type="TYPE_STROKE" />
 

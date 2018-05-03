@@ -1,5 +1,6 @@
 package echo.engineer.oneactivity.app.fragments;
 
+import android.animation.ValueAnimator;
 import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,7 +41,9 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
     private ImageView tvTestImage;
     private BlurringView blurringView;
     private int screenW;
-    Don mDon;
+    Don mDonDialog, mDonLoading;
+
+    ValueAnimator valueAnimator = ValueAnimator.ofInt(0, 100);
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -54,16 +58,37 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
         view.findViewById(R.id.btnRetrofit).setOnClickListener(this);
         view.findViewById(R.id.btnShadow).setOnClickListener(this);
 
-        mDon = new Don.Builder(getActivity())
+        mDonLoading = new Don.Builder(getActivity())
+                .setMessage("Loading")
+                .setOpacity(0.5f)
+                .setType(Don.TYPE_PROGRESS_STROKE)
+                .setCanceledOnTouchOutside(false)
+                .build();
+
+        mDonDialog = new Don.Builder(getActivity())
                 .setTitle("转账提醒")
                 .setMessage("支付宝到账100万元~")
-                .setCanceledOnTouchOutside(false)
+                .setCanceledOnTouchOutside(true)
                 .setOpacity(0.0f)
-                .setIcon(R.drawable.block_canary_icon)
-                .onConfirm(() -> mDon.dismiss())
-                .onCancel(() -> mDon.dismiss())
-                .setType(Don.TYPE_LOADING)
+                .setCancel(null)
+                .onConfirm(() -> {
+                    valueAnimator.start();
+                })
+                .setType(Don.TYPE_DIALOG)
                 .build();
+
+        valueAnimator.setDuration(6000)
+                .setInterpolator(new LinearInterpolator());
+        valueAnimator.addUpdateListener(animation -> {
+            int a = (int) animation.getAnimatedValue();
+            mDonLoading.setProgress(a);
+            if (a == 0) {
+                mDonLoading.show();
+            }
+            if (a == 100) {
+                mDonLoading.dismiss();
+            }
+        });
 
         screenW = getResources().getDisplayMetrics().widthPixels;
         tvMsg = (TextView) view.findViewById(R.id.tvMsg);
@@ -118,7 +143,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                                 .build();
                 Logger.d("call hello");
                 ((MainActivity) getActivity()).sendMessage("hello");
-                mDon.show();
+                mDonDialog.show();
                 break;
             case R.id.btnWorld:
                 ImmutableItem namelessItem = ImmutableItem.builder()
@@ -127,7 +152,6 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                         .description("Description provided")
                         .build();
                 ((MainActivity) getActivity()).sendMessage("world");
-                mDon.dismiss();
                 break;
             case R.id.btnSensor:
                 sensorWrapper.start();
@@ -154,8 +178,8 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
 
     @Override
     public void onBackPressed() {
-        if (mDon.isShowing()) {
-            mDon.dismiss();
+        if (mDonDialog.isShowing()) {
+            mDonDialog.dismiss();
             return;
         }
         super.onBackPressed();

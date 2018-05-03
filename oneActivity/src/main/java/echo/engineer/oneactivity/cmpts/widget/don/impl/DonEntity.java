@@ -8,6 +8,7 @@ package echo.engineer.oneactivity.cmpts.widget.don.impl;
  */
 
 public class DonEntity {
+    int type;
     String title;
     String message;
     int icon;
@@ -15,6 +16,10 @@ public class DonEntity {
     String confirm;
     Runnable confirmAction;
     Runnable cancelAction;
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -42,6 +47,10 @@ public class DonEntity {
 
     public void setCancelAction(Runnable cancelAction) {
         this.cancelAction = cancelAction;
+    }
+
+    public int getType() {
+        return type;
     }
 
     public String getTitle() {
