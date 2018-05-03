@@ -41,7 +41,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
     private ImageView tvTestImage;
     private BlurringView blurringView;
     private int screenW;
-    Don mDonDialog, mDonLoading;
+    Don mDonDialog, mDonProgress;
 
     ValueAnimator valueAnimator = ValueAnimator.ofInt(0, 100);
 
@@ -58,8 +58,8 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
         view.findViewById(R.id.btnRetrofit).setOnClickListener(this);
         view.findViewById(R.id.btnShadow).setOnClickListener(this);
 
-        mDonLoading = new Don.Builder(getActivity())
-                .setMessage("Loading")
+        mDonProgress = new Don.Builder(getActivity())
+                .setMessage("正在收款...")
                 .setOpacity(0.5f)
                 .setType(Don.TYPE_PROGRESS_STROKE)
                 .setCanceledOnTouchOutside(false)
@@ -70,7 +70,21 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                 .setMessage("支付宝到账100万元~")
                 .setCanceledOnTouchOutside(true)
                 .setOpacity(0.0f)
-                .setCancel(null)
+                .onCancel(() -> {
+                    new Don.Builder(getActivity()).setMessage("正在取消...").setOpacity(0.5f).setType(Don.TYPE_LOADING)
+                            .setCanceledOnTouchOutside(false).setListener((don, show) -> {
+                        if (show) {
+                            tvMsg.postDelayed(() -> {
+                                if (don != null) {
+                                    don.dismiss();
+                                }
+                            }, 1500);
+                        } else {
+                            mDonDialog.dismiss();
+                            new Don.Builder(getActivity()).setMessage("取消收款").setDuration(2500).build().show();
+                        }
+                    }).build().show();
+                })
                 .onConfirm(() -> {
                     valueAnimator.start();
                 })
@@ -81,12 +95,12 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                 .setInterpolator(new LinearInterpolator());
         valueAnimator.addUpdateListener(animation -> {
             int a = (int) animation.getAnimatedValue();
-            mDonLoading.setProgress(a);
+            mDonProgress.setProgress(a);
             if (a == 0) {
-                mDonLoading.show();
+                mDonProgress.show();
             }
             if (a == 100) {
-                mDonLoading.dismiss();
+                mDonProgress.dismiss();
             }
         });
 

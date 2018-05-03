@@ -1,32 +1,20 @@
 package echo.engineer.oneactivity.cmpts.widget.don;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.FloatRange;
+import android.support.annotation.IntRange;
 import android.support.annotation.StringRes;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
-import echo.engineer.oneactivity.R;
 import echo.engineer.oneactivity.cmpts.widget.don.annotation.DonType;
-import echo.engineer.oneactivity.cmpts.widget.don.callback.AbsDon;
-import echo.engineer.oneactivity.cmpts.widget.don.callback.DonProgress;
-import echo.engineer.oneactivity.cmpts.widget.don.impl.DonDialogImpl;
-import echo.engineer.oneactivity.cmpts.widget.don.impl.DonEntity;
-import echo.engineer.oneactivity.cmpts.widget.don.impl.DonLoadingImpl;
-import echo.engineer.oneactivity.cmpts.widget.don.impl.DonProgressImpl;
-import echo.engineer.oneactivity.cmpts.widget.don.impl.DonToastImpl;
-import echo.engineer.oneactivity.cmpts.widget.don.widget.DonFrameLayout;
 
 /**
- * Don
- * Created by Plucky<plucky@echo.engineer> on 2018/4/21 下午4:39.
- * more about me: http://www.1991th.com
+ * Don.java.java
+ * Info: Don.java
+ * Created by Plucky<plucky@echo.engineer> on 2018/5/3 - 20:33
+ * More about me: http://www.1991th.com
  */
-
-public class Don {
+public abstract class Don {
+    // --------------- 对外类型 ----------------
     //TOAST
     public static final int TYPE_TOAST = 0;
     //带图标的TOAST
@@ -40,150 +28,37 @@ public class Don {
     //对话框
     public static final int TYPE_DIALOG = 5;
 
-    /**
-     * 全局Widget
-     */
-    private ViewGroup mDecorView;
-    private FrameLayout mRootView;
-    private DonFrameLayout mContainerView;
-    /**
-     * 全局变量
-     */
-    private boolean mCanceledOnTouchOutside;
-    private float mOpacity;
-    private int mType;
 
-    private AbsDon donImp;
+    // ----------------- 对外接口 --------------
 
-    private Don() {
+    abstract public void show();
 
-    }
+    abstract public void dismiss();
 
-    Don(Builder builder) {
+    abstract public boolean isShowing();
 
-        Activity activity = builder.activity;
-        mCanceledOnTouchOutside = builder.canceledOnTouchOutside;
-        mOpacity = builder.opacity;
-        mType = builder.type;
+    abstract public void setProgress(int progress);
 
-        DonEntity entity = new DonEntity();
-        entity.setType(mType);
-        entity.setTitle(builder.title);
-        entity.setCancel(builder.cancel);
-        entity.setCancelAction(builder.cancelAction);
-        entity.setConfirm(builder.confirm);
-        entity.setConfirmAction(builder.confirmAction);
-        entity.setMessage(builder.message);
-        entity.setIcon(builder.icon);
-
-        mDecorView = (ViewGroup) activity.getWindow().getDecorView().findViewById(android.R.id.content);
-        mRootView = (FrameLayout) LayoutInflater.from(activity.getApplicationContext()).inflate(R.layout.layout_don, mDecorView, false);
-        mRootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        mRootView.setOnClickListener(v -> {
-            if (mCanceledOnTouchOutside) {
-                dismiss();
-            }
-        });
-        mContainerView = (DonFrameLayout) mRootView.findViewById(R.id.layout_don_container);
-
-        setBackgroundOpacity(mOpacity);
-        switch (mType) {
-            case TYPE_TOAST:
-            case TYPE_TOAST_WITH_IMAGE:
-            default:
-                donImp = new DonToastImpl(activity);
-                break;
-            case TYPE_LOADING:
-                donImp = new DonLoadingImpl(activity);
-                break;
-            case TYPE_PROGRESS_STROKE:
-            case TYPE_PROGRESS_FILL:
-                donImp = new DonProgressImpl(activity);
-                break;
-            case TYPE_DIALOG:
-                donImp = new DonDialogImpl(activity);
-                break;
-        }
-        mContainerView.addView(donImp.getView());
-        donImp.bindData(entity);
-    }
-
-    private void attachRootView() {
-        if (mDecorView.indexOfChild(mRootView) < 0) {
-            mDecorView.addView(mRootView);
-        }
-    }
-
-    private void detachRootView() {
-        if (mDecorView.indexOfChild(mRootView) >= 0) {
-            mDecorView.removeView(mRootView);
-        }
-    }
-
-
-    private void dismissRightNow() {
-        if (mDecorView == null) return;
-        if (mRootView == null) return;
-        detachRootView();
-    }
-
-    /**
-     * 延时取消
-     *
-     * @param delay 延时取消时间
-     */
-    private void dismissInner(long delay) {
-        if (delay > 0) {
-            if (mRootView != null) {
-                mRootView.postDelayed(this::dismissRightNow, delay);
-            }
-        } else {
-            dismissRightNow();
-        }
-    }
-
-    private void setBackgroundOpacity(@FloatRange(from = 0.0f, to = 1.0f) float opacity) {
-        if (mRootView != null) {
-            mRootView.setBackgroundColor(Color.argb((int) (opacity * 255), 0, 0, 0));
-        }
-    }
-
-    public boolean isShowing() {
-        return mRootView != null && mRootView.getParent() != null;
-    }
-
-    public void show() {
-        if (mDecorView == null) return;
-        if (mRootView == null) return;
-        attachRootView();
-    }
-
-    public void setProgress(int progress) {
-        if (donImp instanceof DonProgress) {
-            ((DonProgress) donImp).setProgress(progress);
-        }
-    }
-
-    public void dismiss() {
-        dismissRightNow();
-    }
-
-
+    //----------------- Builder ---------------
     public static class Builder {
 
-        private Activity activity;
-        private boolean canceledOnTouchOutside = true;
-        private float opacity = 0.5f;
-        private int type = TYPE_TOAST;
+        Activity activity;
+        boolean canceledOnTouchOutside = true;
+        float opacity = 0.0f;
+        int type = TYPE_TOAST;
 
-        private String title;
+        String title;
         //Toast 小图标
-        private int icon;
-        private String message;
-        private String cancel;
-        private String confirm;
-        private Runnable confirmAction;
-        private Runnable cancelAction;
+        int icon;
+        String message;
+        String cancel;
+        String confirm;
+        //TYPE_TOAST 自动消失
+        int duration;
+        Runnable confirmAction;
+        Runnable cancelAction;
+
+        DonListener listener;
 
         public Builder(Activity activity) {
             this.activity = activity;
@@ -262,8 +137,23 @@ public class Don {
             return this;
         }
 
-        public Don build() {
-            return new Don(this);
+        public Builder setDuration(@IntRange(from = 1500, to = 3000) int duration) {
+            this.duration = duration;
+            return this;
         }
+
+        public Builder setListener(DonListener listener) {
+            this.listener = listener;
+            return this;
+        }
+
+        public DonImpl build() {
+            return new DonImpl(this);
+        }
+    }
+
+    //Listener
+    public interface DonListener {
+        void onVisibileChanged(Don don, boolean show);
     }
 }
