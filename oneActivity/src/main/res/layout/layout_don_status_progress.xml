@@ -2,31 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/don_status_root_ll"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:background="#88000000"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="10dp">
+    style="@style/DonStatusRootViewStyle">
 
     <echo.engineer.oneactivity.cmpts.widget.don.widget.DonProgressView
         android:id="@+id/don_status_progress_view"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="10dp"
+        style="@style/DonStatusViewStyle"
         app:progress="30"
         app:stroke_width="5dp"
         app:type="TYPE_STROKE" />
 
     <TextView
         android:id="@+id/don_status_message_tv"
+        style="@style/DonStatusMessageStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="65dp"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
         tools:text="操作成功" />
 
 </LinearLayout>

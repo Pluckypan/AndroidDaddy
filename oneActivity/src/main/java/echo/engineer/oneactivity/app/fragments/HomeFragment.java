@@ -57,9 +57,12 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
         mDon = new Don.Builder(getActivity())
                 .setTitle("转账提醒")
                 .setMessage("支付宝到账100万元~")
+                .setCanceledOnTouchOutside(false)
+                .setOpacity(0.0f)
+                .setIcon(R.drawable.block_canary_icon)
                 .onConfirm(() -> mDon.dismiss())
                 .onCancel(() -> mDon.dismiss())
-                .setType(Don.TYPE_DIALOG)
+                .setType(Don.TYPE_TOAST)
                 .build();
 
         screenW = getResources().getDisplayMetrics().widthPixels;

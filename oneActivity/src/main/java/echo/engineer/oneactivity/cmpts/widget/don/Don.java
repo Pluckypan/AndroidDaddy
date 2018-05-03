@@ -2,8 +2,8 @@ package echo.engineer.oneactivity.cmpts.widget.don;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
-import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -206,7 +206,7 @@ public class Don {
             return this;
         }
 
-        public Builder setIcon(@IdRes int icon) {
+        public Builder setIcon(@DrawableRes int icon) {
             this.icon = icon;
             return this;
         }

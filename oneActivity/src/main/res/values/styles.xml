@@ -29,4 +29,29 @@
         <attr name="progress" format="integer" />
     </declare-styleable>
 
+    <!--状态类型：Toast Loading Progress 对应的消息样式-->
+    <style name="DonStatusMessageStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:minWidth">65dp</item>
+    </style>
+
+    <!--状态类型：Toast Loading Progress 对应不同View的样式-->
+    <style name="DonStatusViewStyle">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <!--状态类型：Toast Loading Progress RootView的样式-->
+    <style name="DonStatusRootViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">#88000000</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
 </resources>
