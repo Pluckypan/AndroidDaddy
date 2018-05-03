@@ -1,0 +1,47 @@
+package echo.engineer.oneactivity.cmpts.widget.don.impl;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.view.View;
+import android.widget.TextView;
+
+import echo.engineer.oneactivity.R;
+import echo.engineer.oneactivity.cmpts.widget.don.callback.DonProgress;
+import echo.engineer.oneactivity.cmpts.widget.don.widget.DonProgressView;
+
+/**
+ * DonProgressImpl.java.java
+ * Info: DonProgressImpl.java
+ * Created by Plucky<plucky@echo.engineer> on 2018/5/2 - 21:54
+ * More about me: http://www.1991th.com
+ */
+public class DonProgressImpl extends AbsDonImp implements DonProgress {
+
+    private DonProgressView mProgressView;
+    private TextView mMessageTV;
+
+    public DonProgressImpl(Context context) {
+        super(context);
+    }
+
+    @Override
+    int getLayout() {
+        return R.layout.layout_don_status_progress;
+    }
+
+    @Override
+    void initView(View rootView) {
+        mProgressView = (DonProgressView) rootView.findViewById(R.id.don_status_progress_view);
+        mMessageTV = (TextView) rootView.findViewById(R.id.don_status_message_tv);
+    }
+
+    @Override
+    public void bindData(@NonNull DonEntity entity) {
+        mMessageTV.setText(entity.message);
+    }
+
+    @Override
+    public void setProgress(int progress) {
+        mProgressView.setProgress(progress);
+    }
+}

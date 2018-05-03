@@ -1,4 +1,4 @@
-package echo.engineer.oneactivity.cmpts.widget.don;
+package echo.engineer.oneactivity.cmpts.widget.don.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

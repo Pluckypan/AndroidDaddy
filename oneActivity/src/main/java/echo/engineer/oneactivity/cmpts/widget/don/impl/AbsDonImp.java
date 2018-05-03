@@ -1,8 +1,10 @@
-package echo.engineer.oneactivity.cmpts.widget.don;
+package echo.engineer.oneactivity.cmpts.widget.don.impl;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import echo.engineer.oneactivity.cmpts.widget.don.callback.AbsDon;
 
 /**
  * AbsDonImp.java.java
@@ -11,7 +13,7 @@ import android.view.View;
  * More about me: http://www.1991th.com
  */
 
-public abstract class AbsDonImp {
+public abstract class AbsDonImp implements AbsDon {
 
     private View mView;
 
@@ -24,6 +26,7 @@ public abstract class AbsDonImp {
 
     abstract void initView(View rootView);
 
+    @Override
     public View getView() {
         return mView;
     }

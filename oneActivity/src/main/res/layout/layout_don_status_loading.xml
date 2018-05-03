@@ -17,7 +17,7 @@
         android:layout_height="40dp"
         android:layout_marginBottom="10dp"
         android:indeterminateDrawable="@drawable/animation_don_loading_interminate"
-        android:visibility="gone" />
+        android:indeterminateDuration="700" />
 
     <TextView
         android:id="@+id/don_status_message_tv"

@@ -1,4 +1,4 @@
-package echo.engineer.oneactivity.cmpts.widget.don;
+package echo.engineer.oneactivity.cmpts.widget.don.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import echo.engineer.oneactivity.R;
+import echo.engineer.oneactivity.cmpts.widget.don.annotation.DonProgressType;
 
 /**
  * DonPregressView.java.java

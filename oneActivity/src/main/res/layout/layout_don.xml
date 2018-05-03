@@ -7,7 +7,7 @@
     android:clickable="true"
     android:focusable="true">
 
-    <echo.engineer.oneactivity.cmpts.widget.don.DonFrameLayout
+    <echo.engineer.oneactivity.cmpts.widget.don.widget.DonFrameLayout
         android:id="@+id/layout_don_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         android:clickable="true"
         android:focusable="true"
         app:radius="4dp">
-        
-    </echo.engineer.oneactivity.cmpts.widget.don.DonFrameLayout>
+
+    </echo.engineer.oneactivity.cmpts.widget.don.widget.DonFrameLayout>
 
 </FrameLayout>

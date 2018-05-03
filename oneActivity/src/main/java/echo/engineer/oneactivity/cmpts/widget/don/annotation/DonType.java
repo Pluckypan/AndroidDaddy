@@ -1,4 +1,4 @@
-package echo.engineer.oneactivity.cmpts.widget.don;
+package echo.engineer.oneactivity.cmpts.widget.don.annotation;
 
 import android.support.annotation.IntDef;
 

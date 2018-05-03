@@ -2,17 +2,22 @@ package echo.engineer.oneactivity.cmpts.widget.don;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.FloatRange;
+import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import echo.engineer.oneactivity.R;
+import echo.engineer.oneactivity.cmpts.widget.don.annotation.DonType;
+import echo.engineer.oneactivity.cmpts.widget.don.callback.AbsDon;
+import echo.engineer.oneactivity.cmpts.widget.don.impl.DonDialogImpl;
+import echo.engineer.oneactivity.cmpts.widget.don.impl.DonEntity;
+import echo.engineer.oneactivity.cmpts.widget.don.impl.DonLoadingImpl;
+import echo.engineer.oneactivity.cmpts.widget.don.impl.DonProgressImpl;
+import echo.engineer.oneactivity.cmpts.widget.don.impl.DonToastImpl;
+import echo.engineer.oneactivity.cmpts.widget.don.widget.DonFrameLayout;
 
 /**
  * Don
@@ -21,11 +26,6 @@ import echo.engineer.oneactivity.R;
  */
 
 public class Don {
-
-    private ViewGroup mDecorView;
-    private FrameLayout mRootView;
-    private FrameLayout mContainerView;
-
     //TOAST
     public static final int TYPE_TOAST = 0;
     //带图标的TOAST
@@ -39,42 +39,52 @@ public class Don {
     //对话框
     public static final int TYPE_DIALOG = 5;
 
+    /**
+     * 全局Widget
+     */
+    private ViewGroup mDecorView;
+    private FrameLayout mRootView;
+    private DonFrameLayout mContainerView;
+    /**
+     * 全局变量
+     */
     private boolean mCanceledOnTouchOutside;
     private float mOpacity;
     private int mType;
 
-    //status widget
-    private View mStatusRootView;
-    private ImageView mStatusIconIV;
-    private ProgressBar mStatusProgressBar;
-    private DonProgressView mStatusProgressView;
-    private TextView mStatusMessageTV;
-    //dialog widget
-    private View mDialogRootView;
-    private TextView mDialogTitleTV;
-    private TextView mDialogMessageTV;
-    private TextView mDialogCancelTV;
-    private View mDialogSpliter;
-    private TextView mDialogConfirmTV;
-
-    private String mTitle;
-    private String mMessage;
-    private String mConfirm;
-    private String mCancel;
-    private Runnable mConfirmAction;
-    private Runnable mCancelAction;
-
-    private AbsDonImp donImp;
+    private AbsDon donImp;
 
     private Don() {
 
     }
 
     Don(Builder builder) {
+
+        Activity activity = builder.activity;
         mCanceledOnTouchOutside = builder.canceledOnTouchOutside;
         mOpacity = builder.opacity;
         mType = builder.type;
-        Activity activity = builder.activity;
+
+        DonEntity entity = new DonEntity();
+        entity.setTitle(builder.title);
+        entity.setCancel(builder.cancel);
+        entity.setCancelAction(builder.cancelAction);
+        entity.setConfirm(builder.confirm);
+        entity.setConfirmAction(builder.confirmAction);
+        entity.setMessage(builder.message);
+        entity.setIcon(builder.icon);
+
+        mDecorView = (ViewGroup) activity.getWindow().getDecorView().findViewById(android.R.id.content);
+        mRootView = (FrameLayout) LayoutInflater.from(activity.getApplicationContext()).inflate(R.layout.layout_don, mDecorView, false);
+        mRootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        mRootView.setOnClickListener(v -> {
+            if (mCanceledOnTouchOutside) {
+                dismiss();
+            }
+        });
+        mContainerView = (DonFrameLayout) mRootView.findViewById(R.id.layout_don_container);
+
+        setBackgroundOpacity(mOpacity);
         switch (mType) {
             case TYPE_TOAST:
             case TYPE_TOAST_WITH_IMAGE:
@@ -92,26 +102,8 @@ public class Don {
                 donImp = new DonDialogImpl(activity);
                 break;
         }
-        mTitle = builder.title;
-        mMessage = builder.message;
-        mConfirm = builder.confirm;
-        mCancel = builder.cancel;
-        mConfirmAction = builder.confirmAction;
-        mCancelAction = builder.cancelAction;
-
-        mDecorView = (ViewGroup) activity.getWindow().getDecorView().findViewById(android.R.id.content);
-        mRootView = (FrameLayout) LayoutInflater.from(activity.getApplicationContext()).inflate(R.layout.layout_don, mDecorView, false);
-        mRootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        setBackgroundOpacity(mOpacity);
-        mRootView.addView(donImp.getView());
-        mRootView.setOnClickListener(v -> {
-            if (mCanceledOnTouchOutside) {
-                dismiss();
-            }
-        });
-
-        injectView();
-        initView();
+        mContainerView.addView(donImp.getView());
+        donImp.bindData(entity);
     }
 
     private void attachRootView() {
@@ -122,74 +114,29 @@ public class Don {
         mDecorView.removeView(mRootView);
     }
 
-    private void initView() {
-        boolean showDialog = mType == TYPE_DIALOG;
-        if (mDialogRootView != null) {
-            mDialogRootView.setVisibility(showDialog ? View.VISIBLE : View.GONE);
-        }
-        if (mStatusRootView != null) {
-            mStatusRootView.setVisibility(showDialog ? View.GONE : View.VISIBLE);
-        }
 
-        boolean hasShowTitle = !TextUtils.isEmpty(mTitle);
-        if (mDialogTitleTV != null) {
-            mDialogTitleTV.setVisibility(hasShowTitle ? View.VISIBLE : View.GONE);
-            mDialogTitleTV.setText(mTitle);
-        }
-        if (mDialogCancelTV != null) {
-            mDialogCancelTV.setOnClickListener(v -> {
-                if (mCancelAction != null) {
-                    mCancelAction.run();
-                }
-            });
-            mDialogCancelTV.setText(mCancel);
-        }
+    private void dismissRightNow() {
+        if (mDecorView == null) return;
+        if (mRootView == null) return;
+        detachRootView();
+    }
 
-        if (mDialogConfirmTV != null) {
-            mDialogConfirmTV.setOnClickListener(v -> {
-                if (mConfirmAction != null) {
-                    mConfirmAction.run();
-                }
-            });
-            mDialogConfirmTV.setText(mConfirm);
-        }
-
-        if (mDialogConfirmTV != null && mDialogCancelTV != null && mDialogSpliter != null) {
-            boolean showCancel = !TextUtils.isEmpty(mCancel);
-            boolean showConfirm = !TextUtils.isEmpty(mConfirm);
-            mDialogConfirmTV.setVisibility(showConfirm ? View.VISIBLE : View.GONE);
-            mDialogCancelTV.setVisibility(showCancel ? View.VISIBLE : View.GONE);
-            mDialogSpliter.setVisibility(showCancel && showConfirm ? View.VISIBLE : View.GONE);
-        }
-
-        if (mDialogMessageTV != null) {
-            mDialogMessageTV.setText(mMessage);
-        }
-
-        //status
-        if (mStatusMessageTV != null) {
-            mStatusMessageTV.setText(mMessage);
+    /**
+     * 延时取消
+     *
+     * @param delay 延时取消时间
+     */
+    private void dismissInner(long delay) {
+        if (delay > 0) {
+            if (mRootView != null) {
+                mRootView.postDelayed(this::dismissRightNow, delay);
+            }
+        } else {
+            dismissRightNow();
         }
     }
 
-    private void injectView() {
-        if (mRootView != null) {
-            mStatusRootView = mRootView.findViewById(R.id.don_status_root_ll);
-            mStatusIconIV = (ImageView) mRootView.findViewById(R.id.don_status_icon_iv);
-            mStatusProgressBar = (ProgressBar) mRootView.findViewById(R.id.don_status_progress_bar);
-            mStatusProgressView = (DonProgressView) mRootView.findViewById(R.id.don_status_progress_view);
-            mStatusMessageTV = (TextView) mRootView.findViewById(R.id.don_status_message_tv);
-
-            mDialogRootView = mRootView.findViewById(R.id.don_dialog_root_ll);
-            mDialogTitleTV = (TextView) mRootView.findViewById(R.id.don_dialog_title_tv);
-            mDialogMessageTV = (TextView) mRootView.findViewById(R.id.don_dialog_message_tv);
-            mDialogCancelTV = (TextView) mRootView.findViewById(R.id.don_dialog_cancel_tv);
-            mDialogSpliter = mRootView.findViewById(R.id.don_dialog_spliter);
-            mDialogConfirmTV = (TextView) mRootView.findViewById(R.id.don_dialog_confirm_tv);
-        }
-    }
-
-    private void setBackgroundOpacity(float opacity) {
+    private void setBackgroundOpacity(@FloatRange(from = 0.0f, to = 1.0f) float opacity) {
         Drawable drawable = mRootView.getBackground();
         if (drawable != null) {
             drawable.setAlpha((int) (opacity * 255));
@@ -207,9 +154,7 @@ public class Don {
     }
 
     public void dismiss() {
-        if (mDecorView == null) return;
-        if (mRootView == null) return;
-        detachRootView();
+        dismissRightNow();
     }
 
 
@@ -221,6 +166,8 @@ public class Don {
         private int type = TYPE_TOAST;
 
         private String title;
+        //Toast 小图标
+        private int icon;
         private String message;
         private String cancel;
         private String confirm;
@@ -256,6 +203,11 @@ public class Don {
 
         public Builder setTitle(@StringRes int title) {
             this.title = activity.getString(title);
+            return this;
+        }
+
+        public Builder setIcon(@IdRes int icon) {
+            this.icon = icon;
             return this;
         }
 

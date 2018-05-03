@@ -1,4 +1,4 @@
-package echo.engineer.oneactivity.cmpts.widget.don;
+package echo.engineer.oneactivity.cmpts.widget.don.annotation;
 
 import android.support.annotation.IntDef;
 
@@ -6,8 +6,8 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import static echo.engineer.oneactivity.cmpts.widget.don.DonProgressView.TYPE_FILL;
-import static echo.engineer.oneactivity.cmpts.widget.don.DonProgressView.TYPE_STROKE;
+import static echo.engineer.oneactivity.cmpts.widget.don.widget.DonProgressView.TYPE_FILL;
+import static echo.engineer.oneactivity.cmpts.widget.don.widget.DonProgressView.TYPE_STROKE;
 
 /**
  * DonProgressType.java.java

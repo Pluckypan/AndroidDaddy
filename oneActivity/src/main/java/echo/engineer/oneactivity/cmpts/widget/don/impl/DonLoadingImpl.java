@@ -1,7 +1,10 @@
-package echo.engineer.oneactivity.cmpts.widget.don;
+package echo.engineer.oneactivity.cmpts.widget.don.impl;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import echo.engineer.oneactivity.R;
 
@@ -12,6 +15,9 @@ import echo.engineer.oneactivity.R;
  * More about me: http://www.1991th.com
  */
 public class DonLoadingImpl extends AbsDonImp {
+
+    private ProgressBar mLoadingView;
+    private TextView mMessageTV;
 
     public DonLoadingImpl(Context context) {
         super(context);
@@ -24,6 +30,12 @@ public class DonLoadingImpl extends AbsDonImp {
 
     @Override
     void initView(View rootView) {
+        mLoadingView = (ProgressBar) rootView.findViewById(R.id.don_status_progress_bar);
+        mMessageTV = (TextView) rootView.findViewById(R.id.don_status_message_tv);
+    }
 
+    @Override
+    public void bindData(@NonNull DonEntity entity) {
+        mMessageTV.setText(entity.message);
     }
 }
