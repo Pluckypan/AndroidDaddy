@@ -1,8 +1,8 @@
 package echo.engineer.oneactivity.cmpts.widget.don.impl;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,8 +21,8 @@ public class DonToastImpl extends AbsDonImp {
     private ImageView mIconIV;
     private TextView mMessageTV;
 
-    public DonToastImpl(Context context, @StyleRes int style) {
-        super(context, style);
+    public DonToastImpl(LayoutInflater inflater, @StyleRes int style) {
+        super(inflater, style);
     }
 
     @Override

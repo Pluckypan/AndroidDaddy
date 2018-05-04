@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -27,8 +28,8 @@ public class DonDialogImpl extends AbsDonImp implements DonDialog {
     private View mDialogSpliter;
     private TextView mDialogConfirmTV;
 
-    public DonDialogImpl(Context context, @StyleRes int style) {
-        super(context, style);
+    public DonDialogImpl(LayoutInflater inflater, @StyleRes int style) {
+        super(inflater, style);
     }
 
     @Override

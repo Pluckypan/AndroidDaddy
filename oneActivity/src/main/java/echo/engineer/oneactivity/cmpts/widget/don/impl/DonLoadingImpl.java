@@ -1,8 +1,8 @@
 package echo.engineer.oneactivity.cmpts.widget.don.impl;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,8 +20,8 @@ public class DonLoadingImpl extends AbsDonImp {
     private ProgressBar mLoadingView;
     private TextView mMessageTV;
 
-    public DonLoadingImpl(Context context, @StyleRes int style) {
-        super(context, style);
+    public DonLoadingImpl(LayoutInflater inflater, @StyleRes int style) {
+        super(inflater, style);
     }
 
     @Override

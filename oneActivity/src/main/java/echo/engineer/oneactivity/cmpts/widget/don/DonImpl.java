@@ -64,8 +64,9 @@ public class DonImpl extends Don {
         entity.setMessage(builder.message);
         entity.setIcon(builder.icon);
 
+        LayoutInflater layoutInflater = LayoutInflater.from(activity.getApplicationContext());
         mDecorView = (ViewGroup) activity.getWindow().getDecorView().findViewById(android.R.id.content);
-        mRootView = (FrameLayout) LayoutInflater.from(activity.getApplicationContext()).inflate(R.layout.layout_don, mDecorView, false);
+        mRootView = (FrameLayout) layoutInflater.inflate(R.layout.layout_don, mDecorView, false);
         mRootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         //TYPE_TOAST 不允许点击取消
         if (!isTypeToast()) {
@@ -82,17 +83,17 @@ public class DonImpl extends Don {
             case TYPE_TOAST:
             case TYPE_TOAST_WITH_IMAGE:
             default:
-                donImp = new DonToastImpl(activity, builder.style);
+                donImp = new DonToastImpl(layoutInflater, builder.style);
                 break;
             case TYPE_LOADING:
-                donImp = new DonLoadingImpl(activity, builder.style);
+                donImp = new DonLoadingImpl(layoutInflater, builder.style);
                 break;
             case TYPE_PROGRESS_STROKE:
             case TYPE_PROGRESS_FILL:
-                donImp = new DonProgressImpl(activity, builder.style);
+                donImp = new DonProgressImpl(layoutInflater, builder.style);
                 break;
             case TYPE_DIALOG:
-                donImp = new DonDialogImpl(activity, builder.style);
+                donImp = new DonDialogImpl(layoutInflater, builder.style);
                 break;
         }
         mContainerView.addView(donImp.getView());

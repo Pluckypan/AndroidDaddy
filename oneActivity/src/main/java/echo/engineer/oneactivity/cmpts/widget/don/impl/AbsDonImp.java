@@ -1,6 +1,5 @@
 package echo.engineer.oneactivity.cmpts.widget.don.impl;
 
-import android.content.Context;
 import android.support.annotation.StyleRes;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +17,8 @@ public abstract class AbsDonImp implements AbsDon {
 
     private View mView;
 
-    public AbsDonImp(Context context, @StyleRes int style) {
-        mView = LayoutInflater.from(context).inflate(getLayout(), null);
+    public AbsDonImp(LayoutInflater inflater, @StyleRes int style) {
+        mView = inflater.inflate(getLayout(), null);
         initView(mView, style);
     }
 
