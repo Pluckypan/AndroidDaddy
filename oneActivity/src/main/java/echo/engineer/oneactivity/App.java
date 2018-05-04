@@ -3,6 +3,11 @@ package echo.engineer.oneactivity;
 import android.app.Application;
 import android.content.Context;
 import android.hardware.SensorManager;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.facebook.stetho.Stetho;
 import com.github.moduth.blockcanary.BlockCanary;
@@ -166,5 +171,34 @@ public class App extends Application {
 
     public static String typeToString(@OAType int oaType) {
         return String.valueOf(oaType);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public static boolean useImmersiveMode(Window window, boolean transParent) {
+        if (window == null) {
+            return false;
+        }
+
+        if (transParent) {
+            // 透明状态栏
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            // 透明导航栏
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        } else {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
+
+        window.getDecorView()
+                .setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                );
+
+        return true;
+
     }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
+import echo.engineer.oneactivity.App;
 import echo.engineer.oneactivity.BuildConfig;
 import echo.engineer.oneactivity.R;
 import echo.engineer.oneactivity.app.fragments.HomeFragment;
@@ -19,6 +20,7 @@ import engineer.echo.oneactivity.core.Request;
 public class MainActivity extends MasterCompatActivity {
 
     public static final String TAG = "MainActivity";
+    private boolean mUseImmersiveMode;
 
     private FragmentMaster.FragmentLifecycleCallbacks mLifecycleCallbacks =
             new FragmentMaster.SimpleFragmentLifecycleCallbacks() {
@@ -50,6 +52,7 @@ public class MainActivity extends MasterCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mUseImmersiveMode = App.useImmersiveMode(getWindow(), false);
         setContentView(R.layout.activity_main);
         FragmentMaster fragmentMaster = getFragmentMaster();
         fragmentMaster.registerFragmentLifecycleCallbacks(mLifecycleCallbacks);
@@ -61,6 +64,14 @@ public class MainActivity extends MasterCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unbindMessengerService();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        if (!hasFocus) return;
+        if (mUseImmersiveMode) {
+            App.useImmersiveMode(getWindow(), false);
+        }
     }
 
     private void bindMessengerService() {
