@@ -1,7 +1,10 @@
 package echo.engineer.oneactivity.cmpts.widget.don.impl;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
+import android.support.annotation.StyleRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -24,8 +27,8 @@ public class DonDialogImpl extends AbsDonImp implements DonDialog {
     private View mDialogSpliter;
     private TextView mDialogConfirmTV;
 
-    public DonDialogImpl(Context context) {
-        super(context);
+    public DonDialogImpl(Context context, @StyleRes int style) {
+        super(context, style);
     }
 
     @Override
@@ -34,12 +37,33 @@ public class DonDialogImpl extends AbsDonImp implements DonDialog {
     }
 
     @Override
-    void initView(View rootView) {
+    void initView(View rootView, @StyleRes int style) {
         mDialogTitleTV = (TextView) rootView.findViewById(R.id.don_dialog_title_tv);
         mDialogMessageTV = (TextView) rootView.findViewById(R.id.don_dialog_message_tv);
         mDialogCancelTV = (TextView) rootView.findViewById(R.id.don_dialog_cancel_tv);
         mDialogSpliter = rootView.findViewById(R.id.don_dialog_spliter);
         mDialogConfirmTV = (TextView) rootView.findViewById(R.id.don_dialog_confirm_tv);
+
+        if (style > 0) {
+            //如果有设置样式 则解析
+            Context context = rootView.getContext();
+            TypedArray array = context.obtainStyledAttributes(style, R.styleable.Don);
+            try {
+                ColorStateList cancelColor = array.getColorStateList(R.styleable.Don_dialog_cancel_button_color);
+                ColorStateList confirmColor = array.getColorStateList(R.styleable.Don_dialog_confirm_button_color);
+                if (cancelColor != null) {
+                    mDialogCancelTV.setTextColor(cancelColor);
+                }
+                if (confirmColor != null) {
+                    mDialogConfirmTV.setTextColor(confirmColor);
+                }
+
+            } finally {
+                if (array != null) {
+                    array.recycle();
+                }
+            }
+        }
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntRange;
 import android.support.annotation.StringRes;
+import android.support.annotation.StyleRes;
 
 import echo.engineer.oneactivity.cmpts.widget.don.annotation.DonType;
 
@@ -57,6 +58,9 @@ public abstract class Don {
         int duration;
         Runnable confirmAction;
         Runnable cancelAction;
+
+        @StyleRes
+        int style;
 
         DonListener listener;
 
@@ -144,6 +148,11 @@ public abstract class Don {
 
         public Builder setListener(DonListener listener) {
             this.listener = listener;
+            return this;
+        }
+
+        public Builder setStyle(@StyleRes int style) {
+            this.style = style;
             return this;
         }
 

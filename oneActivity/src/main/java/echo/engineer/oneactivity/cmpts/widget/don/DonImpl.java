@@ -82,17 +82,17 @@ public class DonImpl extends Don {
             case TYPE_TOAST:
             case TYPE_TOAST_WITH_IMAGE:
             default:
-                donImp = new DonToastImpl(activity);
+                donImp = new DonToastImpl(activity, builder.style);
                 break;
             case TYPE_LOADING:
-                donImp = new DonLoadingImpl(activity);
+                donImp = new DonLoadingImpl(activity, builder.style);
                 break;
             case TYPE_PROGRESS_STROKE:
             case TYPE_PROGRESS_FILL:
-                donImp = new DonProgressImpl(activity);
+                donImp = new DonProgressImpl(activity, builder.style);
                 break;
             case TYPE_DIALOG:
-                donImp = new DonDialogImpl(activity);
+                donImp = new DonDialogImpl(activity, builder.style);
                 break;
         }
         mContainerView.addView(donImp.getView());

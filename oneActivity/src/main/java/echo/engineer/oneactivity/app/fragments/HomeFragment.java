@@ -68,6 +68,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
         mDonDialog = new Don.Builder(getActivity())
                 .setTitle("转账提醒")
                 .setMessage("支付宝到账100万元~")
+                .setStyle(R.style.DonDefaultStyle)
                 .setCanceledOnTouchOutside(true)
                 .setOpacity(0.0f)
                 .onCancel(() -> {

@@ -54,4 +54,14 @@
         <item name="android:padding">10dp</item>
     </style>
 
+    <declare-styleable name="Don">
+        <attr name="dialog_confirm_button_color" format="color|reference" />
+        <attr name="dialog_cancel_button_color" format="color|reference" />
+    </declare-styleable>
+
+    <style name="DonDefaultStyle">
+        <item name="dialog_confirm_button_color">#FA2855</item>
+        <item name="dialog_cancel_button_color">@color/color_don_button_selector</item>
+    </style>
+
 </resources>

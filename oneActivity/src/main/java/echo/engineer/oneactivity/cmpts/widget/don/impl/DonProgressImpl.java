@@ -2,6 +2,7 @@ package echo.engineer.oneactivity.cmpts.widget.don.impl;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.StyleRes;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,8 +22,8 @@ public class DonProgressImpl extends AbsDonImp implements DonProgress {
     private DonProgressView mProgressView;
     private TextView mMessageTV;
 
-    public DonProgressImpl(Context context) {
-        super(context);
+    public DonProgressImpl(Context context, @StyleRes int style) {
+        super(context, style);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class DonProgressImpl extends AbsDonImp implements DonProgress {
     }
 
     @Override
-    void initView(View rootView) {
+    void initView(View rootView, @StyleRes int style) {
         mProgressView = (DonProgressView) rootView.findViewById(R.id.don_status_progress_view);
         mMessageTV = (TextView) rootView.findViewById(R.id.don_status_message_tv);
     }
