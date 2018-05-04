@@ -79,6 +79,11 @@ public class DonImpl extends Don {
         mContainerView = (DonFrameLayout) mRootView.findViewById(R.id.layout_don_container);
 
         setBackgroundOpacity(mOpacity);
+
+        if (mType == TYPE_CUSTOM && builder.customImpl == null) {
+            //如果标明为TYPE_CUSTOM 但是又未实现自定义动作  则当做Doast处理
+            mType = TYPE_TOAST;
+        }
         switch (mType) {
             case TYPE_TOAST:
             case TYPE_TOAST_WITH_IMAGE:
@@ -94,6 +99,9 @@ public class DonImpl extends Don {
                 break;
             case TYPE_DIALOG:
                 donImp = new DonDialogImpl(layoutInflater, builder.style);
+                break;
+            case TYPE_CUSTOM:
+                donImp = builder.customImpl;
                 break;
         }
         mContainerView.addView(donImp.getView());

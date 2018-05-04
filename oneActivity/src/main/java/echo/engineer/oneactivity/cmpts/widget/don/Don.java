@@ -3,10 +3,12 @@ package echo.engineer.oneactivity.cmpts.widget.don;
 import android.app.Activity;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.annotation.StyleRes;
 
 import echo.engineer.oneactivity.cmpts.widget.don.annotation.DonType;
+import echo.engineer.oneactivity.cmpts.widget.don.callback.AbsDon;
 
 /**
  * Don.java.java
@@ -28,6 +30,8 @@ public abstract class Don {
     public static final int TYPE_PROGRESS_FILL = 4;
     //对话框
     public static final int TYPE_DIALOG = 5;
+    //自定义
+    public static final int TYPE_CUSTOM = 6;
 
 
     // ----------------- 对外接口 --------------
@@ -59,8 +63,8 @@ public abstract class Don {
         Runnable confirmAction;
         Runnable cancelAction;
 
-        @StyleRes
         int style;
+        AbsDon customImpl;
 
         DonListener listener;
 
@@ -153,6 +157,11 @@ public abstract class Don {
 
         public Builder setStyle(@StyleRes int style) {
             this.style = style;
+            return this;
+        }
+
+        public Builder setCustomImpl(@NonNull AbsDon impl) {
+            this.customImpl = impl;
             return this;
         }
 

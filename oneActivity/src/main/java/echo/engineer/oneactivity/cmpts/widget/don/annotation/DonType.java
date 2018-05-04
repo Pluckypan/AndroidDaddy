@@ -6,6 +6,7 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import static echo.engineer.oneactivity.cmpts.widget.don.Don.TYPE_CUSTOM;
 import static echo.engineer.oneactivity.cmpts.widget.don.Don.TYPE_DIALOG;
 import static echo.engineer.oneactivity.cmpts.widget.don.Don.TYPE_LOADING;
 import static echo.engineer.oneactivity.cmpts.widget.don.Don.TYPE_PROGRESS_FILL;
@@ -20,7 +21,7 @@ import static echo.engineer.oneactivity.cmpts.widget.don.Don.TYPE_TOAST_WITH_IMA
  * More about me: http://www.1991th.com
  */
 
-@IntDef({TYPE_TOAST, TYPE_TOAST_WITH_IMAGE, TYPE_LOADING, TYPE_PROGRESS_STROKE, TYPE_PROGRESS_FILL, TYPE_DIALOG})
+@IntDef({TYPE_TOAST, TYPE_TOAST_WITH_IMAGE, TYPE_LOADING, TYPE_PROGRESS_STROKE, TYPE_PROGRESS_FILL, TYPE_DIALOG, TYPE_CUSTOM})
 @Retention(RetentionPolicy.SOURCE)
 @Documented
 public @interface DonType {

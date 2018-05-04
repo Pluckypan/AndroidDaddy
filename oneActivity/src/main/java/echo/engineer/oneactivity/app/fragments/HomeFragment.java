@@ -170,6 +170,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                 break;
             case R.id.btnSensor:
                 sensorWrapper.start();
+                new Don.Builder(getActivity()).setType(Don.TYPE_CUSTOM).build().show();
                 break;
             case R.id.btnCrash:
                 throw new RuntimeException("HaHaHa~~~");
