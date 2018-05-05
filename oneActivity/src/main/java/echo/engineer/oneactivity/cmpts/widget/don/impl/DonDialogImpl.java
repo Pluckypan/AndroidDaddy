@@ -28,17 +28,17 @@ public class DonDialogImpl extends AbsDonImp implements DonDialog {
     private View mDialogSpliter;
     private TextView mDialogConfirmTV;
 
-    public DonDialogImpl(LayoutInflater inflater, @StyleRes int style) {
+    public DonDialogImpl(@NonNull LayoutInflater inflater, @StyleRes int style) {
         super(inflater, style);
     }
 
     @Override
-    int getLayout() {
+    public int getLayout() {
         return R.layout.layout_don_dialog;
     }
 
     @Override
-    void initView(View rootView, @StyleRes int style) {
+    public void initView(View rootView, @StyleRes int style) {
         mDialogTitleTV = (TextView) rootView.findViewById(R.id.don_dialog_title_tv);
         mDialogMessageTV = (TextView) rootView.findViewById(R.id.don_dialog_message_tv);
         mDialogCancelTV = (TextView) rootView.findViewById(R.id.don_dialog_cancel_tv);

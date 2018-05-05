@@ -3,6 +3,7 @@ package echo.engineer.oneactivity.cmpts.widget.don.callback;
 import android.support.annotation.NonNull;
 import android.view.View;
 
+import echo.engineer.oneactivity.cmpts.widget.don.Don;
 import echo.engineer.oneactivity.cmpts.widget.don.impl.DonEntity;
 
 /**
@@ -13,6 +14,9 @@ import echo.engineer.oneactivity.cmpts.widget.don.impl.DonEntity;
  */
 
 public interface AbsDon {
+
+    void bindDon(Don don);
+
     View getView();
 
     void bindData(@NonNull DonEntity entity);

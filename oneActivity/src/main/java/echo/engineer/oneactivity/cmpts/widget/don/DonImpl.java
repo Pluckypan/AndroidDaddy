@@ -119,6 +119,7 @@ public class DonImpl extends Don {
                 donImp = builder.customImpl;
                 break;
         }
+        donImp.bindDon(this);
         mContainerView.addView(donImp.getView());
         donImp.bindData(entity);
     }

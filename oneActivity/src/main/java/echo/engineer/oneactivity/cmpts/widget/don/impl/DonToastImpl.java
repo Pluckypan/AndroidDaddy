@@ -21,17 +21,17 @@ public class DonToastImpl extends AbsDonImp {
     private ImageView mIconIV;
     private TextView mMessageTV;
 
-    public DonToastImpl(LayoutInflater inflater, @StyleRes int style) {
+    public DonToastImpl(@NonNull LayoutInflater inflater, @StyleRes int style) {
         super(inflater, style);
     }
 
     @Override
-    int getLayout() {
+    public int getLayout() {
         return R.layout.layout_don_status_toast;
     }
 
     @Override
-    void initView(View rootView, @StyleRes int style) {
+    public void initView(View rootView, @StyleRes int style) {
         mIconIV = (ImageView) rootView.findViewById(R.id.don_status_icon_iv);
         mMessageTV = (TextView) rootView.findViewById(R.id.don_status_message_tv);
     }

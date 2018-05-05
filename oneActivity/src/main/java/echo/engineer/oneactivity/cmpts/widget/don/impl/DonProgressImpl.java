@@ -22,17 +22,17 @@ public class DonProgressImpl extends AbsDonImp implements DonProgress {
     private DonProgressView mProgressView;
     private TextView mMessageTV;
 
-    public DonProgressImpl(LayoutInflater inflater, @StyleRes int style) {
+    public DonProgressImpl(@NonNull LayoutInflater inflater, @StyleRes int style) {
         super(inflater, style);
     }
 
     @Override
-    int getLayout() {
+    public int getLayout() {
         return R.layout.layout_don_status_progress;
     }
 
     @Override
-    void initView(View rootView, @StyleRes int style) {
+    public void initView(View rootView, @StyleRes int style) {
         mProgressView = (DonProgressView) rootView.findViewById(R.id.don_status_progress_view);
         mMessageTV = (TextView) rootView.findViewById(R.id.don_status_message_tv);
     }

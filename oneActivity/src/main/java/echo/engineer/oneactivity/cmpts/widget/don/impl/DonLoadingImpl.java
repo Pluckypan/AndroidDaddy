@@ -20,17 +20,17 @@ public class DonLoadingImpl extends AbsDonImp {
     private ProgressBar mLoadingView;
     private TextView mMessageTV;
 
-    public DonLoadingImpl(LayoutInflater inflater, @StyleRes int style) {
+    public DonLoadingImpl(@NonNull LayoutInflater inflater, @StyleRes int style) {
         super(inflater, style);
     }
 
     @Override
-    int getLayout() {
+    public int getLayout() {
         return R.layout.layout_don_status_loading;
     }
 
     @Override
-    void initView(View rootView, @StyleRes int style) {
+    public void initView(View rootView, @StyleRes int style) {
         mLoadingView = (ProgressBar) rootView.findViewById(R.id.don_status_progress_bar);
         mMessageTV = (TextView) rootView.findViewById(R.id.don_status_message_tv);
     }

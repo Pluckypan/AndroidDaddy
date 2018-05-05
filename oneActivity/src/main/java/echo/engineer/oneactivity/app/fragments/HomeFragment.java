@@ -167,6 +167,9 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                         .description("Description provided")
                         .build();
                 ((MainActivity) getActivity()).sendMessage("world");
+                new Don.Builder(getActivity()).setType(Don.TYPE_CUSTOM)
+                        .setCustomImpl(new CustomDonImpl(LayoutInflater.from(getContext().getApplicationContext()), 0))
+                        .build().show();
                 break;
             case R.id.btnSensor:
                 sensorWrapper.start();
