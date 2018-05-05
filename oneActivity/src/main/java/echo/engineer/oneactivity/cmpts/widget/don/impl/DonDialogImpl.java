@@ -50,15 +50,19 @@ public class DonDialogImpl extends AbsDonImp implements DonDialog {
             Context context = rootView.getContext();
             TypedArray array = context.obtainStyledAttributes(style, R.styleable.Don);
             try {
-                ColorStateList cancelColor = array.getColorStateList(R.styleable.Don_dialog_cancel_button_color);
-                ColorStateList confirmColor = array.getColorStateList(R.styleable.Don_dialog_confirm_button_color);
-                if (cancelColor != null) {
-                    mDialogCancelTV.setTextColor(cancelColor);
-                }
-                if (confirmColor != null) {
-                    mDialogConfirmTV.setTextColor(confirmColor);
+                if (array.hasValue(R.styleable.Don_dialog_cancel_button_color)) {
+                    ColorStateList cancelColor = array.getColorStateList(R.styleable.Don_dialog_cancel_button_color);
+                    if (cancelColor != null) {
+                        mDialogCancelTV.setTextColor(cancelColor);
+                    }
                 }
 
+                if (array.hasValue(R.styleable.Don_dialog_confirm_button_color)) {
+                    ColorStateList confirmColor = array.getColorStateList(R.styleable.Don_dialog_confirm_button_color);
+                    if (confirmColor != null) {
+                        mDialogConfirmTV.setTextColor(confirmColor);
+                    }
+                }
             } finally {
                 if (array != null) {
                     array.recycle();

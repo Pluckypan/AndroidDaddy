@@ -1,6 +1,7 @@
 package echo.engineer.oneactivity.cmpts.widget.don;
 
 import android.app.Activity;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.annotation.FloatRange;
 import android.view.LayoutInflater;
@@ -79,6 +80,20 @@ public class DonImpl extends Don {
         mContainerView = (DonFrameLayout) mRootView.findViewById(R.id.layout_don_container);
 
         setBackgroundOpacity(mOpacity);
+
+        if (builder.style > 0) {
+            TypedArray array = activity.obtainStyledAttributes(builder.style, R.styleable.Don);
+            try {
+                if (array.hasValue(R.styleable.Don_corner_radius)) {
+                    int radius = array.getDimensionPixelSize(R.styleable.Don_corner_radius, 8);
+                    mContainerView.setRadius(radius);
+                }
+            } finally {
+                if (array != null) {
+                    array.recycle();
+                }
+            }
+        }
 
         if (mType == TYPE_CUSTOM && builder.customImpl == null) {
             //如果标明为TYPE_CUSTOM 但是又未实现自定义动作  则当做Doast处理

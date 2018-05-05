@@ -75,6 +75,15 @@ public class DonFrameLayout extends FrameLayout {
         super.dispatchDraw(canvas);
     }
 
+    public void setRadius(int radius) {
+        this.mRadius = radius;
+        this.mLeftTopRadius = mRadius;
+        this.mRightTopRadius = mRadius;
+        this.mRightBottomRadius = mRadius;
+        this.mLeftBottomRadius = mRadius;
+        invalidate();
+    }
+
     private static Path getClipPathByArc(int width, int height, int leftTop, int rightTop, int rightBottom, int leftBottom) {
         Path path = new Path();
         path.arcTo(new RectF(0, 0, 2 * leftTop, 2 * leftTop), 180, 90);
