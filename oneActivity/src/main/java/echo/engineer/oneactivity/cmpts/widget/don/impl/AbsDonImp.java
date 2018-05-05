@@ -2,6 +2,7 @@ package echo.engineer.oneactivity.cmpts.widget.don.impl;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -28,6 +29,11 @@ public abstract class AbsDonImp implements AbsDon {
     public abstract int getLayout();
 
     public abstract void initView(View rootView, @StyleRes int style);
+
+    @Override
+    public int getGravity() {
+        return Gravity.CENTER;
+    }
 
     public void show() {
         if (mDon != null) {

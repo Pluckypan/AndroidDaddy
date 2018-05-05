@@ -5,6 +5,7 @@ import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -168,12 +169,13 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                         .build();
                 ((MainActivity) getActivity()).sendMessage("world");
                 new Don.Builder(getActivity()).setType(Don.TYPE_CUSTOM)
+                        .setOpacity(0.5f)
+                        .setRadiusRes(R.dimen.default_size)
                         .setCustomImpl(new CustomDonImpl(LayoutInflater.from(getContext().getApplicationContext()), 0))
                         .build().show();
                 break;
             case R.id.btnSensor:
                 sensorWrapper.start();
-                new Don.Builder(getActivity()).setType(Don.TYPE_CUSTOM).build().show();
                 break;
             case R.id.btnCrash:
                 throw new RuntimeException("HaHaHa~~~");

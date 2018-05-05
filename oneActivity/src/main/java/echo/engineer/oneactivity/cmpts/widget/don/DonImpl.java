@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.annotation.FloatRange;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -78,21 +80,9 @@ public class DonImpl extends Don {
             });
         }
         mContainerView = (DonFrameLayout) mRootView.findViewById(R.id.layout_don_container);
-
         setBackgroundOpacity(mOpacity);
-
-        if (builder.style > 0) {
-            TypedArray array = activity.obtainStyledAttributes(builder.style, R.styleable.Don);
-            try {
-                if (array.hasValue(R.styleable.Don_corner_radius)) {
-                    int radius = array.getDimensionPixelSize(R.styleable.Don_corner_radius, 8);
-                    mContainerView.setRadius(radius);
-                }
-            } finally {
-                if (array != null) {
-                    array.recycle();
-                }
-            }
+        if (builder.radius >= 0) {
+            mContainerView.setRadius(builder.radius);
         }
 
         if (mType == TYPE_CUSTOM && builder.customImpl == null) {
@@ -122,6 +112,9 @@ public class DonImpl extends Don {
         donImp.bindDon(this);
         mContainerView.addView(donImp.getView());
         donImp.bindData(entity);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(donImp.getLayoutWidth(), donImp.getLayoutHeight());
+        layoutParams.gravity = donImp.getGravity();
+        mContainerView.setLayoutParams(layoutParams);
     }
 
     private void attachRootView() {

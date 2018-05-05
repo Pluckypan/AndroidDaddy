@@ -1,6 +1,7 @@
 package echo.engineer.oneactivity.cmpts.widget.don;
 
 import android.app.Activity;
+import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
@@ -51,6 +52,7 @@ public abstract class Don {
         boolean canceledOnTouchOutside = true;
         float opacity = 0.0f;
         int type = TYPE_TOAST;
+        int radius = -1;
 
         String title;
         //Toast 小图标
@@ -162,6 +164,16 @@ public abstract class Don {
 
         public Builder setCustomImpl(@NonNull AbsDon impl) {
             this.customImpl = impl;
+            return this;
+        }
+
+        public Builder setRadius(int radius) {
+            this.radius = radius;
+            return this;
+        }
+
+        public Builder setRadiusRes(@DimenRes int radiusRes) {
+            this.radius = activity.getResources().getDimensionPixelSize(radiusRes);
             return this;
         }
 

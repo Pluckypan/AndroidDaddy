@@ -19,5 +19,14 @@ public interface AbsDon {
 
     View getView();
 
+    //布局宽度 match_parent、wrap_content、或指定大小如400dp
+    int getLayoutWidth();
+
+    //布局高度 match_parent、wrap_content、或指定大小如400dp
+    int getLayoutHeight();
+
+    //布局排列位置
+    int getGravity();
+
     void bindData(@NonNull DonEntity entity);
 }

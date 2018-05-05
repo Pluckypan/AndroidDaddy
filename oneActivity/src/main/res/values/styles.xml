@@ -55,13 +55,11 @@
     </style>
 
     <declare-styleable name="Don">
-        <attr name="corner_radius" format="dimension|reference" />
         <attr name="dialog_confirm_button_color" format="color|reference" />
         <attr name="dialog_cancel_button_color" format="color|reference" />
     </declare-styleable>
 
     <style name="DonDefaultStyle">
-        <item name="corner_radius">6dp</item>
         <item name="dialog_confirm_button_color">#FA2855</item>
         <item name="dialog_cancel_button_color">@color/color_don_button_selector</item>
     </style>

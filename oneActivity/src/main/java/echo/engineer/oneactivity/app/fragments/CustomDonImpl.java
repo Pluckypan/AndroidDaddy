@@ -1,8 +1,10 @@
 package echo.engineer.oneactivity.app.fragments;
 
 import android.support.annotation.NonNull;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
 import echo.engineer.oneactivity.R;
@@ -34,6 +36,21 @@ public class CustomDonImpl extends AbsDonImp {
         mConfirmBtn.setOnClickListener(v -> {
             dismiss();
         });
+    }
+
+    @Override
+    public int getLayoutWidth() {
+        return ViewGroup.LayoutParams.MATCH_PARENT;
+    }
+
+    @Override
+    public int getLayoutHeight() {
+        return ViewGroup.LayoutParams.WRAP_CONTENT;
+    }
+
+    @Override
+    public int getGravity() {
+        return Gravity.BOTTOM;
     }
 
     @Override
