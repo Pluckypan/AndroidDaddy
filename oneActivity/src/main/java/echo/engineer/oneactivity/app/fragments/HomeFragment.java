@@ -170,7 +170,10 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                 ((MainActivity) getActivity()).sendMessage("world");
                 new Don.Builder(getActivity()).setType(Don.TYPE_CUSTOM)
                         .setOpacity(0.5f)
+                        .setCanceledOnTouchOutside(false)
                         .setRadiusRes(R.dimen.default_size)
+                        .setAnimationIn(R.anim.don_animation_fade_in)
+                        .setAnimationOut(R.anim.don_animation_fade_out)
                         .setCustomImpl(new CustomDonImpl(LayoutInflater.from(getContext().getApplicationContext()), 0))
                         .build().show();
                 break;

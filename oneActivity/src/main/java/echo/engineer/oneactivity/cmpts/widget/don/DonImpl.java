@@ -8,6 +8,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 import echo.engineer.oneactivity.R;
@@ -40,6 +42,8 @@ public class DonImpl extends Don {
     private float mOpacity;
     private int mType;
     private int mDuration;
+    private Animation mAnimIn;
+    private Animation mAnimOut;
     private DonListener mListener;
 
     private AbsDon donImp;
@@ -56,6 +60,20 @@ public class DonImpl extends Don {
         mType = builder.type;
         mDuration = builder.duration;
         mListener = builder.listener;
+
+        if (builder.animIn > 0) {
+            mAnimIn = AnimationUtils.loadAnimation(activity.getApplicationContext(), builder.animIn);
+        }
+
+        if (builder.animOut > 0) {
+            mAnimOut = AnimationUtils.loadAnimation(activity.getApplicationContext(), builder.animOut);
+            mAnimOut.setAnimationListener(new AnimationAdapter() {
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    detachRootView();
+                }
+            });
+        }
 
         DonEntity entity = new DonEntity();
         entity.setType(mType);
@@ -120,6 +138,11 @@ public class DonImpl extends Don {
     private void attachRootView() {
         if (mDecorView.indexOfChild(mRootView) < 0) {
             mDecorView.addView(mRootView);
+
+            if (mAnimIn != null) {
+                mContainerView.startAnimation(mAnimIn);
+            }
+
             if (mListener != null) {
                 mListener.onVisibileChanged(this, true);
             }
@@ -146,7 +169,19 @@ public class DonImpl extends Don {
     private void dismissRightNow() {
         if (mDecorView == null) return;
         if (mRootView == null) return;
-        detachRootView();
+
+        if (mAnimIn != null && !mAnimIn.hasEnded()) {
+            mAnimIn.cancel();
+            detachRootView();
+            return;
+        }
+
+        if (mAnimOut != null) {
+            mAnimOut.cancel();
+            mContainerView.startAnimation(mAnimOut);
+        } else {
+            detachRootView();
+        }
     }
 
     private boolean isTypeToast() {

@@ -1,6 +1,8 @@
 package echo.engineer.oneactivity.cmpts.widget.don;
 
 import android.app.Activity;
+import android.support.annotation.AnimRes;
+import android.support.annotation.AnimatorRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntRange;
@@ -66,6 +68,12 @@ public abstract class Don {
         Runnable cancelAction;
 
         int style;
+
+        @AnimRes
+        int animIn;
+        @AnimRes
+        int animOut;
+
         AbsDon customImpl;
 
         DonListener listener;
@@ -174,6 +182,16 @@ public abstract class Don {
 
         public Builder setRadiusRes(@DimenRes int radiusRes) {
             this.radius = activity.getResources().getDimensionPixelSize(radiusRes);
+            return this;
+        }
+
+        public Builder setAnimationIn(@AnimRes int animIn) {
+            this.animIn = animIn;
+            return this;
+        }
+
+        public Builder setAnimationOut(@AnimRes int animOut) {
+            this.animOut = animOut;
             return this;
         }
 
