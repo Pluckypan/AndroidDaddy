@@ -1,4 +1,4 @@
-include ':app', ':dagger', ':rxjava', ':service', ':oneActivity', ':keeper', ':camera'
+include ':app', ':dagger', ':rxjava', ':service', ':oneActivity', ':keeper', ':camera', ':zuer'
 include ':floatingWindow'
 
 

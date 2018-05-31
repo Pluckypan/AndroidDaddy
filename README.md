@@ -6,7 +6,8 @@
 - **dagger** 研究`Google`推荐项目 `Dagger`
 - **floatingWindow** 无权限实现悬浮窗,实现日志打印功能
 - **keeper** 智能手表项目
-- **rxjava** 响应式编程、自由切换线程、观察者模式
 - **service** `service` 基础应用及扩展研究
 - **app**  杂项
 - **oneActivity** 基于[OneActivity](https://github.com/Pluckypan/OneActivity)
+
+- **zuer** Kotlin + RxJava2.0 + Retrofit + Architecture Components
