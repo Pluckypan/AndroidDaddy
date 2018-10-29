@@ -8,12 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.flurgle.camerakit.CameraListener;
-import com.flurgle.camerakit.CameraView;
+import com.camerakit.CameraKitView;
 import com.github.mmin18.widget.RealtimeBlurView;
-
-import java.io.File;
-
 import echo.engineer.oneactivity.R;
 import engineer.echo.oneactivity.core.MasterFragment;
 
@@ -24,38 +20,23 @@ import engineer.echo.oneactivity.core.MasterFragment;
 
 public class CameraFragment extends MasterFragment {
 
-    private CameraView cameraView;
+    private CameraKitView cameraKitView;
     private RealtimeBlurView blurView;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        cameraView = (CameraView) view.findViewById(R.id.cameraView);
+        cameraKitView = (CameraKitView) view.findViewById(R.id.cameraView);
         blurView = (RealtimeBlurView) view.findViewById(R.id.blurView);
-        cameraView.setCameraListener(new CameraListener() {
+        cameraKitView.setCameraListener(new CameraKitView.CameraListener() {
             @Override
-            public void onCameraOpened() {
-                super.onCameraOpened();
+            public void onOpened() {
+
             }
 
             @Override
-            public void onCameraClosed() {
-                super.onCameraClosed();
-            }
+            public void onClosed() {
 
-            @Override
-            public void onPictureTaken(byte[] jpeg) {
-                super.onPictureTaken(jpeg);
-            }
-
-            @Override
-            public void onPictureTaken(YuvImage yuv) {
-                super.onPictureTaken(yuv);
-            }
-
-            @Override
-            public void onVideoTaken(File video) {
-                super.onVideoTaken(video);
             }
         });
         blurView.setBlurRadius(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getResources().getDisplayMetrics()));
@@ -74,14 +55,33 @@ public class CameraFragment extends MasterFragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        cameraKitView.onStart();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        cameraView.start();
+        cameraKitView.onResume();
     }
 
     @Override
     public void onPause() {
+        cameraKitView.onPause();
         super.onPause();
-        cameraView.stop();
     }
+
+    @Override
+    public void onStop() {
+        cameraKitView.onStop();
+        super.onStop();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        cameraKitView.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
 }

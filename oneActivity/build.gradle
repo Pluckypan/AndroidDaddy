@@ -77,7 +77,7 @@ dependencies {
     compile 'com.github.mmin18:realtimeblurview:1.1.0'
 
     //easy camera
-    compile('com.flurgle:camerakit:0.9.17', {
+    compile('com.camerakit:camerakit:1.0.0-beta3.9', {
         exclude group: 'com.android.support'
     })
     //retrofit2
