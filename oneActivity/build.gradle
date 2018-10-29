@@ -13,11 +13,17 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         //for blurringview
         renderscriptTargetApi rootProject.ext.targetSdkVersion
         renderscriptSupportModeEnabled true
+    }
+    packagingOptions{
+        doNotStrip '*/mips/*.so'
+        doNotStrip '*/mips64/*.so'
     }
     buildTypes {
         release {
@@ -76,10 +82,6 @@ dependencies {
     compile 'com.fivehundredpx:blurringview:1.0.0'
     compile 'com.github.mmin18:realtimeblurview:1.1.0'
 
-    //easy camera
-    compile('com.camerakit:camerakit:1.0.0-beta3.9', {
-        exclude group: 'com.android.support'
-    })
     //retrofit2
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'

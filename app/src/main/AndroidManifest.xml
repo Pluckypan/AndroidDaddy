@@ -24,10 +24,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".swipe.DragSwipeActivity" />
-        <activity
-            android:name=".JDPayActivity"
-            android:label="@string/action_jdpay"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".WebActivity" />
         <activity android:name=".RatDrawActivity" />
     </application>
