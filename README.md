@@ -3,7 +3,6 @@
 
 ### 子项目
 - **api** `Google Android API` 示例研究
-- **dagger** 研究`Google`推荐项目 `Dagger`
 - **floatingWindow** 无权限实现悬浮窗,实现日志打印功能
 - **keeper** 智能手表项目
 - **service** `service` 基础应用及扩展研究

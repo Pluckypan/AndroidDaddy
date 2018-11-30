@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'android-aspectjx'
 android {
     compileSdkVersion 26
     buildToolsVersion "27.0.3"
@@ -33,5 +33,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
+}
+aspectjx {
+    enabled true
+    //include "echo.xxx.*"
+    //exclude 'android.support'
 }
