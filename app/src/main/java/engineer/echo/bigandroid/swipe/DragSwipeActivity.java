@@ -24,7 +24,7 @@ public class DragSwipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_drag_swipe);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        LinearLayoutManager manager = new LinearLayoutManager(this);
+        SwipeLayoutManager manager = new SwipeLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         mRecyclerView.setLayoutManager(manager);

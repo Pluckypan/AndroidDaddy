@@ -2,6 +2,8 @@ package engineer.echo.bigandroid.swipe;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
+import android.view.View;
 
 import static android.support.v7.widget.helper.ItemTouchHelper.ACTION_STATE_DRAG;
 import static android.support.v7.widget.helper.ItemTouchHelper.ACTION_STATE_SWIPE;
@@ -12,7 +14,7 @@ import static android.support.v7.widget.helper.ItemTouchHelper.ACTION_STATE_SWIP
  * Created by Plucky<plucky@echo.engineer> on 2018/1/16 - 20:27
  * More about me: http://www.1991th.com
  */
-public class SimpleTouchCallback extends ItemTouchHelper.Callback {
+public class SimpleTouchCallback extends ItemTouchHelper.Callback{
 
     private OnItemSwipeListener mSwipeListener;
     private OnItemDragListener mDragListener;
@@ -72,7 +74,6 @@ public class SimpleTouchCallback extends ItemTouchHelper.Callback {
         }
         return true;
     }
-
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
