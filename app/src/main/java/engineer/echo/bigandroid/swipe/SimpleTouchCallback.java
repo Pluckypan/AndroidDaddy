@@ -14,7 +14,7 @@ import static android.support.v7.widget.helper.ItemTouchHelper.ACTION_STATE_SWIP
  * Created by Plucky<plucky@echo.engineer> on 2018/1/16 - 20:27
  * More about me: http://www.1991th.com
  */
-public class SimpleTouchCallback extends ItemTouchHelper.Callback{
+public class SimpleTouchCallback extends ItemTouchHelper.Callback {
 
     private OnItemSwipeListener mSwipeListener;
     private OnItemDragListener mDragListener;
@@ -73,6 +73,12 @@ public class SimpleTouchCallback extends ItemTouchHelper.Callback{
             mDragListener.onItemDrag(viewHolder.getAdapterPosition(), target.getAdapterPosition());
         }
         return true;
+    }
+
+    @Override
+    public void onMoved(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, int fromPos, RecyclerView.ViewHolder target, int toPos, int x, int y) {
+        super.onMoved(recyclerView, viewHolder, fromPos, target, toPos, x, y);
+        Log.d("py", "onMoved x=" + x + " y=" + y);
     }
 
     @Override
