@@ -6,6 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import engineer.echo.bigandroid.Const;
 import engineer.echo.bigandroid.R;
 
@@ -19,8 +23,11 @@ public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.Item
 
     private Context mContext;
 
+    private List<Integer> DATA = new ArrayList<>();
+
     public DragSwipeAdapter(Context mContext) {
         this.mContext = mContext;
+        DATA.addAll(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19));
     }
 
     @Override
@@ -31,13 +38,19 @@ public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.Item
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
-        holder.itemView.setBackgroundResource(Const.getColor(position));
-        holder.tvName.setText(String.valueOf(position + 1));
+        int item = DATA.get(position);
+        holder.itemView.setBackgroundResource(Const.getColor(item));
+        holder.tvName.setText(String.valueOf(item));
     }
 
     @Override
     public int getItemCount() {
-        return 12;
+        return DATA.size();
+    }
+
+    public void remove(int position) {
+        DATA.remove(position);
+        notifyItemRemoved(position);
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {

@@ -17,6 +17,17 @@
         android:layout_height="match_parent"
         android:clipChildren="false">
 
+        <TextView
+            android:id="@+id/deleteView"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#FA2855"
+            android:gravity="center"
+            android:text="拖动到此删除"
+            android:textColor="@android:color/white"
+            android:textSize="16dp" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"

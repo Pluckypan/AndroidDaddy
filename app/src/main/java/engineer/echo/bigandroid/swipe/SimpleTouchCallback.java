@@ -1,9 +1,13 @@
 package engineer.echo.bigandroid.swipe;
 
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
+
+import java.util.Arrays;
 
 import static android.support.v7.widget.helper.ItemTouchHelper.ACTION_STATE_DRAG;
 import static android.support.v7.widget.helper.ItemTouchHelper.ACTION_STATE_SWIPE;
@@ -18,6 +22,8 @@ public class SimpleTouchCallback extends ItemTouchHelper.Callback {
 
     private OnItemSwipeListener mSwipeListener;
     private OnItemDragListener mDragListener;
+    private OnItemDeleteListener onItemDeleteListener;
+    private View mDeleteArea;
 
     public SimpleTouchCallback(OnItemDragListener dragListener, OnItemSwipeListener swipeListener) {
         this.mSwipeListener = swipeListener;
@@ -30,6 +36,14 @@ public class SimpleTouchCallback extends ItemTouchHelper.Callback {
 
     public SimpleTouchCallback(OnItemSwipeListener swipeListener) {
         this.mSwipeListener = swipeListener;
+    }
+
+    public void setOnItemDeleteListener(OnItemDeleteListener onItemDeleteListener) {
+        this.onItemDeleteListener = onItemDeleteListener;
+    }
+
+    public void setDeleteArea(View area) {
+        this.mDeleteArea = area;
     }
 
     @Override
@@ -85,6 +99,30 @@ public class SimpleTouchCallback extends ItemTouchHelper.Callback {
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
         if (mSwipeListener != null) {
             mSwipeListener.onItemSwipe(viewHolder.getAdapterPosition());
+        }
+    }
+
+    private Rect mDeleteRect = new Rect();
+
+    @Override
+    public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        int[] current = new int[2];
+        viewHolder.itemView.getLocationOnScreen(current);
+        int px = current[0] + viewHolder.itemView.getWidth() / 2;
+        int py = current[1] + viewHolder.itemView.getHeight() / 2;
+        if (mDeleteRect.width() == 0 && mDeleteArea != null) {
+            int[] delete = new int[2];
+            mDeleteArea.getLocationOnScreen(delete);
+            mDeleteRect.set(delete[0], delete[1], delete[0] + mDeleteArea.getWidth(), delete[1] + mDeleteArea.getHeight());
+        }
+        int currentPos = viewHolder.getAdapterPosition();
+        Log.d("py", "onChildDraw px=" + px + " py=" + py + " mDeleteRect=" + mDeleteRect + " isCurrentlyActive=" + isCurrentlyActive + " currentPos=" + currentPos);
+        if (mDeleteRect.contains(px, py) && !isCurrentlyActive && currentPos >= 0) {
+            if (onItemDeleteListener != null) {
+                viewHolder.itemView.setVisibility(View.INVISIBLE);
+                onItemDeleteListener.onItemDelete(currentPos);
+            }
         }
     }
 }

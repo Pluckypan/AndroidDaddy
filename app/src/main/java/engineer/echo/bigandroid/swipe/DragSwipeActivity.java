@@ -23,13 +23,13 @@ public class DragSwipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drag_swipe);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-
+        View deleteView = findViewById(R.id.deleteView);
         SwipeLayoutManager manager = new SwipeLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         mRecyclerView.setLayoutManager(manager);
 
-        DragSwipeAdapter adapter = new DragSwipeAdapter(this);
+        final DragSwipeAdapter adapter = new DragSwipeAdapter(this);
         mRecyclerView.setAdapter(adapter);
 
         final int size = getResources().getDimensionPixelSize(R.dimen.drag_item_size);
@@ -66,6 +66,13 @@ public class DragSwipeActivity extends AppCompatActivity {
         };
 
         SimpleTouchCallback callback = new SimpleTouchCallback(adapter);
+        callback.setDeleteArea(deleteView);
+        callback.setOnItemDeleteListener(new OnItemDeleteListener() {
+            @Override
+            public void onItemDelete(int position) {
+                adapter.remove(position);
+            }
+        });
         ItemTouchHelper helper = new ItemTouchHelper(callback);
         helper.attachToRecyclerView(mRecyclerView);
         mRecyclerView.addItemDecoration(decoration);
