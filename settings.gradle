@@ -1,4 +1,4 @@
-include ':app', ':service', ':oneActivity', ':keeper', ':camera'
+include ':app', ':service', ':oneActivity', ':keeper', ':camera', ':java'
 include ':floatingWindow'
 
 

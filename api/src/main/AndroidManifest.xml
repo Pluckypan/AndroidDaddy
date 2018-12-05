@@ -52,9 +52,7 @@
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
 
-    <uses-sdk
-        android:minSdkVersion="23"
-        android:targetSdkVersion="23" />
+    <uses-sdk android:targetSdkVersion="23" />
 
     <application
         android:name="ApiDemosApplication"
