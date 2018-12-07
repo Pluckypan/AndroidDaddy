@@ -3,6 +3,7 @@ package com.iflytek.iflyrec.test;
 import com.google.gson.JsonObject;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -18,7 +19,7 @@ public class Fanyi {
     public static String doPost(String url, String params) throws Exception {
 
         CloseableHttpClient httpclient = HttpClients.createDefault();
-
+//抓包代码 HttpClientBuilder.create().setProxy(new HttpHost("127.0.0.1", 8888)).build();
         HttpPost httpPost = new HttpPost(url);
 
         httpPost.setHeader("Accept", "application/json");
