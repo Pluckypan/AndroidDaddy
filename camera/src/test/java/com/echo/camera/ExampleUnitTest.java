@@ -1,4 +1,4 @@
-package com.partynow.camera;
+package com.echo.camera;
 
 import org.junit.Test;
 

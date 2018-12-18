@@ -1,4 +1,4 @@
-package com.partynow.camera;
+package com.echo.camera;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

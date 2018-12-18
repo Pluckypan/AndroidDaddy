@@ -1,4 +1,4 @@
-package com.partynow.camera;
+package com.echo.camera;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

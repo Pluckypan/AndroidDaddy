@@ -1,4 +1,4 @@
-package com.partynow.camera;
+package com.echo.camera;
 
 import android.util.Log;
 
@@ -14,18 +14,18 @@ import java.util.Arrays;
 @Aspect
 public class Aspecter {
 
-    @After("call(* com.partynow.camera.Person.toString())")
+    @After("call(* com.echo.camera.Person.toString())")
     public void aFunc(JoinPoint joinPoint) {
         Log.d("aop", "Aspecter aFunc exec");
     }
 
-    @After("call(* com.partynow.camera.Person.format(..))")
+    @After("call(* com.echo.camera.Person.format(..))")
     public void bFunc(JoinPoint joinPoint) {
         String args = Arrays.toString(joinPoint.getArgs());
         Log.d("aop", "Aspecter bFunc exec args=" + args);
     }
 
-    @Pointcut("execution(@com.partynow.camera.Anno * *(..)) && @annotation(ann)")
+    @Pointcut("execution(@com.echo.camera.Anno * *(..)) && @annotation(ann)")
     public void testAnno(Anno ann) {
         Log.i("aop", "Aspecter testAnno");
     }

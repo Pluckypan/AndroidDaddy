@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.partynow.camera.MainActivity">
+    tools:context="com.echo.camera.MainActivity">
 
     <TextView
         android:id="@+id/app_texture_tv"
