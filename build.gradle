@@ -4,7 +4,7 @@ buildscript {
     ext.kotlin_version = '1.2.51'
 
     repositories {
-        google() // here
+        google()
         jcenter()
     }
     dependencies {
@@ -23,7 +23,7 @@ buildscript {
 
 allprojects {
     repositories {
-        google() // here
+        google()
         jcenter()
         maven { url "https://nexus.svc.ubnt.com/nexus/content/repositories/releases/" }
         maven { url 'https://github.com/500px/500px-android-blur/raw/master/releases/' }

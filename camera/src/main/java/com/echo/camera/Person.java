@@ -4,6 +4,8 @@ import android.util.Log;
 
 import java.util.Locale;
 
+import engineer.echo.hugox.DebugLog;
+
 public class Person {
     private int age;
     private int gender;
@@ -31,6 +33,7 @@ public class Person {
         return age;
     }
 
+    @DebugLog
     public String format(String name, int age, int gender) {
         String result = String.format(Locale.CHINA, "姓名:%s 年龄:%d 性别:%s", name, age, gender == 0 ? "男" : "女");
         Log.i("aop", "inner result=" + result);

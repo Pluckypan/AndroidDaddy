@@ -1,5 +1,5 @@
 # AndroidDaddy
-> 你爸爸还是你爸爸  解读Android前沿技术代码RxJava,Dagger,OkHttp,Annotation,IPC,智能硬件
+> 解读Android代码
 
 ### 子项目
 - **api** `Google Android API` 示例研究
@@ -8,3 +8,4 @@
 - **service** `service` 基础应用及扩展研究
 - **app**  杂项
 - **oneActivity** 基于[OneActivity](https://github.com/Pluckypan/OneActivity)
+- **camera** AspectJ AOP 面向切面，AnnotationProcessor + javapoet 自定义生成代码

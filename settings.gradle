@@ -1,4 +1,4 @@
-include ':app', ':service', ':oneActivity', ':keeper', ':camera', ':java'
+include ':app', ':service', ':oneActivity', ':keeper', ':camera', ':java', ':HugoXAnno', ':HugoXCompiler'
 include ':floatingWindow'
 
 
