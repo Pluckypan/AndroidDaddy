@@ -89,16 +89,20 @@ dateAndTime {
 buildscript {
     repositories {
         maven {
-            //本地文件夹相对路径
+            //方式一：本地文件夹
             url 'file:../localPublish'
 
-            //私服地址
+            //Maven仓库地址
             //url 'http://localhost:8081/nexus/content/repositories/thirdparty/'
         }
     }
     dependencies {
-        classpath 'engineer.echo:hugox-plugin:1.0.0'
+        classpath 'engineer.echo:hugox-plugin:1.1.0'
     }
 }
 
 apply plugin: 'hugox-plugin'
+HugoX {
+    enable = true
+    version = "1.0.2"
+}

@@ -16,17 +16,18 @@ uploadArchives {
         mavenDeployer {
             pom.groupId = 'engineer.echo'
             pom.artifactId = 'hugox-plugin'
-            pom.version = '1.0.0'
+            pom.version = '1.1.0'
 
-            //发布到本地文件夹,点击运行 Gradle task uploadArchives
+            //方式一：发布到 指定文件夹 比如 绝对路径`D:/repos` 相对路径`../localPublish`
             repository(url: uri('../localPublish'))
 
-            //发布到本地Maven仓库 nexus
+            //方式二：发布到 Maven仓库 比如 Sonatype Nexus
             /*
             repository(url: uri('http://localhost:8081/nexus/content/repositories/thirdparty/')) {
                 authentication(userName: "admin", password: "admin123")
             }
             */
+            //发布插件:打开 Gradle 窗口,展开指定的 Library Module,展开 Tasks,展开 upload,双击运行 uploadArchives
         }
     }
 }
