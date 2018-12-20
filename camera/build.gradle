@@ -1,3 +1,5 @@
+import echo.DateAndTimePlugin
+
 apply plugin: 'com.android.application'
 apply plugin: 'android-aspectjx'
 android {
@@ -77,9 +79,26 @@ TimePrintFormat {
     dateFormat = 'MM/dd/yyyy'
 }
 
-apply plugin: echo.DateAndTimePlugin
+apply plugin: DateAndTimePlugin
 
 dateAndTime {
     timeFormat = 'HH:mm:ss.SSS'
     dateFormat = 'MM/dd/yyyy'
 }
+
+buildscript {
+    repositories {
+        maven {
+            //本地文件夹相对路径
+            url 'file:../localPublish'
+
+            //私服地址
+            //url 'http://localhost:8081/nexus/content/repositories/thirdparty/'
+        }
+    }
+    dependencies {
+        classpath 'engineer.echo:hugox-plugin:1.0.0'
+    }
+}
+
+apply plugin: 'hugox-plugin'
