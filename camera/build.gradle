@@ -46,3 +46,33 @@ aspectjx {
     //include "echo.xxx.*"
     //exclude 'android.support'
 }
+
+// build.gradle 中的插件编写
+class TimePrintPlugin implements Plugin<Project> {
+
+    @Override
+    void apply(Project project) {
+
+        project.extensions.create("TimePrintFormat", TimePrintFormatExtension)
+
+        project.task('showTime') << {
+            println "Current time is " + new Date().format(project.TimePrintFormat.timeFormat)
+        }
+
+        project.tasks.create('showDate') << {
+            println "Current date is " + new Date().format(project.TimePrintFormat.dateFormat)
+        }
+    }
+}
+
+class TimePrintFormatExtension {
+    String timeFormat = "MM/dd/yyyy HH:mm:ss.SSS"
+    String dateFormat = "yyyy-MM-dd"
+}
+
+apply plugin: TimePrintPlugin
+
+TimePrintFormat {
+    timeFormat = 'HH:mm:ss.SSS'
+    dateFormat = 'MM/dd/yyyy'
+}

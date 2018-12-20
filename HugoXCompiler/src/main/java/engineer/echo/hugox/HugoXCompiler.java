@@ -96,6 +96,4 @@ public class HugoXCompiler extends AbstractProcessor {
             mMessage.printMessage(Diagnostic.Kind.NOTE, note);
         }
     }
-
-
 }
