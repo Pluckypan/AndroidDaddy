@@ -76,3 +76,10 @@ TimePrintFormat {
     timeFormat = 'HH:mm:ss.SSS'
     dateFormat = 'MM/dd/yyyy'
 }
+
+apply plugin: echo.DateAndTimePlugin
+
+dateAndTime {
+    timeFormat = 'HH:mm:ss.SSS'
+    dateFormat = 'MM/dd/yyyy'
+}
