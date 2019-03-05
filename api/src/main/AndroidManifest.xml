@@ -52,8 +52,6 @@
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
 
-    <uses-sdk android:targetSdkVersion="23" />
-
     <application
         android:name="ApiDemosApplication"
         android:label="@string/activity_sample_code"

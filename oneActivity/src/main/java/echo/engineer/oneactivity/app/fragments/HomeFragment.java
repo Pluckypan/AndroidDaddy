@@ -18,9 +18,6 @@ import com.orhanobut.logger.Logger;
 import echo.engineer.oneactivity.App;
 import echo.engineer.oneactivity.R;
 import echo.engineer.oneactivity.app.MainActivity;
-import echo.engineer.oneactivity.cmpts.immutables.Fatttther;
-import echo.engineer.oneactivity.cmpts.immutables.ImmutableFatttther;
-import echo.engineer.oneactivity.cmpts.immutables.ImmutableItem;
 import echo.engineer.oneactivity.cmpts.sensor.GyroscopeSensorWrapper;
 import echo.engineer.oneactivity.cmpts.sensor.SimpleGyroscopeSensorCallBack;
 import echo.engineer.oneactivity.cmpts.widget.don.Don;
@@ -150,22 +147,11 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                 startFragment(request);
                 break;
             case R.id.btnHello:
-                Fatttther fatttther =
-                        ImmutableFatttther.builder()
-                                .name("My value")
-                                .addCounts(1)
-                                .addCounts(2)
-                                .build();
                 Logger.d("call hello");
                 ((MainActivity) getActivity()).sendMessage("hello");
                 mDonDialog.show();
                 break;
             case R.id.btnWorld:
-                ImmutableItem namelessItem = ImmutableItem.builder()
-                        .name("Nameless")
-                        .addTags("important", "relevant")
-                        .description("Description provided")
-                        .build();
                 ((MainActivity) getActivity()).sendMessage("world");
                 new Don.Builder(getActivity()).setType(Don.TYPE_CUSTOM)
                         .setOpacity(0.5f)

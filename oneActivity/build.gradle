@@ -1,10 +1,7 @@
 apply plugin: 'com.android.application'
-//for lambda
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "echo.engineer.oneactivity"
@@ -47,48 +44,46 @@ android {
 dependencies {
 
     //for test
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 
     //for recyclerview
-    compile "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"
+    implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"
 
-    compile 'engineer.echo.oneactivity:core:0.0.1'
+    implementation 'engineer.echo.oneactivity:core:0.0.1'
 
     //for blockcanary
-    compile 'com.github.markzhai:blockcanary-android:1.5.0'
+    implementation 'com.github.markzhai:blockcanary-android:1.5.0'
 
     //facebook stetho
-    compile 'com.facebook.stetho:stetho:1.3.1'
+    implementation 'com.facebook.stetho:stetho:1.3.1'
 
     //for dagger
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.5'
-    provided 'javax.annotation:jsr250-api:1.0'
-    compile 'com.google.dagger:dagger:2.5'
+    implementation 'com.google.dagger:dagger:2.11'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+    implementation 'com.google.dagger:dagger-android-support:2.11' // if you use the support libraries
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
 
     //for logger
-    compile 'com.orhanobut:logger:2.1.1'
+    implementation 'com.orhanobut:logger:2.1.1'
+    implementation "com.android.support:multidex:1.0.3"
 
     //immutables
-    annotationProcessor "org.immutables:value:2.5.5" // for annotation processor
-    provided "org.immutables:value:2.5.5" // for annotations
-    provided "org.immutables:builder:2.5.5" // for annotations
-    provided "org.immutables:gson:2.5.5" // for annotations
 
     //blurringview
-    compile 'com.fivehundredpx:blurringview:1.0.0'
-    compile 'com.github.mmin18:realtimeblurview:1.1.0'
+    implementation 'com.fivehundredpx:blurringview:1.0.0'
+    implementation 'com.github.mmin18:realtimeblurview:1.1.0'
 
     //retrofit2
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.2.0'
     //rxjava
-    compile "io.reactivex:rxandroid:1.2.1"
-    compile 'com.github.ShogoMizumoto:ZDepthShadowLayout:1.0.4'
-    compile 'com.github.Hitomis:CrazyShadow:v1.0.1'
-    compile "com.android.support:cardview-v7:${rootProject.ext.supportVersion}"
+    implementation "io.reactivex:rxandroid:1.2.1"
+    implementation 'com.github.ShogoMizumoto:ZDepthShadowLayout:1.0.4'
+    implementation 'com.github.Hitomis:CrazyShadow:v1.0.1'
+    implementation "com.android.support:cardview-v7:${rootProject.ext.supportVersion}"
 }

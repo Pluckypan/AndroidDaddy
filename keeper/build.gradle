@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "engineer.echo.keeper"
@@ -21,8 +20,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'engineer.echo.oneactivity:core:0.0.1'
-    compile "com.android.support:support-v4:$rootProject.ext.supportVersion"
-    compile "com.android.support:appcompat-v7:$rootProject.ext.appcompatVersion"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'engineer.echo.oneactivity:core:0.0.1'
+    implementation "com.android.support:support-v4:$rootProject.ext.supportVersion"
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.appcompatVersion"
 }
