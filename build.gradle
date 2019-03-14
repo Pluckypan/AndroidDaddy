@@ -15,7 +15,7 @@ buildscript {
         //for dagger
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.4'
+        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.5'
     }
 }
 
@@ -36,11 +36,10 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 25
-    buildToolsVersion = "25.0.0"
-    targetSdkVersion = 25
-    minSdkVersion = 19
-    supportVersion = "23.0.1"
-    designVersion = "25.3.1"
-    appcompatVersion = "23.0.1"
+    compileSdkVersion = 27
+    targetSdkVersion = 27
+    minSdkVersion = 21
+    supportVersion = "27.1.1"
+    designVersion = "27.1.1"
+    appcompatVersion = "27.1.1"
 }
