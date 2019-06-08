@@ -88,7 +88,7 @@ public class MainActivity extends MasterCompatActivity {
     }
 
     public void sendMessage(String msg) {
-        if (iBinder != null && iBinder instanceof MessengerService.MessengerBinder) {
+        if (iBinder instanceof MessengerService.MessengerBinder) {
             MessengerService messengerService = ((MessengerService.MessengerBinder) iBinder).getService();
             messengerService.sendMessage(msg);
         }
