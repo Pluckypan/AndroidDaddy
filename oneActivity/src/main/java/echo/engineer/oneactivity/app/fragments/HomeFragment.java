@@ -1,6 +1,5 @@
 package echo.engineer.oneactivity.app.fragments;
 
-import android.animation.ValueAnimator;
 import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,19 +7,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.fivehundredpx.android.blur.BlurringView;
 import com.orhanobut.logger.Logger;
-
 import echo.engineer.oneactivity.App;
 import echo.engineer.oneactivity.R;
 import echo.engineer.oneactivity.app.MainActivity;
 import echo.engineer.oneactivity.cmpts.sensor.GyroscopeSensorWrapper;
 import echo.engineer.oneactivity.cmpts.sensor.SimpleGyroscopeSensorCallBack;
-import echo.engineer.oneactivity.cmpts.widget.don.Don;
 import engineer.echo.oneactivity.core.MasterFragment;
 import engineer.echo.oneactivity.core.Request;
 
@@ -36,11 +30,7 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
     private GyroscopeSensorWrapper sensorWrapper;
     private TextView tvMsg;
     private ImageView tvTestImage;
-    private BlurringView blurringView;
     private int screenW;
-    Don mDonDialog, mDonProgress;
-
-    ValueAnimator valueAnimator = ValueAnimator.ofInt(0, 100);
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -55,58 +45,10 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
         view.findViewById(R.id.btnRetrofit).setOnClickListener(this);
         view.findViewById(R.id.btnShadow).setOnClickListener(this);
 
-        mDonProgress = new Don.Builder(getActivity())
-                .setMessage("正在收款...")
-                .setOpacity(0.5f)
-                .setType(Don.TYPE_PROGRESS_STROKE)
-                .setCanceledOnTouchOutside(false)
-                .build();
-
-        mDonDialog = new Don.Builder(getActivity())
-                .setTitle("转账提醒")
-                .setMessage("支付宝到账100万元~")
-                .setStyle(R.style.DonDefaultStyle)
-                .setCanceledOnTouchOutside(true)
-                .setOpacity(0.0f)
-                .onCancel(() -> {
-                    new Don.Builder(getActivity()).setMessage("正在取消...").setOpacity(0.5f).setType(Don.TYPE_LOADING)
-                            .setCanceledOnTouchOutside(false).setListener((don, show) -> {
-                        if (show) {
-                            tvMsg.postDelayed(() -> {
-                                if (don != null) {
-                                    don.dismiss();
-                                }
-                            }, 1500);
-                        } else {
-                            mDonDialog.dismiss();
-                            new Don.Builder(getActivity()).setMessage("取消收款").setDuration(2500).build().show();
-                        }
-                    }).build().show();
-                })
-                .onConfirm(() -> {
-                    valueAnimator.start();
-                })
-                .setType(Don.TYPE_DIALOG)
-                .build();
-
-        valueAnimator.setDuration(6000)
-                .setInterpolator(new LinearInterpolator());
-        valueAnimator.addUpdateListener(animation -> {
-            int a = (int) animation.getAnimatedValue();
-            mDonProgress.setProgress(a);
-            if (a == 0) {
-                mDonProgress.show();
-            }
-            if (a == 100) {
-                mDonProgress.dismiss();
-            }
-        });
 
         screenW = getResources().getDisplayMetrics().widthPixels;
-        tvMsg = (TextView) view.findViewById(R.id.tvMsg);
-        tvTestImage = (ImageView) view.findViewById(R.id.tvTestImage);
-        blurringView = (BlurringView) view.findViewById(R.id.blurringView);
-        blurringView.setBlurredView(tvTestImage);
+        tvMsg = view.findViewById(R.id.tvMsg);
+        tvTestImage = view.findViewById(R.id.tvTestImage);
         sensorWrapper = App.getComponent().getGyroscopeSensorWrapper();
         sensorWrapper.setSensorCallBack(new SimpleGyroscopeSensorCallBack() {
             @Override
@@ -125,7 +67,6 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                                 + "\nbitmapH=" + bitmapH + " bitmapW=" + bitmapW
                                 + " \ntransX=" + transX;
                         tvMsg.setText(msg);
-                        blurringView.invalidate();
                     }
                 }
             }
@@ -149,18 +90,9 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
             case R.id.btnHello:
                 Logger.d("call hello");
                 ((MainActivity) getActivity()).sendMessage("hello");
-                mDonDialog.show();
                 break;
             case R.id.btnWorld:
                 ((MainActivity) getActivity()).sendMessage("world");
-                new Don.Builder(getActivity()).setType(Don.TYPE_CUSTOM)
-                        .setOpacity(0.5f)
-                        .setCanceledOnTouchOutside(false)
-                        .setRadius(0)
-                        .setAnimationIn(R.anim.don_animation_in)
-                        .setAnimationOut(R.anim.don_animation_out)
-                        .setCustomImpl(new CustomDonImpl(LayoutInflater.from(getContext().getApplicationContext()), 0))
-                        .build().show();
                 break;
             case R.id.btnSensor:
                 sensorWrapper.start();
@@ -183,15 +115,6 @@ public class HomeFragment extends MasterFragment implements View.OnClickListener
                 startFragment(new Request(ShadowFragment.class));
                 break;
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (mDonDialog.isShowing()) {
-            mDonDialog.dismiss();
-            return;
-        }
-        super.onBackPressed();
     }
 
     @Override

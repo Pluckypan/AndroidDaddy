@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -20,15 +19,6 @@
                 android:contentDescription="@string/app_name"
                 android:scaleType="matrix"
                 android:src="@mipmap/test" />
-
-            <com.fivehundredpx.android.blur.BlurringView
-                android:id="@+id/blurringView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                app:blurRadius="5"
-                app:downsampleFactor="6"
-                app:overlayColor="#99FFFFFF" />
         </FrameLayout>
 
         <TextView
