@@ -6,6 +6,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -87,12 +88,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-
+            Log.d("DownloadService", "onServiceConnected name=" + name.getClassName());
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
+            Log.d("DownloadService", "onServiceDisconnected name=" + name.getClassName());
         }
     };
 }

@@ -22,12 +22,12 @@ public class DownloadService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "onCreate");
+        Log.d(TAG, "onCreate thread=" + Thread.currentThread().getName());
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Log.d(TAG, "Timer " + SystemClock.elapsedRealtime() / (1000));
+                Log.d(TAG, "Timer " + SystemClock.elapsedRealtime() / (1000) + "thread=" + Thread.currentThread().getName());
             }
         }, 1000, 1000);
     }
@@ -35,7 +35,7 @@ public class DownloadService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy");
+        Log.d(TAG, "onDestroy thread=" + Thread.currentThread().getName());
         if (timer != null) {
             timer.cancel();
             timer = null;
@@ -45,27 +45,27 @@ public class DownloadService extends Service {
     //will be invoked by System when call stardService
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "onStartCommand startId=" + startId);
+        Log.d(TAG, "onStartCommand startId=" + startId+" thread=" + Thread.currentThread().getName());
         return super.onStartCommand(intent, flags, startId);
     }
 
     //will be invoked by System when call bindService
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d(TAG, "onBind");
+        Log.d(TAG, "onBind thread=" + Thread.currentThread().getName());
         return new DownloadIBinder();
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
-        Log.d(TAG, "onUnbind");
+        Log.d(TAG, "onUnbind thread=" + Thread.currentThread().getName());
         return super.onUnbind(intent);
     }
 
     @Override
     public void onRebind(Intent intent) {
         super.onRebind(intent);
-        Log.d(TAG, "onRebind");
+        Log.d(TAG, "onRebind thread=" + Thread.currentThread().getName());
     }
 
 
