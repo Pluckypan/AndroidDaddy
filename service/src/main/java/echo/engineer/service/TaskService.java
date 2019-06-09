@@ -114,11 +114,13 @@ public class TaskService extends IntentService {
     private static final ServiceConnection sConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.d(TAG, "onServiceConnected name=" + name.getClassName());
             sBinder = service;
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
+            Log.d(TAG, "onServiceDisconnected name=" + name.getClassName());
             sBinder = null;
         }
     };
