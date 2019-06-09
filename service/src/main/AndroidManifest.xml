@@ -20,7 +20,10 @@
         </activity>
 
         <service android:name=".DownloadService" />
-        <service android:name=".MessageService" android:exported="true"/>
+        <service
+            android:name=".MessageService"
+            android:exported="true" />
+        <service android:name=".TaskService" />
     </application>
 
 </manifest>

@@ -38,4 +38,23 @@
         android:layout_height="wrap_content"
         android:text="UnBindService" />
 
+    <CheckBox
+        android:id="@+id/cb_bind_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bind TaskService(IntentService)" />
+
+    <Button
+        android:id="@+id/btn_start_service_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startTask"
+        android:text="开启服务" />
+
+    <Button
+        android:id="@+id/btn_stop_service_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="stopTask"
+        android:text="结束服务" />
 </LinearLayout>

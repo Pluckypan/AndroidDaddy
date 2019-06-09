@@ -8,6 +8,7 @@ import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import rx.Subscription;
@@ -16,16 +17,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Subscription subscription;
     private TextView tvMsg;
+    private CheckBox cbBind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(echo.engineer.service.R.layout.activity_main);
-        findViewById(echo.engineer.service.R.id.btnStartService).setOnClickListener(this);
-        findViewById(echo.engineer.service.R.id.btnStopService).setOnClickListener(this);
-        findViewById(echo.engineer.service.R.id.btnBindService).setOnClickListener(this);
-        findViewById(echo.engineer.service.R.id.btnUnBindService).setOnClickListener(this);
-        tvMsg = (TextView) findViewById(echo.engineer.service.R.id.tvMsg);
+        setContentView(R.layout.activity_main);
+        findViewById(R.id.btnStartService).setOnClickListener(this);
+        findViewById(R.id.btnStopService).setOnClickListener(this);
+        findViewById(R.id.btnBindService).setOnClickListener(this);
+        findViewById(R.id.btnUnBindService).setOnClickListener(this);
+        tvMsg = findViewById(R.id.tvMsg);
+        cbBind = findViewById(R.id.cb_bind_app);
 
 
         subscription = AppStateManager.subscribe(new AppStateManager.SimpleAppStateAction() {
@@ -70,18 +73,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case echo.engineer.service.R.id.btnStartService:
+            case R.id.btnStartService:
                 onStartService(v);
                 break;
-            case echo.engineer.service.R.id.btnStopService:
+            case R.id.btnStopService:
                 onStopService(v);
                 break;
-            case echo.engineer.service.R.id.btnBindService:
+            case R.id.btnBindService:
                 onBindService(v);
                 break;
-            case echo.engineer.service.R.id.btnUnBindService:
+            case R.id.btnUnBindService:
                 onUnBindService(v);
                 break;
+        }
+    }
+
+    public void startTask(View view) {
+        if (cbBind.isChecked()) {
+            TaskService.bind(this);
+            Log.d("TaskService", "startTask");
+        } else {
+            TaskService.start(this);
+        }
+    }
+
+    public void stopTask(View view) {
+        if (cbBind.isChecked()) {
+            boolean r = TaskService.unbind(this);
+            Log.d("TaskService", "stopTask r=" + r);
+        } else {
+            TaskService.stop(this);
         }
     }
 
