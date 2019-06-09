@@ -70,7 +70,7 @@ public class MessengerService extends Service {
 
     private void buildConnection() {
         Intent intent = new Intent();
-        intent.setClassName("echo.engineer.servicedemo", "echo.engineer.servicedemo.MessageService");
+        intent.setClassName("echo.engineer.service", "echo.engineer.service.MessageService");
         bindService(intent, mConnection, BIND_AUTO_CREATE);
     }
 
