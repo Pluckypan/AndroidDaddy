@@ -53,16 +53,30 @@ public class DragSwipeActivity extends AppCompatActivity {
                 int position = parent.getChildAdapterPosition(view);
                 if (position == 0) {
                     //第一个item预留空间
-                    outRect.left = size;
+                    outRect.left = size + 20;
+                } else {
+                    outRect.left = 20;
                 }
             }
 
             @Override
             public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
                 super.onDrawOver(c, parent, state);
-                c.drawRect(rectF, headerPaint);
+                headerPaint.setColor(Color.RED);
                 int pos = manager.findFirstVisibleItemPosition();
+                c.drawRect(rectF, headerPaint);
                 c.drawText("悬浮头=" + pos, rectF.centerX(), rectF.centerY(), textPaint);
+            }
+
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                super.onDraw(c, parent, state);
+                int count = parent.getChildCount();
+                headerPaint.setColor(Color.GREEN);
+                for (int i = 0; i < count; i++) {
+                    View child = parent.getChildAt(i);
+                    c.drawRect(child.getLeft(), child.getTop() - 20, child.getRight(), child.getBottom() - 20, headerPaint);
+                }
             }
         };
 
