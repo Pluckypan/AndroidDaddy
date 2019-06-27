@@ -24,7 +24,7 @@ public class DragSwipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_drag_swipe);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         View deleteView = findViewById(R.id.deleteView);
-        SwipeLayoutManager manager = new SwipeLayoutManager(this);
+        final SwipeLayoutManager manager = new SwipeLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         mRecyclerView.setLayoutManager(manager);
@@ -61,7 +61,8 @@ public class DragSwipeActivity extends AppCompatActivity {
             public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
                 super.onDrawOver(c, parent, state);
                 c.drawRect(rectF, headerPaint);
-                c.drawText("悬浮头", rectF.centerX(), rectF.centerY(), textPaint);
+                int pos = manager.findFirstVisibleItemPosition();
+                c.drawText("悬浮头=" + pos, rectF.centerX(), rectF.centerY(), textPaint);
             }
         };
 
