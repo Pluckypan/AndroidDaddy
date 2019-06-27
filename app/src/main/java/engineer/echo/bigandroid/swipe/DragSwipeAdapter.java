@@ -23,6 +23,9 @@ public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.Item
 
     private Context mContext;
 
+    private static int TYPE_1 = 1;
+    private static int TYPE_2 = 2;
+
     private List<Integer> DATA = new ArrayList<>();
 
     public DragSwipeAdapter(Context mContext) {
@@ -34,6 +37,15 @@ public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.Item
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = View.inflate(mContext, R.layout.item_msg, null);
         return new ItemViewHolder(view);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 5) {
+            return TYPE_2;
+        } else {
+            return TYPE_1;
+        }
     }
 
     @Override

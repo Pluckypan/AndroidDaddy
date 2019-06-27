@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -33,6 +34,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/drag_item_size"
             android:layout_gravity="bottom" />
+
+        <com.iammert.rangeview.library.RangeView
+            android:id="@+id/rangeView"
+            android:layout_width="250dp"
+            android:layout_height="@dimen/drag_item_size"
+            android:layout_gravity="bottom|center"
+            app:colorBackground="#555555"
+            app:strokeColor="#123123" />
     </FrameLayout>
 
 

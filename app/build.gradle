@@ -23,4 +23,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation "com.android.support:appcompat-v7:${rootProject.ext.appcompatVersion}"
     implementation "com.android.support:design:${rootProject.ext.designVersion}"
+    implementation('com.github.iammert:rangeview:0.1') {
+        exclude("module": "appcompat-v7")
+    }
 }

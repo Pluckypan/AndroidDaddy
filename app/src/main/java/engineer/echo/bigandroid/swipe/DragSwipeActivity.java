@@ -12,17 +12,21 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
+import com.iammert.rangeview.library.RangeView;
+
 import engineer.echo.bigandroid.R;
 
 public class DragSwipeActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
+    RangeView rangeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drag_swipe);
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = findViewById(R.id.recyclerView);
+        rangeView = findViewById(R.id.rangeView);
         View deleteView = findViewById(R.id.deleteView);
         final SwipeLayoutManager manager = new SwipeLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -66,6 +70,10 @@ public class DragSwipeActivity extends AppCompatActivity {
                 int pos = manager.findFirstVisibleItemPosition();
                 c.drawRect(rectF, headerPaint);
                 c.drawText("悬浮头=" + pos, rectF.centerX(), rectF.centerY(), textPaint);
+                RecyclerView.ViewHolder holder = parent.findViewHolderForAdapterPosition(5);
+                if (holder != null) {
+                    rangeView.setX(holder.itemView.getX());
+                }
             }
 
             @Override
