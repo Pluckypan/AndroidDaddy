@@ -21,6 +21,9 @@ public class DragSwipeActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     RangeView rangeView;
 
+    private float mOffsetX = 0;
+    private ScrollCallback mCallback = new ScrollCallback();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,7 @@ public class DragSwipeActivity extends AppCompatActivity {
         textPaint.setTextAlign(Paint.Align.CENTER);
 
         final RectF rectF = new RectF(0, 0, size, size);
+        mRecyclerView.addOnScrollListener(mCallback);
 
         RecyclerView.ItemDecoration decoration = new RecyclerView.ItemDecoration() {
 
@@ -56,12 +60,13 @@ public class DragSwipeActivity extends AppCompatActivity {
                 super.getItemOffsets(outRect, view, parent, state);
                 int position = parent.getChildAdapterPosition(view);
                 if (position == 0) {
-                    //第一个item预留空间
-                    outRect.left = size + 20;
+                    outRect.left =  0;
                 } else {
                     outRect.left = 20;
                 }
             }
+
+            private float mFirstX = -1f;
 
             @Override
             public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
@@ -70,12 +75,11 @@ public class DragSwipeActivity extends AppCompatActivity {
                 int pos = manager.findFirstVisibleItemPosition();
                 c.drawRect(rectF, headerPaint);
                 c.drawText("悬浮头=" + pos, rectF.centerX(), rectF.centerY(), textPaint);
-                RecyclerView.ViewHolder holder = parent.findViewHolderForAdapterPosition(5);
-                float xOffset=0;
-                if (holder != null) {
-                    xOffset = holder.itemView.getX();
+                RecyclerView.ViewHolder holder = parent.findViewHolderForAdapterPosition(2);
+                if (holder != null && mFirstX == -1f) {
+                    mFirstX = holder.itemView.getX()-60;
                 }
-                rangeView.setX(xOffset);
+                rangeView.setTranslationX(-mOffsetX + mFirstX);
             }
 
             @Override
@@ -102,4 +106,19 @@ public class DragSwipeActivity extends AppCompatActivity {
         helper.attachToRecyclerView(mRecyclerView);
         mRecyclerView.addItemDecoration(decoration);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mRecyclerView.removeOnScrollListener(mCallback);
+    }
+
+    private class ScrollCallback extends RecyclerView.OnScrollListener {
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            mOffsetX += dx;
+        }
+    }
+
 }

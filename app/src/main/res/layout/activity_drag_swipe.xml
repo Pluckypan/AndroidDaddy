@@ -37,7 +37,7 @@
 
         <com.iammert.rangeview.library.RangeView
             android:id="@+id/rangeView"
-            android:layout_width="250dp"
+            android:layout_width="@dimen/drag_item_size"
             android:layout_height="@dimen/drag_item_size"
             android:layout_gravity="bottom|center"
             app:colorBackground="#555555"
