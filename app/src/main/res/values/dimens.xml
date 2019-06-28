@@ -1,5 +1,7 @@
 <resources>
     <dimen name="app_bar_height">100dp</dimen>
     <dimen name="drag_item_size">100dp</dimen>
-    <dimen name="rangeView_HorizontalSpace">0dp</dimen>
+    <dimen name="rangeView_HorizontalSpace">10dp</dimen>
+    <dimen name="rangeView_StrokeWidth">4dp</dimen>
+    <dimen name="rangeView_ToggleRadius">8dp</dimen>
 </resources>

@@ -71,9 +71,11 @@ public class DragSwipeActivity extends AppCompatActivity {
                 c.drawRect(rectF, headerPaint);
                 c.drawText("悬浮头=" + pos, rectF.centerX(), rectF.centerY(), textPaint);
                 RecyclerView.ViewHolder holder = parent.findViewHolderForAdapterPosition(5);
+                float xOffset=0;
                 if (holder != null) {
-                    rangeView.setX(holder.itemView.getX());
+                    xOffset = holder.itemView.getX();
                 }
+                rangeView.setX(xOffset);
             }
 
             @Override

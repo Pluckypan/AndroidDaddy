@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="rangeView_colorMask">#70000000</color>
+    <color name="rangeView_colorStroke">#FFFFFF</color>
+    <color name="rangeView_colorBackground">#ff13a5 </color>
 </resources>
