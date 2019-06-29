@@ -2,6 +2,7 @@ package engineer.echo.bigandroid.swipe;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -25,12 +26,15 @@ public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.Item
 
     private static int TYPE_1 = 1;
     private static int TYPE_2 = 2;
+    public int size = 300;
 
-    private List<Integer> DATA = new ArrayList<>();
+    private List<DragEntity> DATA = new ArrayList<>();
 
     public DragSwipeAdapter(Context mContext) {
         this.mContext = mContext;
-        DATA.addAll(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19));
+        for (int i = 0; i < 20; i++) {
+            DATA.add(new DragEntity(i, 1.0f));
+        }
     }
 
     @Override
@@ -50,14 +54,23 @@ public class DragSwipeAdapter extends RecyclerView.Adapter<DragSwipeAdapter.Item
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
-        int item = DATA.get(position);
-        holder.itemView.setBackgroundResource(Const.getColor(item));
-        holder.tvName.setText(String.valueOf(item));
+        DragEntity entity = DATA.get(position);
+        holder.itemView.setBackgroundResource(Const.getColor(entity.getIndex()));
+        holder.tvName.setText(String.valueOf(entity.getIndex()));
+        float scale = entity.getScale();
+        int left = 0;
+        int right = (int) (size * scale);
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(right-left,size);
+        holder.itemView.setLayoutParams(layoutParams);
     }
 
     @Override
     public int getItemCount() {
         return DATA.size();
+    }
+
+    public DragEntity getItem(int index) {
+        return DATA.get(index);
     }
 
     public void remove(int position) {

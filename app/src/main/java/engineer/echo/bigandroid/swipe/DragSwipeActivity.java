@@ -10,36 +10,43 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.iammert.rangeview.library.RangeView;
 
 import engineer.echo.bigandroid.R;
 
-public class DragSwipeActivity extends AppCompatActivity {
+public class DragSwipeActivity extends AppCompatActivity implements RangeView.OnRangeValueListener {
 
+    private static final String TAG = "DragSwipeActivity";
     RecyclerView mRecyclerView;
     RangeView rangeView;
 
     private float mOffsetX = 0;
     private ScrollCallback mCallback = new ScrollCallback();
-
+    private DragSwipeAdapter mAdapter;
+    private int size = 300;
+    private float mFirstX = 2 * (size + 20);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drag_swipe);
         mRecyclerView = findViewById(R.id.recyclerView);
         rangeView = findViewById(R.id.rangeView);
+        rangeView.setRangeValueChangeListener(this);
         View deleteView = findViewById(R.id.deleteView);
         final SwipeLayoutManager manager = new SwipeLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         mRecyclerView.setLayoutManager(manager);
+        size = getResources().getDimensionPixelSize(R.dimen.drag_item_size);
+        mAdapter = new DragSwipeAdapter(this);
+        mAdapter.size = size;
+        mRecyclerView.setAdapter(mAdapter);
 
-        final DragSwipeAdapter adapter = new DragSwipeAdapter(this);
-        mRecyclerView.setAdapter(adapter);
 
-        final int size = getResources().getDimensionPixelSize(R.dimen.drag_item_size);
         final Paint headerPaint = new Paint();
         headerPaint.setColor(Color.RED);
 
@@ -60,13 +67,13 @@ public class DragSwipeActivity extends AppCompatActivity {
                 super.getItemOffsets(outRect, view, parent, state);
                 int position = parent.getChildAdapterPosition(view);
                 if (position == 0) {
-                    outRect.left =  0;
+                    outRect.left = 0;
                 } else {
                     outRect.left = 20;
                 }
             }
 
-            private float mFirstX = -1f;
+
 
             @Override
             public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
@@ -75,10 +82,6 @@ public class DragSwipeActivity extends AppCompatActivity {
                 int pos = manager.findFirstVisibleItemPosition();
                 c.drawRect(rectF, headerPaint);
                 c.drawText("悬浮头=" + pos, rectF.centerX(), rectF.centerY(), textPaint);
-                RecyclerView.ViewHolder holder = parent.findViewHolderForAdapterPosition(2);
-                if (holder != null && mFirstX == -1f) {
-                    mFirstX = holder.itemView.getX()-60;
-                }
                 rangeView.setTranslationX(-mOffsetX + mFirstX);
             }
 
@@ -94,12 +97,12 @@ public class DragSwipeActivity extends AppCompatActivity {
             }
         };
 
-        SimpleTouchCallback callback = new SimpleTouchCallback(adapter);
+        SimpleTouchCallback callback = new SimpleTouchCallback(mAdapter);
         callback.setDeleteArea(deleteView);
         callback.setOnItemDeleteListener(new OnItemDeleteListener() {
             @Override
             public void onItemDelete(int position) {
-                adapter.remove(position);
+                mAdapter.remove(position);
             }
         });
         ItemTouchHelper helper = new ItemTouchHelper(callback);
@@ -121,4 +124,19 @@ public class DragSwipeActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void rangeChanged(float maxValue, float minValue, float currentLeftValue, float currentRightValue) {
+        RecyclerView.ViewHolder holder = mRecyclerView.findViewHolderForAdapterPosition(2);
+        DragEntity item = mAdapter.getItem(2);
+        if (holder != null) {
+            float scale = currentRightValue;
+            int left = 0;
+            int right = (int) (size * scale);
+            ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
+            layoutParams.width = right - left;
+            holder.itemView.setLayoutParams(layoutParams);
+
+            item.setScale(currentRightValue);
+        }
+    }
 }

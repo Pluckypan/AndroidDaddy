@@ -39,9 +39,9 @@
             android:id="@+id/rangeView"
             android:layout_width="@dimen/drag_item_size"
             android:layout_height="@dimen/drag_item_size"
-            android:layout_gravity="bottom|center"
-            app:colorBackground="#555555"
-            app:strokeColor="#123123" />
+            android:layout_gravity="bottom"
+            app:colorBackground="#00555555"
+            app:strokeColor="#00123123" />
     </FrameLayout>
 
 
