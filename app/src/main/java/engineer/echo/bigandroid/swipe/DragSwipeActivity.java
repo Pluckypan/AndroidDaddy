@@ -5,12 +5,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -29,6 +30,7 @@ public class DragSwipeActivity extends AppCompatActivity implements RangeView.On
     private DragSwipeAdapter mAdapter;
     private int size = 300;
     private float mFirstX = 2 * (size + 20);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,9 @@ public class DragSwipeActivity extends AppCompatActivity implements RangeView.On
         final RectF rectF = new RectF(0, 0, size, size);
         mRecyclerView.addOnScrollListener(mCallback);
 
+        final Drawable mLabel = getDrawable(R.drawable.ic_sticker_label);
+        final Drawable mWord = getDrawable(R.drawable.ic_add_words);
+
         RecyclerView.ItemDecoration decoration = new RecyclerView.ItemDecoration() {
 
 
@@ -72,7 +77,6 @@ public class DragSwipeActivity extends AppCompatActivity implements RangeView.On
                     outRect.left = 20;
                 }
             }
-
 
 
             @Override
@@ -93,6 +97,12 @@ public class DragSwipeActivity extends AppCompatActivity implements RangeView.On
                 for (int i = 0; i < count; i++) {
                     View child = parent.getChildAt(i);
                     c.drawRect(child.getLeft(), child.getTop() - 20, child.getRight(), child.getBottom() - 20, headerPaint);
+                    int d = parent.getChildAdapterPosition(child);
+                    if (d % 3 == 0) {
+                        int divide = child.getWidth() / 3;
+                        drawImageAtPoint(c, mLabel, divide + child.getLeft(), child.getTop(), false);
+                        drawImageAtPoint(c, mWord, divide * 2 + child.getLeft(), child.getTop(), false);
+                    }
                 }
             }
         };
@@ -108,6 +118,17 @@ public class DragSwipeActivity extends AppCompatActivity implements RangeView.On
         ItemTouchHelper helper = new ItemTouchHelper(callback);
         helper.attachToRecyclerView(mRecyclerView);
         mRecyclerView.addItemDecoration(decoration);
+    }
+
+    private void drawImageAtPoint(@NonNull Canvas canvas,
+                                  @NonNull Drawable drawable,
+                                  int x, int y,
+                                  boolean below) {
+        int halfW = drawable.getIntrinsicWidth() / 2;
+        int h = drawable.getIntrinsicHeight();
+        int top = below ? y : y - h;
+        drawable.setBounds(x - halfW, top, x + halfW, top + h);
+        drawable.draw(canvas);
     }
 
     @Override
